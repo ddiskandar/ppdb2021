@@ -1,0 +1,1 @@
+<h1 class="text-lg font-bold text-green-700">SMK Plus Al-Farhan</h1>
