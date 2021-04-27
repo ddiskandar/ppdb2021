@@ -41,7 +41,7 @@
                                         Pilihan Kelas
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        WA
+                                        Gabung WA
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>
@@ -69,7 +69,7 @@
                                             <span>{{ $student->pilihan_kelas() }}</span>
                                         </span>
                                     </td>
-                                    <td class="px-3 py-4 text-sm font-medium whitespace-nowrap">
+                                    <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                         @if ( $student->ppdb->join_wa )
                                         <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
                                             <span class="w-2 h-2 mr-2 bg-green-600 rounded-full"></span>
@@ -91,7 +91,9 @@
                                                 <x-icon-pencil-alt />
                                             </x-button-icon>
                                             <x-button-icon>
-                                                <x-icon-printer />
+                                                <a href="{{ route('student.pdf', $student->id) }}">
+                                                    <x-icon-printer />
+                                                </a>
                                             </x-button-icon>
                                         </div>
 

@@ -6,7 +6,9 @@
             </h2>
             <div class="items-center hidden sm:flex">
                 <x-jet-secondary-button>
-                    Download Excel
+                    <a href="{{ route('student.export') }}">
+                        Download Excel
+                    </a>
                 </x-jet-secondary-button>
                 <x-jet-button class="ml-4">
                     Tambah Pendaftar
