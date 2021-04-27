@@ -7,11 +7,11 @@ use App\Models\Student;
 
 class StudentDetail extends Component
 {
-    public Student $student;
+    public $studentDetail;
 
     public function render()
     {
-        ddd($this->student);
+        // ddd($this->studentDetail);
         return view('livewire.student-detail');
     }
 }
