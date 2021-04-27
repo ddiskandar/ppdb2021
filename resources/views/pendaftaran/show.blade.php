@@ -10,9 +10,7 @@
                         Download Excel
                     </a>
                 </x-jet-secondary-button>
-                <x-jet-button class="ml-4">
-                    Tambah Pendaftar
-                </x-jet-button>
+                @livewire('student-create')
             </div>
         </div>
     </x-slot>
