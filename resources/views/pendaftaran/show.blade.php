@@ -21,7 +21,7 @@
                 @livewire('pendaftar-table')
             </div>
 
-            <x-jet-section-border />
+            <!-- <x-jet-section-border /> -->
         </div>
     </div>
 </x-app-layout>

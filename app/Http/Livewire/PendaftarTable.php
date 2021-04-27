@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Ppdb;
 use App\Models\Student;
 
 use Livewire\Component;
@@ -21,6 +22,8 @@ class PendaftarTable extends Component
     public $filterKelas;
     public $filterSchool;
 
+    public $join_wa;
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -34,10 +37,20 @@ class PendaftarTable extends Component
         $this->resetPage();
     }
 
+    public function updatedJoinWA()
+    {
+        $ppdb = Ppdb::where('student_id', $this->studentDetail->id)->first();
+        $ppdb->update([
+            'join_wa' => $this->join_wa,
+        ]);
+    }
+
     public function showStudentDetail(Student $student)
     {
-        $this->studentDetail = $student;
+        $this->reset(['join_wa']);
         $this->panelStudentDetail = true;
+        $this->studentDetail = $student;
+        $this->join_wa = $student->ppdb->join_wa;
     }
 
     public function render()

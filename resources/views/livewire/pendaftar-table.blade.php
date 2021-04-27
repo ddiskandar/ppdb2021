@@ -84,11 +84,15 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center space-x-2 text-gray-400">
-                                            <button wire:click="showStudentDetail({{ $student->id }})">
+                                            <x-button-icon wire:click="showStudentDetail({{ $student->id }})">
                                                 <x-icon-eye />
-                                            </button>
-                                            <x-icon-pencil-alt />
-                                            <x-icon-printer />
+                                            </x-button-icon>
+                                            <x-button-icon>
+                                                <x-icon-pencil-alt />
+                                            </x-button-icon>
+                                            <x-button-icon>
+                                                <x-icon-printer />
+                                            </x-button-icon>
                                         </div>
 
                                     </td>
@@ -159,10 +163,10 @@
                 {{ $studentDetail->phone ?? '-' }}
                 <div class="inline-flex items-center ml-4">
                     <div class="flex items-center h-5 ">
-                        <input wire:model="join" id="join" name="join" type="checkbox" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+                        <input wire:model="join_wa" id="join_wa" name="join_wa" type="checkbox" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
                     </div>
                     <div class="ml-2 ">
-                        <label for="join" class="text-sm font-medium text-gray-500">Gabung Grup WA</label>
+                        <label for="join_wa" class="text-sm font-medium text-gray-500">Gabung Grup WA</label>
                     </div>
                 </div>
             </div>
