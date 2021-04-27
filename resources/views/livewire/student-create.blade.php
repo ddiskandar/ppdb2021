@@ -24,13 +24,15 @@
                             <option value="0">{{ __('Regular') }}</option>
                             <option value="1">{{ __('Boarding') }}</option>
                         </x-select>
+                        <x-jet-input-error for="pilihan_kelas" class="mt-2" />
+
                     </div>
 
                     <!-- Name -->
                     <div class="col-span-6 sm:col-span-4">
-                        <x-jet-label for="name" :value="__('Name')" />
-
+                        <x-jet-label for="name" :value="__('Nama Lengkap')" />
                         <x-jet-input wire:model.defer="name" id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus />
+                        <x-jet-input-error for="name" class="mt-2" />
                     </div>
 
                     <!-- Jenis Kelamin -->
@@ -42,18 +44,37 @@
                             <option value="L">{{ __('Laki-laki') }}</option>
                             <option value="P">{{ __('Perempuan') }}</option>
                         </x-select>
+                        <x-jet-input-error for="jk" class="mt-2" />
+
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-3">
                         <x-jet-label for="nisn" :value="__('NISN')" />
                         <x-jet-input wire:model.defer="nisn" id="nisn" class="block w-full mt-1" type="text" name="nisn" :value="old('nisn')" />
+                        <x-jet-input-error for="nisn" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-3">
                         <x-jet-label for="phone" :value="__('Nomor HP/Whatsapp')" />
                         <x-jet-input id="phone" wire:model.defer="phone" class="block w-full mt-1" type="text" name="phone" :value="old('phone')" required />
+                        <x-jet-input-error for="phone" class="mt-2" />
+
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="col-span-6 sm:col-span-3">
+                        <x-jet-label for="birthplace" :value="__('Tempat Lahir')" />
+                        <x-jet-input id="birthplace" wire:model.defer="birthplace" class="block w-full mt-1" type="text" name="birthplace" :value="old('birthplace')" required />
+                        <x-jet-input-error for="birthplace" class="mt-2" />
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="col-span-6 sm:col-span-3">
+                        <x-jet-label for="birthdate" :value="__('Tanggal Lahir')" />
+                        <x-jet-input id="birthdate" wire:model.defer="birthdate" class="block w-full mt-1" type="date" name="birthdate" :value="old('birthdate')" required />
+                        <x-jet-input-error for="birthdate" class="mt-2" />
                     </div>
 
                     <!-- Asal Sekolah -->
@@ -65,61 +86,72 @@
                             <option value={{ $school->id }}>{{ $school->name }}</option>
                             @endforeach
                         </select>
-
+                        <x-jet-input-error for="school_id" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-3">
                         <x-jet-label for="ayah_nama" :value="__('Nama Ayah Kandung')" />
                         <x-jet-input wire:model.defer="ayah_nama" id="ayah_nama" class="block w-full mt-1" type="text" name="ayah_nama" :value="old('ayah_nama')" required />
+                        <x-jet-input-error for="ayah_nama" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-3">
                         <x-jet-label for="ibu_nama" :value="__('Nama Ibu Kandung')" />
                         <x-jet-input wire:model.defer="ibu_nama" id="ibu_nama" class="block w-full mt-1" type="text" name="ibu_nama" :value="old('ibu_nama')" required />
+                        <x-jet-input-error for="ibu_nama" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-4">
                         <x-jet-label for="address" :value="__('Alamat Kampung / Jalan')" />
                         <x-jet-input wire:model.defer="address" id="address" class="block w-full mt-1" type="text" name="address" :value="old('address')" required />
+                        <x-jet-input-error for="address" class="mt-2" />
+
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="rt" :value="__('RT')" />
                         <x-jet-input wire:model.defer="rt" id="rt" class="block w-full mt-1" type="text" name="rt" :value="old('rt')" required />
+                        <x-jet-input-error for="rt" class="mt-2" />
+
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="rw" :value="__('RW')" />
                         <x-jet-input wire:model.defer="rw" id="rw" class="block w-full mt-1" type="text" name="rw" :value="old('rw')" required />
+                        <x-jet-input-error for="rw" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="desa" :value="__('Desa')" />
                         <x-jet-input wire:model.defer="desa" id="desa" class="block w-full mt-1" type="text" name="desa" :value="old('desa')" required />
+                        <x-jet-input-error for="desa" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="kecamatan" :value="__('Kecamatan')" />
                         <x-jet-input wire:model.defer="kecamatan" id="kecamatan" class="block w-full mt-1" type="text" name="kecamatan" :value="old('kecamatan')" required />
+                        <x-jet-input-error for="kecamatan" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="kab" :value="__('Kabupaten')" />
                         <x-jet-input wire:model.defer="kab" id="kab" class="block w-full mt-1" type="text" name="kab" :value="old('kab')" required />
+                        <x-jet-input-error for="kab" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="prov" :value="__('Provinsi')" />
                         <x-jet-input wire:model.defer="prov" id="prov" class="block w-full mt-1" type="text" name="prov" :value="old('prov')" required />
+                        <x-jet-input-error for="prov" class="mt-2" />
                     </div>
 
                 </div>
