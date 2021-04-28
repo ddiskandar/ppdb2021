@@ -29,10 +29,17 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
+                @livewire('student.kelayakan-pip', ['student' => $student])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
                 @livewire('student.pilihan-jurusan', ['student' => $student])
             </div>
 
             <x-jet-section-border />
+
         </div>
     </div>
 </x-app-layout>
