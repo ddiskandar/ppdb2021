@@ -40,6 +40,18 @@
 
             <x-jet-section-border />
 
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.data-rincian', ['student' => $student])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.ukuran-seragam', ['student' => $student])
+            </div>
+
+            <x-jet-section-border />
+
         </div>
     </div>
 </x-app-layout>
