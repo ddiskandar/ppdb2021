@@ -63,6 +63,12 @@
             </div>
 
             <x-jet-section-border />
+            
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.description', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
 
         </div>
     </div>

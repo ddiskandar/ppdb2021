@@ -11,7 +11,7 @@
 
         <!-- PDU -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="state.pdu" :value="__('Ukuran seragam state.PDU')" />
+            <x-jet-label for="state.pdu" :value="__('Ukuran seragam PDU')" />
             <x-select wire:model="state.pdu" id="state.pdu" name="state.pdu" autocomplete="state.pdu" class="block w-full px-3 mt-1">
                 <option value="">-- Pilih salah satu</option>
                 <option value="S">S</option>
@@ -26,7 +26,7 @@
 
         <!-- PDU -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="state.olahraga" :value="__('Ukuran seragam state.olahraga')" />
+            <x-jet-label for="state.olahraga" :value="__('Ukuran seragam olahraga')" />
             <x-select wire:model="state.olahraga" id="state.olahraga" name="state.olahraga" autocomplete="state.olahraga" class="block w-full px-3 mt-1">
                 <option value="">-- Pilih salah satu</option>
                 <option value="S">S</option>
@@ -41,7 +41,7 @@
 
         <!-- PDU -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="state.jas" :value="__('Ukuran seragam state.Jas Almamater')" />
+            <x-jet-label for="state.jas" :value="__('Ukuran seragam Jas Almamater')" />
             <x-select wire:model="state.jas" id="state.jas" name="state.jas" autocomplete="state.jas" class="block w-full px-3 mt-1">
                 <option value="">-- Pilih salah satu</option>
                 <option value="S">S</option>
