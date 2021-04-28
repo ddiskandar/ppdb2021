@@ -23,31 +23,43 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.sekolah-asal', ['student' => $student])
+                @livewire('student.sekolah-asal', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.kelayakan-pip', ['student' => $student])
+                @livewire('student.data-keluarga', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.pilihan-jurusan', ['student' => $student])
+                @livewire('student.kelayakan-pip', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.data-rincian', ['student' => $student])
+                @livewire('student.pilihan-jurusan', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.ukuran-seragam', ['student' => $student])
+                @livewire('student.data-periodik', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.data-rincian', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.ukuran-seragam', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />

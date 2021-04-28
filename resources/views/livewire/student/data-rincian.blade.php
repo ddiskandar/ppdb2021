@@ -11,31 +11,31 @@
 
         <!-- Hobby -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="hobby_id" :value="__('Hobby')" />
-            <x-select wire:model="hobby_id" id="hobby_id" name="hobby_id" autocomplete="hobby_id" class="block w-full px-3 mt-1" required>
+            <x-jet-label for="state.hobby_id" :value="__('Hobby')" />
+            <x-select wire:model.lazy="state.hobby_id" id="state.hobby_id" name="state.hobby_id" autocomplete="state.hobby_id" class="block w-full px-3 mt-1" required>
                 @foreach($hobbies as $hobby)
                 <option value="{{ $hobby->id }}">{{ $hobby->name }}</option>
                 @endforeach
             </x-select>
-            <x-jet-input-error for="hobby_id" class="mt-2" />
+            <x-jet-input-error for="state.hobby_id" class="mt-2" />
         </div>
         
         <!-- Cita-cita -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="ideal_id" :value="__('Cita-cita')" />
-            <x-select wire:model="ideal_id" id="ideal_id" name="ideal_id" autocomplete="ideal_id" class="block w-full px-3 mt-1" required>
+            <x-jet-label for="state.ideals_id" :value="__('Cita-cita')" />
+            <x-select wire:model.lazy="state.ideals_id" id="state.ideals_id" name="state.ideals_id" autocomplete="state.ideals_id" class="block w-full px-3 mt-1" required>
                 @foreach($ideals as $ideal)
                 <option value="{{ $ideal->id }}">{{ $ideal->name }}</option>
                 @endforeach
             </x-select>
-            <x-jet-input-error for="ideal_id" class="mt-2" />
+            <x-jet-input-error for="state.ideals_id" class="mt-2" />
         </div>
 
         <!-- Pilihan Kelas -->
         <div class="col-span-6">
-            <x-jet-label for="prestasi" :value="__('Prestasi yang pernah diraih')" />
-            <x-textarea wire:model="prestasi" id="prestasi" rows="5" class="block w-full mt-1" maxlength=512></x-textarea>
-            <x-jet-input-error for="prestasi" class="mt-2" />
+            <x-jet-label for="state.prestasi" :value="__('Prestasi yang pernah diraih')" />
+            <x-textarea wire:model.lazy="state.prestasi" id="state.prestasi" rows="5" class="block w-full mt-1" maxlength=512></x-textarea>
+            <x-jet-input-error for="state.prestasi" class="mt-2" />
         </div>
 
     </x-slot>

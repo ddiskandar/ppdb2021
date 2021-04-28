@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Student;
 
-use App\Models\User;
 use App\Models\Student;
 use Livewire\Component;
 
@@ -10,8 +9,8 @@ class DataPribadi extends Component
 {
     public $state = [];
 
-    public $studentId;
-    public $userId;
+    public $student;
+    public $user;
 
     protected $rules = [
         'state.user.name' => 'required|string|max:52',
@@ -20,7 +19,7 @@ class DataPribadi extends Component
         'state.nisn' => 'nullable|string|min:10|max:10',
         'state.nik' => 'nullable|string|min:16:max:16',
         'state.kk' => 'nullable|string|min:16|max:16',
-        'state.akta' => 'nullable|string|max:16',
+        'state.akta' => 'nullable|string|max:22',
         'state.birthplace' => 'required|string|max:32',
         'state.birthdate' => 'required|date',
         'state.address' => 'required|string:max:52',
@@ -69,8 +68,8 @@ class DataPribadi extends Component
 
     public function mount(Student $student)
     {
-        $this->studentId = $student->id;
-        $this->userId = $student->user_id;
+        $this->student = $student;
+        $this->user = $student->user;
         $this->state = $student->toArray();
     }
 
@@ -78,15 +77,11 @@ class DataPribadi extends Component
     {
         $this->validate();
 
-        User::query()
-            ->where('id', $this->userId)
-            ->update([
+        $this->user->update([
                 'name' => $this->state['user']['name'],
             ]);
 
-        Student::query()
-            ->where('id', $this->studentId)
-            ->update([
+        $this->student->update([
                 'panggilan' => $this->state['panggilan'],
                 'jk' => $this->state['jk'],
                 'nisn' => $this->state['nisn'],

@@ -7,34 +7,28 @@ use Livewire\Component;
 
 class UkuranSeragam extends Component
 {
-    public $studentId;
+    public $student;
 
     public $state = [];
 
     protected $rules = [
-        'state.pdu' => 'required',
-        'state.olahraga' => 'required',
-        'state.jas' => 'required',
+        'state.pdu' => 'nullable',
+        'state.olahraga' => 'nullable',
+        'state.jas' => 'nullable',
     ];
 
     public function mount(Student $student)
     {
         $this->state = $student->toArray();
 
-        $this->studentId = $student->id;
+        $this->student = $student;
     }
 
     public function update()
     {
         $this->validate();
 
-        Student::query()
-            ->where('id', $this->studentId)
-            ->update([
-                'pdu' => $this->state['pdu'],
-                'olahraga' => $this->state['olahraga'],
-                'jas' => $this->state['jas'],
-            ]);
+        $this->student->update($this->state);
         
         $this->emit('saved');
     }
