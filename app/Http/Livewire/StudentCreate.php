@@ -21,11 +21,13 @@ class StudentCreate extends Component
     public $pilihan_kelas;
     public $name;
     public $jk;
-    public $nisn;
-    public $phone;
     public $school_id;
-    public $birthdate;
+    public $phone;
+    public $nisn;
+    public $nik;
+    public $kk;
     public $birthplace;
+    public $birthdate;
     public $ayah_nama;
     public $ibu_nama;
     public $address;
@@ -35,33 +37,58 @@ class StudentCreate extends Component
     public $kecamatan;
     public $kab;
     public $prov;
+    public $kode_pos;
 
     protected $rules = [
-        'name' => 'required',
         'pilihan_kelas' => 'required',
-        'school_id' => 'required',
+        'name' => 'required|string|max:52',
         'jk' => 'required',
-        'nisn' => 'nullable',
-        'birthplace' => 'required',
-        'birthdate' => 'required',
-        'phone' => 'required',
-        'address' => 'required',
-        'rt' => 'required',
-        'rw' => 'required',
-        'desa' => 'required',
-        'kecamatan' => 'required',
-        'kab' => 'required',
-        'prov' => 'required',
-        'ayah_nama' => 'required',
-        'ibu_nama' => 'required',
+        'school_id' => 'required',
+        'phone' => 'required|string|max:13',
+        'nisn' => 'nullable|string|min:10|max:10',
+        'nik' => 'nullable|string|min:16:max:16',
+        'kk' => 'nullable|string|min:16|max:16',
+        'birthplace' => 'required|string|max:32',
+        'birthdate' => 'required|date',
+        'ayah_nama' => 'required|string:max:32',
+        'ibu_nama' => 'required|string:max:32',
+        'address' => 'required|string:max:52',
+        'rt' => 'required|numeric|max:99',
+        'rw' => 'required|numeric|max:99',
+        'desa' => 'required|string|max:32',
+        'kecamatan' => 'required|string|max:32',
+        'kab' => 'required|string|max:32',
+        'prov' => 'required|string|max:32',
+        'kode_pos' => 'nullable|string|max:5',
     ];
 
     protected $validationAttributes = [
-        'pilihan_kelas' => 'Pilihan kelas',
+        'pilihan_kelas' => 'Pilihan Kelas',
         'name' => 'Nama Lengkap',
+        'jk' => 'Jenis Kelamin',
+        'school_id' => 'Asal Sekolah',
+        'phone' => 'Nomor HP/WA',
+        'nisn' => 'NISN',
+        'nik' => 'NIK',
+        'kk' => 'No KK',
         'birthplace' => 'Tempat lahir',
         'birthdate' => 'Tanggal lahir',
+        'ayah_nama' => 'Nama ayah',
+        'ibu_nama' => 'Nama ibu',
+        'address' => 'Alamat',
+        'rt' => 'RT',
+        'rw' => 'RW',
+        'desa' => 'Desa',
+        'kecamatan' => 'Kecamatan',
+        'kab' => 'Kabupaten',
+        'prov' => 'Provinsi',
+        'kode_pos' => 'Kode pos',
     ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function create()
     {
@@ -81,12 +108,14 @@ class StudentCreate extends Component
 
             $student = Student::create([
                 'user_id' => $user->id,
-                'school_id' => $this->school_id,
                 'jk' => $this->jk,
+                'school_id' => $this->school_id,
+                'phone' => $this->phone,
                 'nisn' => $this->nisn,
+                'nik' => $this->nik,
+                'kk' => $this->kk,
                 'birthplace' => $this->birthplace,
                 'birthdate' => $this->birthdate,
-                'phone' => $this->phone,
                 'address' => $this->address,
                 'rt' => $this->rt,
                 'rw' => $this->rw,
@@ -94,6 +123,7 @@ class StudentCreate extends Component
                 'kecamatan' => $this->kecamatan,
                 'kab' => $this->kab,
                 'prov' => $this->prov,
+                'kode_pos' => $this->kode_pos,
             ]);
 
             $periode = Periode::where('active', true)->first();
@@ -125,13 +155,13 @@ class StudentCreate extends Component
 
         $this->studentCreate = false;
 
-        $this->emit('saved');
+        $this->emit('studentAdded');
     }
 
     public function render()
     {
         return view('livewire.student-create', [
-            'schools' => \DB::table('schools')->get(),
+            'schools' => \DB::table('schools')->orderByDesc('last_students')->get(),
         ]);
     }
 }
