@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/student/{student}/pdf', [App\Http\Controllers\StudentController::class, 'pdf'])->name('student.pdf');
 
+Route::get('/student/{student}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+
 Route::get('/student/export', [App\Http\Controllers\StudentController::class, 'export'])->name('student.export');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

@@ -42,7 +42,7 @@ class StudentCreate extends Component
     protected $rules = [
         'pilihan_kelas' => 'required',
         'name' => 'required|string|max:52',
-        'jk' => 'required',
+        'jk' => 'required|in:L,P',
         'school_id' => 'required',
         'phone' => 'required|string|max:13',
         'nisn' => 'nullable|string|min:10|max:10',

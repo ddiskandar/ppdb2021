@@ -88,7 +88,9 @@
                                                 <x-icon-eye />
                                             </x-button-icon>
                                             <x-button-icon>
-                                                <x-icon-pencil-alt />
+                                                <a href="{{ route('student.show', $student->id) }}">
+                                                    <x-icon-pencil-alt />
+                                                </a>
                                             </x-button-icon>
                                             <x-button-icon>
                                                 <a href="{{ route('student.pdf', $student->id) }}">

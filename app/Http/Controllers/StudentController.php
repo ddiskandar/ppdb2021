@@ -23,4 +23,11 @@ class StudentController extends Controller
         ]);
         return $pdf->stream($student->user->username . '.pdf');
     }
+
+    public function show(Student $student)
+    {
+        return view('student.show', [
+            'student' => $student,
+        ]);
+    }
 }
