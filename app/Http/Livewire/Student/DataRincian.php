@@ -13,7 +13,11 @@ class DataRincian extends Component
     protected $rules = [
         'state.hobby_id' => 'required',
         'state.ideals_id' => 'required',
-        'state.prestasi' => 'required|string|max:512',
+        'state.prestasi' => 'nullable|string|max:512',
+    ];
+
+    protected $validationAttributes = [
+        'state.prestasi' => 'Prestasi',
     ];
 
     public function mount(Student $student)

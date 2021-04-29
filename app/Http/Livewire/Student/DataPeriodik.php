@@ -13,11 +13,11 @@ class DataPeriodik extends Component
     public $state = [];
 
     protected $rules = [
-        'state.tinggi' => 'nullable|numeric|max:254',
-        'state.berat' => 'nullable|numeric|max:254',
-        'state.lingkar_kepala' => 'nullable|numeric|max:254',
-        'state.jarak' => 'nullable|numeric|max:254',
-        'state.waktu' => 'nullable|numeric|max:254',
+        'state.tinggi' => 'nullable|numeric|max:250',
+        'state.berat' => 'nullable|numeric|max:250',
+        'state.lingkar_kepala' => 'nullable|numeric|max:250',
+        'state.jarak' => 'nullable|numeric|max:250',
+        'state.waktu' => 'nullable|numeric|max:250',
     ];
 
     protected $validationAttributes = [
@@ -37,6 +37,8 @@ class DataPeriodik extends Component
 
     public function update()
     {
+        $this->validate();
+
         $this->student->update($this->state);
             
         $this->emit('saved');

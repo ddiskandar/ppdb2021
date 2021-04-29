@@ -16,6 +16,13 @@
 
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.sekolah-asal', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
             <div class="mt-10 sm:mt-0">
                 @livewire('student.data-pribadi', ['student' => $student])
             </div>
@@ -23,7 +30,7 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.sekolah-asal', ['student' => $student->id])
+                @livewire('student.data-periodik', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
@@ -41,19 +48,25 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
+                @livewire('student.data-rincian', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.description', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
                 @livewire('student.pilihan-jurusan', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.data-periodik', ['student' => $student->id])
-            </div>
-
-            <x-jet-section-border />
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('student.data-rincian', ['student' => $student->id])
+                @livewire('student.ppdb-desc', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
@@ -63,12 +76,10 @@
             </div>
 
             <x-jet-section-border />
-            
-            <div class="mt-10 sm:mt-0">
-                @livewire('student.description', ['student' => $student->id])
-            </div>
 
-            <x-jet-section-border />
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.delete-student', ['student' => $student->id])
+            </div>
 
         </div>
     </div>
