@@ -17,7 +17,7 @@ class DataPribadi extends Component
         'state.panggilan' => 'nullable|max:20',
         'state.jk' => 'required|in:L,P',
         'state.nisn' => 'nullable|string|min:10|max:10',
-        'state.nik' => 'nullable|string|min:16:max:16',
+        'state.nik' => 'nullable|string|min:16|max:16',
         'state.kk' => 'nullable|string|min:16|max:16',
         'state.akta' => 'nullable|string|max:22',
         'state.birthplace' => 'required|string|max:32',
@@ -34,8 +34,8 @@ class DataPribadi extends Component
         'state.bujur' => 'nullable|string|max:32',
         'state.tinggal_id' => 'required',
         'state.transportasi_id' => 'required',
-        'state.anak_ke' => 'required',
-        'state.saudara' => 'required',
+        'state.anak_ke' => 'nullable|numeric|max:20',
+        'state.saudara' => 'nullable|numeric|max:20',
         'state.phone' => 'required|string|max:13',
     ];
 

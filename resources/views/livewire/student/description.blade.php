@@ -12,7 +12,7 @@
         <!-- Pilihan Kelas -->
         <div class="col-span-6">
             <x-jet-label for="desc_student" :value="__('Deskripsi peserta didik')" />
-            <x-textarea wire:model="desc_student" id="desc_student" rows="5" class="block w-full mt-1" maxlength=512></x-textarea>
+            <x-textarea wire:model.defer="desc_student" id="desc_student" rows="5" class="block w-full mt-1" maxlength=512></x-textarea>
             <x-jet-input-error for="desc_student" class="mt-2" />
         </div>
 
@@ -22,6 +22,10 @@
         <x-jet-action-message class="mr-3" on="saved">
             {{ __('Berhasil disimpan.') }}
         </x-jet-action-message>
+
+        <x-dirty-message class="mr-3" target="desc_student">
+            {{ __('Belum disimpan!') }}
+        </x-dirty-message>
 
         <x-jet-button>
             {{ __('Simpan') }}

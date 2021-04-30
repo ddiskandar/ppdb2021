@@ -34,9 +34,9 @@
             {{ __('Berhasil disimpan.') }}
         </x-jet-action-message>
 
-        <x-dirty-message class="mr-3" 
-            target="desc_keluarga, pip_id" 
-        />
+        <x-dirty-message class="mr-3" target="desc_keluarga, pip_id">
+            {{ __('Belum disimpan!') }}
+        </x-dirty-message>
 
         <x-jet-button>
             {{ __('Simpan') }}
