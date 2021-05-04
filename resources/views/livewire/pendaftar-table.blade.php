@@ -7,7 +7,20 @@
                         <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </div>
-                <input wire:model.debounce.300ms="search" type="text" placeholder="Mencari pendaftar berdasarkan nama atau nomor registrasi..." class="block w-full pl-10 border-gray-300 shadow-xs sm:rounded-md sm:text-sm sm:leading-5 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50">
+                <input 
+                wire:model.debounce.300ms="search" 
+                type="text" 
+                class="block w-full pl-10 border-gray-300 shadow-xs sm:rounded-md sm:text-sm sm:leading-5 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+                placeholder="Mencari pendaftar berdasarkan nama atau nomor registrasi..." 
+                x-ref="search"
+                @keydown.window="
+                    if (event.keyCode === 191) {
+                        event.preventDefault();
+                        $refs.search.focus();
+                    }
+                "
+                
+                >
             </div>
         </div>
         <div class="w-16 ml-4">
@@ -96,6 +109,9 @@
                                                 <a href="{{ route('student.pdf', $student->id) }}">
                                                     <x-icon-printer />
                                                 </a>
+                                            </x-button-icon>
+                                            <x-button-icon>
+                                                <x-icon-shield-check />
                                             </x-button-icon>
                                         </div>
 

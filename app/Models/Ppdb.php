@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Student;
 use App\Models\Jurusan;
+use App\Models\Tool;
+use App\Models\Info;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -43,5 +45,15 @@ class Ppdb extends Model
     public function interviewer()
     {
         return $this->belongsTo(User::class, 'interview_by')->select(['name']);
+    }
+
+    public function tool()
+    {
+        return $this->hasOne(Tool::class);
+    }
+
+    public function info()
+    {
+        return $this->hasOne(Info::class);
     }
 }
