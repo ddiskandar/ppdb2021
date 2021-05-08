@@ -4,12 +4,12 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 @livewire('student.show-name', ['student' => $student])
             </h2>
-            <div class="items-center hidden sm:flex">
-                <x-jet-secondary-button>
-                    <a href="{{ route('pendaftaran') }}">
-                        Semua Pendaftar
-                    </a>
-                </x-jet-secondary-button>
+            <div class="flex items-center">
+                <a href="{{ url()->previous() }}">
+                    <x-jet-secondary-button>
+                        Kembali
+                    </x-jet-secondary-button>
+                </a>
             </div>
         </div>
     </x-slot>
@@ -42,7 +42,19 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
+                @livewire('student.kelayakan-pip', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
                 @livewire('student.data-rincian', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.description', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
@@ -54,13 +66,7 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.ukuran-seragam', ['student' => $student->id])
-            </div>
-
-            <x-jet-section-border />
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('student.delete-student', ['student' => $student->id])
+                @livewire('student.ppdb-desc', ['student' => $student->id])
             </div>
 
         </div>

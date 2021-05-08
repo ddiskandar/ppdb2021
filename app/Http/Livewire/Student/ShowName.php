@@ -17,7 +17,7 @@ class ShowName extends Component
     {
         return <<<'blade'
             <div>
-                {{ $student->user->name }}
+                {{ $student->user->name }}  / {{ $student->school->name }}
             </div>
         blade;
     }

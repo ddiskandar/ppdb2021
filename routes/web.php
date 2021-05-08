@@ -22,6 +22,14 @@ Route::get('/student/{student}/pdf', [App\Http\Controllers\StudentController::cl
 
 Route::get('/student/{student}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
 
+Route::get('/student/{student}/interview', [App\Http\Controllers\StudentController::class, 'interview'])->name('student.interview');
+
+Route::get('/student/{student}/btq', [App\Http\Controllers\StudentController::class, 'btq'])->name('student.btq');
+
+Route::get('/student/{student}/tpa', [App\Http\Controllers\StudentController::class, 'tpa'])->name('student.tpa');
+
+Route::get('/student/{student}/pleno', [App\Http\Controllers\StudentController::class, 'pleno'])->name('student.pleno');
+
 Route::get('/student/export', [App\Http\Controllers\StudentController::class, 'export'])->name('student.export');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

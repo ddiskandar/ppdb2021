@@ -30,4 +30,32 @@ class StudentController extends Controller
             'student' => $student,
         ]);
     }
+
+    public function interview(Student $student)
+    {
+        return view('seleksi.interview', [
+            'student' => $student,
+        ]);
+    }
+
+    public function btq(Student $student)
+    {
+        return view('seleksi.btq', [
+            'student' => $student,
+        ]);
+    }
+
+    public function tpa(Student $student)
+    {
+        return view('seleksi.tpa', [
+            'student' => $student,
+        ]);
+    }
+
+    public function pleno(Student $student)
+    {
+        return view('seleksi.pleno', [
+            'student' => $student,
+        ]);
+    }
 }

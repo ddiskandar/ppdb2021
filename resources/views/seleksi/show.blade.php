@@ -11,7 +11,12 @@
                 @livewire('seleksi-table')
             </div>
 
-            <!-- <x-jet-section-border /> -->
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('stats-mayors')
+            </div>
+
         </div>
     </div>
 </x-app-layout>

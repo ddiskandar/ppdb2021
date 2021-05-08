@@ -18,7 +18,7 @@
 
         <!-- Pilihan Kelas -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="pip_id" :value="__('Pilihan Kelas')" />
+            <x-jet-label for="pip_id" :value="__('Status kelayakan PIP')" />
             <x-select wire:model.defer="pip_id" id="pip_id" name="pip_id" autocomplete="pip_id" class="block w-full px-3 mt-1" required>
                 @foreach($pips as $pip)
                 <option value="{{ $pip->id }}">{{ $pip->name }}</option>

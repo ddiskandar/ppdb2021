@@ -24,15 +24,12 @@ class SeleksiTable extends Component
 
     public $join_wa;
 
-    protected $listeners = [
-        'studentAdded',
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+        'filterKelas' => ['except' => ''],
+        'filterSchool' => ['except' => ''],
     ];
-
-    public function studentAdded()
-    {
-        session()->flash('flash.banner', 'Yay, Pendaftar berhasil ditambah!');
-        return $this->redirect(route('pendaftaran'));
-    }
 
     public function updatingSearch()
     {
