@@ -45,7 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/pendaftaran', function ()
 })->name('pendaftaran');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/pembayaran', function () {
-    return view('dashboard');
+    return view('pembayaran.show');
 })->name('pembayaran');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/master', function () {
