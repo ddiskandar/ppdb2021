@@ -40,10 +40,19 @@
                                         Nama Lengkap / No. Registrasi
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Alamat Rumah / Asal Sekolah
+                                        Besar Bayar / Sisa
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Gabung WA
+                                        Pembayaran terakhir
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Petugas
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Catatan
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>
@@ -51,50 +60,73 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @forelse($students as $student)
+                                @forelse($payments as $payment)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900 uppercase">
-                                            {{ $student->user->name }}
+                                        <div class="text-sm font-medium text-gray-900 uppercase truncate w-52">
+                                            {{ $payment->student->user->name }}
                                         </div>
                                         <div class="text-sm text-gray-500">
-                                            {{ $student->user->username }}
+                                            {{ $payment->student->user->username }}
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900 truncate w-72 ">{{ $student->shortAddress }}</div>
-                                        <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp }}</div>
+                                        <div class="text-sm text-gray-900">Rp. {{ $payment->student->ppdb->payment_amount }}</div>
+                                        <div class="text-sm text-gray-500">
+                                            @if ($payment->student->ppdb->payment_amount == 0)
+                                            <div class="flex items-center">
+                                                <span class="text-red-600">
+                                                    Gratis
+                                                </span>
+                                                <svg class="w-4 h-4 ml-1 text-red-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </div>
+                                            @elseif ( $payment->student->ppdb->payment_amount - $payment->student->bayar() == 0)
+                                            <div class="flex items-center">
+                                                <span class="text-green-800">
+                                                    Lunas
+                                                </span>
+                                                <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </div>
+                                            @else
+                                            <span class="text-red-600">
+                                                Rp. {{ $payment->student->ppdb->payment_amount - $payment->student->bayar() }} ,-
+                                            </span>
+                                            @endif
+                                        </div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                                        @if ( $student->ppdb->join_wa )
-                                        <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">Rp. {{ $payment->amount }}</div>
+                                        <div class="text-sm text-gray-500">{{ $payment->date() }}</div>
+                                    </td>
+                                    @if ($payment->verified_by)
+                                    <td class="px-6 py-4 text-green-500 whitespace-nowrap">
+                                        <div class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
                                             <span class="w-2 h-2 mr-2 bg-green-600 rounded-full"></span>
-                                            <span>Sudah</span>
-                                        </span>
-                                        @else
-                                        <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                            <span class="w-2 h-2 mr-2 bg-red-600 rounded-full"></span>
-                                            <span>Belum</span>
-                                        </span>
-                                        @endif
+                                            <span>Verified</span>
+                                        </div>
+                                    </td>
+                                    @else
+                                    <td @click="slide = true" wire:click="getVerified({{ $payment->id }})" class="px-3 py-4 font-semibold text-red-600 cursor-pointer whitespace-nowrap">
+                                        <span class="text-sm">Verifikasi Sekarang</span>
+                                    </td>
+                                    @endif
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="text-sm text-gray-900">{{ $payment->verificator->name ?? '-' }} </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="text-sm text-gray-900">{{ $payment->note ?? '-' }}</span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center space-x-2 text-gray-400">
-                                            <x-button-icon wire:click="showStudentDetail({{ $student->id }})">
+                                            <x-button-icon>
                                                 <x-icon-eye />
                                             </x-button-icon>
                                             <x-button-icon>
-                                                <a href="{{ route('student.show', $student->id) }}">
-                                                    <x-icon-pencil-alt />
-                                                </a>
-                                            </x-button-icon>
-                                            <x-button-icon>
-                                                <a href="{{ route('student.pdf', $student->id) }}">
-                                                    <x-icon-printer />
-                                                </a>
-                                            </x-button-icon>
-                                            <x-button-icon>
-                                                <x-icon-shield-check />
+                                                <x-icon-pencil-alt />
                                             </x-button-icon>
                                         </div>
 
@@ -114,7 +146,7 @@
                         </table>
                         <div class="px-2 py-3 bg-gray-50 sm:px-6">
                             <div class="px-4 sm:px-0">
-                                {{ $students->links() }}
+                                {{ $payments->links() }}
                             </div>
                         </div>
                     </div>
@@ -129,17 +161,11 @@
             <div class="px-4 py-5 bg-gray-50 sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-2">
-                        <x-jet-label for="filterKelas" value="Pilihan Kelas" />
-                        <select wire:model="filterKelas" id="filterKelas" name="filterKelas" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
+                        <x-jet-label for="filterStatus" value="Status Pembayaran" />
+                        <select wire:model="filterStatus" id="filterStatus" name="filterStatus" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
                             <option value=''>Semua</option>
-                            <option value="1">Boarding</option>
-                            <option value="0">Regular</option>
-                        </select>
-                    </div>
-                    <div class="col-span-6 sm:col-span-2">
-                        <x-jet-label for="filterSchool" value="Asal Sekolah" />
-                        <select wire:model="filterSchool" id="filterSchool" name="filterSchool" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
-                            <option value=''>Semua</option>
+                            <option value="1">Verified</option>
+                            <option value="0">Unverified</option>
                         </select>
                     </div>
                 </div>
