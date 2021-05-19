@@ -32,9 +32,9 @@ Route::get('/student/{student}/pleno', [App\Http\Controllers\StudentController::
 
 Route::get('/student/export', [App\Http\Controllers\StudentController::class, 'export'])->name('student.export');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/dashboard', [App\Http\Controllers\PagesController::class, 'dashboard'])
+    ->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/seleksi', function () {
     return view('seleksi.show');
