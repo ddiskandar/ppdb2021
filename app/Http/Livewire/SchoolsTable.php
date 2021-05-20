@@ -16,7 +16,7 @@ class SchoolsTable extends Component
     public $name;
     public $npsn;
     public $address;
-    public $last_students;
+    public $last_students = 0;
 
     protected $rules = [
         'name' => 'required|string|max:52',

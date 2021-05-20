@@ -51,6 +51,8 @@
                 @livewire('student.pilihan-jurusan', ['student' => $student->id])
             </div>
 
+            @role('panitia')
+
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
@@ -62,6 +64,8 @@
             <div class="mt-10 sm:mt-0">
                 @livewire('student.delete-student', ['student' => $student->id])
             </div>
+
+            @endrole
 
         </div>
     </div>

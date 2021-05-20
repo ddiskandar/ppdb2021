@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->middleware('guest');
+Route::view('/', [App\Http\Controllers\PagesController::class, 'welcome'])
+    ->name('welcome')->middleware('guest');
 
 Route::get('/student/{student}/pdf', [App\Http\Controllers\StudentController::class, 'pdf'])->name('student.pdf');
 
@@ -35,7 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/home', [App\Http\Controllers\PagesController::class, 'dashboard'])
+    ->get('/home', [App\Http\Controllers\PagesController::class, 'home'])
     ->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/seleksi', function () {

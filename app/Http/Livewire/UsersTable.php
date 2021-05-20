@@ -39,7 +39,9 @@ class UsersTable extends Component
     public function submitForm()
     {
         $this->validate();
-        if (!$this->userId) {
+
+        if ( ! $this->userId) {
+
             $user = User::Create([
                 'username' => $this->username,
                 'name' => $this->name,
@@ -47,7 +49,9 @@ class UsersTable extends Component
             ]);
 
             $user->assignRole($this->role);
+
         } else {
+            
             User::where('id', $this->userId)
                 ->Update([
                     'username' => $this->username,
@@ -68,7 +72,7 @@ class UsersTable extends Component
     public function render()
     {
         return view('livewire.users-table', [
-            'users' => User::with('roles')->role(['committee', 'interviewer'])
+            'users' => User::with('roles')->role(['committee', 'interviewer', 'testers'])
                 ->where('name', 'like', '%' . $this->search . '%')
                 ->paginate(5),
             'roles' => \DB::table('roles')->get(),

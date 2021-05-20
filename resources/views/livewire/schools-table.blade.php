@@ -12,14 +12,9 @@
                         </div>
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <div class="relative mb-2">
-                            <input wire:model="search" type="search" id="search" placeholder="Search" class="w-full py-2 pl-8 pr-3 text-sm placeholder-gray-500 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500">
-                            <div class="absolute top-0 flex items-center h-full ml-3">
-                                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
-                        </div>
+
+                        <x-input-search placeholder="Mencari sekolah berdasarkan nama ..." />
+
                         <!-- This example requires Tailwind CSS v2.0+ -->
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -49,16 +44,16 @@
 
                                             @foreach ($schools as $school)
                                             <tr>
-                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                     {{ $school->npsn }}
                                                 </td>
-                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                     {{ $school->name }}
                                                 </td>
-                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                     {{ $school->address }}
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                <td class="px-6 py-4 text-sm whitespace-nowrap">
                                                     {{ $school->last_students }}
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -133,7 +128,7 @@
                                         </div>
                                         <div class="flex items-center justify-end px-4 py-3 text-right bg-gray-50 sm:px-6">
                                             <div wire:click="resetForm" class="mr-4 text-sm text-gray-700 cursor-pointer ">Batal</div>
-                                            <x-jet-button target="submitForm" >
+                                            <x-jet-button target="submitForm">
                                                 {{ __('Simpan') }}
                                             </x-jet-button>
                                         </div>
