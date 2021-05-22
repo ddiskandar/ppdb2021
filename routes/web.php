@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\User;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\StudentController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,43 +17,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', [App\Http\Controllers\PagesController::class, 'welcome'])
-    ->name('welcome')->middleware('guest');
+Route::view('/', 'pages.welcome')
+    ->middleware('guest')
+    ->name('welcome');
 
-Route::get('/student/{student}/pdf', [App\Http\Controllers\StudentController::class, 'pdf'])->name('student.pdf');
+Route::middleware(['auth:sanctum'])->group(function () {
+    
+    Route::get('/home', [PagesController::class, 'home'])
+        ->name('home');
 
-Route::get('/student/{student}', [App\Http\Controllers\StudentController::class, 'show'])->name('student.show');
+    Route::get('/dashboard', [PagesController::class, 'dashboard'])
+        ->name('dashboard');
 
-Route::get('/student/{student}/interview', [App\Http\Controllers\StudentController::class, 'interview'])->name('student.interview');
+    Route::get('/seleksi', [PagesController::class, 'seleksi'])
+        ->name('seleksi');
 
-Route::get('/student/{student}/btq', [App\Http\Controllers\StudentController::class, 'btq'])->name('student.btq');
+    Route::get('/pendaftaran', [PagesController::class, 'pendaftaran'])
+        ->name('pendaftaran');
 
-Route::get('/student/{student}/tpa', [App\Http\Controllers\StudentController::class, 'tpa'])->name('student.tpa');
+    Route::get('/pembayaran', [PagesController::class, 'pembayaran'])
+        ->name('pembayaran');
 
-Route::get('/student/{student}/pleno', [App\Http\Controllers\StudentController::class, 'pleno'])->name('student.pleno');
+    Route::get('/master', [PagesController::class, 'master'])
+        ->name('master');
 
-Route::get('/student/export', [App\Http\Controllers\StudentController::class, 'export'])->name('student.export');
+    Route::get('/student/{student}/pdf', [StudentController::class, 'pdf'])
+        ->name('student.pdf');
 
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/dashboard', [App\Http\Controllers\PagesController::class, 'dashboard'])
-    ->name('dashboard');
+    Route::get('/student/{student}', [StudentController::class, 'show'])
+        ->name('student.show');
 
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/home', [App\Http\Controllers\PagesController::class, 'home'])
-    ->name('home');
+    Route::get('/student/{student}/pembayaran', [StudentController::class, 'pembayaran'])
+        ->name('student.pembayaran');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/seleksi', function () {
-    return view('seleksi.show');
-})->name('seleksi');
+    Route::get('/student/{student}/berkas', [StudentController::class, 'berkas'])
+        ->name('student.berkas');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/pendaftaran', function () {
-    return view('pendaftaran.show');
-})->name('pendaftaran');
+    Route::get('/student/{student}/interview', [StudentController::class, 'interview'])
+        ->name('student.interview');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/pembayaran', function () {
-    return view('pembayaran.show');
-})->name('pembayaran');
+    Route::get('/student/{student}/btq', [StudentController::class, 'btq'])
+        ->name('student.btq');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/master', function () {
-    return view('master.show');
-})->name('master');
+    Route::get('/student/{student}/tpa', [StudentController::class, 'tpa'])
+        ->name('student.tpa');
+
+    Route::get('/student/{student}/pleno', [StudentController::class, 'pleno'])
+        ->name('student.pleno');
+
+    Route::get('/student/export', [StudentController::class, 'export'])
+        ->name('student.export');
+
+});

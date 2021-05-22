@@ -26,35 +26,49 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        return view('student.show', [
+        return view('pages.student', [
             'student' => $student,
         ]);
     }
 
     public function interview(Student $student)
     {
-        return view('seleksi.interview', [
+        return view('student.interview', [
             'student' => $student,
         ]);
     }
 
     public function btq(Student $student)
     {
-        return view('seleksi.btq', [
+        return view('student.btq', [
             'student' => $student,
         ]);
     }
 
     public function tpa(Student $student)
     {
-        return view('seleksi.tpa', [
+        return view('student.tpa', [
             'student' => $student,
         ]);
     }
 
     public function pleno(Student $student)
     {
-        return view('seleksi.pleno', [
+        return view('student.pleno', [
+            'student' => $student,
+        ]);
+    }
+
+    public function berkas(Student $student)
+    {
+        return view('student.berkas', [
+            'student' => $student,
+        ]);
+    }
+
+    public function pembayaran(Student $student)
+    {
+        return view('student.pembayaran', [
             'student' => $student,
         ]);
     }

@@ -96,12 +96,10 @@
                                 <p class="mt-2 text-sm text-red-700">{{ __('Kartu peserta dapat diunduh setelah semua alur pendaftaran selesai') }}</p>
                                 @endif
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -120,7 +118,6 @@
                         <div class="flex flex-col">
                             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-
                                     <div class="overflow-hidden bg-white border-b border-gray-200 shadow sm:rounded-lg">
                                         <table class="min-w-full divide-y divide-gray-200">
                                             <thead class="bg-gray-50">
@@ -165,13 +162,10 @@
                                         <div class="py-6 text-center">
                                             <form wire:submit.prevent="submitForm" action="#" method="post">
                                                 @csrf
-
                                                 <x-jet-button target="submitForm" class="py-3 bg-red-500 hover:bg-red-600 focus:ring-red-200">
                                                     {{ __('Gabung') }}
                                                 </x-jet-button>
-
                                             </form>
-
                                         </div>
                                         @endif
                                     </div>
@@ -225,13 +219,13 @@
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{!! ( $student->is_document_completed() ) ? 'true' : 'false' !!}" action="berkas" title="Unggah Berkas" description="Ijazah, Akta, Kartu keluarga">
+                            <x-action-card completed="{!! ( $student->is_document_completed() ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}/berkas" title="Unggah Berkas" description="Ijazah, Akta, Kartu keluarga">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35.381" height="37.964">
                                     <path data-name="Path 52" d="M23.321 8.992L10.163 22.15a4 4 0 105.651 5.65l12.814-13.158a7.991 7.991 0 10-11.3-11.3L4.511 16.5a11.989 11.989 0 0016.954 16.952l12.5-12.473" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{{ ( $student->is_payment_completed() ) ? 'true' : 'false' }}" action="pembayaran" title="Bayar Pendaftaran" description="Membayar biaya pendaftaran">
+                            <x-action-card completed="{{ ( $student->is_payment_completed() ) ? 'true' : 'false' }}" action="/student/{{ $student->id }}/pembayaran" title="Bayar Pendaftaran" description="Membayar biaya pendaftaran">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="43" height="33.889">
                                     <path data-name="Path 51" d="M28.333 1v4.556m0 9.111v4.556m0 9.111v4.556M5.556 1A4.556 4.556 0 001 5.556v6.833A4.556 4.556 0 111 21.5v6.833a4.556 4.556 0 004.556 4.556h31.888A4.556 4.556 0 0042 28.333V21.5a4.556 4.556 0 110-9.111V5.556A4.556 4.556 0 0037.444 1z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>

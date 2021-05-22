@@ -14,6 +14,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+    <!-- Filepond stylesheet -->
+    <!-- <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"> -->
+
     @livewireStyles
 
     <!-- Scripts -->
@@ -44,6 +47,18 @@
     @stack('modals')
 
     @livewireScripts
+
+    <!-- Load FilePond library -->
+    <!-- <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+    <script>
+        const inputElement = document.querySelector('input[type="file"]');
+        const pond = FilePond.create(inputElement);
+        FilePond.setOptions({
+            server: 'upload/'
+        });
+    </script> -->
+
 </body>
 
 </html>

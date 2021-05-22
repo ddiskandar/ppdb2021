@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
 use App\Models\Periode;
-use App\Models\Ppdb;
 use App\Models\Student;
 
 use Illuminate\Http\Request;
@@ -16,7 +15,7 @@ class PagesController extends Controller
     {
         $students = \DB::table('students')->get();
 
-        return view('admin.dashboard', [
+        return view('pages.dashboard', [
             'schools' => School::withCount('students')->orderByDesc('last_students')->get(),
             'jurusans' => Jurusan::all(),
             'periode' => \DB::table('periodes')->where('active', true)->first(),
@@ -27,11 +26,6 @@ class PagesController extends Controller
             'male' => $students->where('jk', 'L')->count(),
             'female' => $students->where('jk', 'P')->count(),
         ]);
-    }
-
-    public function welcome()
-    {
-        return view('welcome');
     }
 
     public function home()
@@ -56,9 +50,29 @@ class PagesController extends Controller
         )
         ->first();
 
-        return view('student.home', [
+        return view('pages.home', [
             'periode' => $periode,
             'student' => $student,
         ]);
+    }
+
+    public function seleksi()
+    {
+        return view('pages.seleksi');
+    }
+
+    public function pendaftaran()
+    {
+        return view('pages.pendaftaran');
+    }
+
+    public function pembayaran()
+    {
+        return view('pages.pembayaran');
+    }
+
+    public function master()
+    {
+        return view('pages.master');
     }
 }

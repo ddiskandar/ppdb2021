@@ -18,6 +18,12 @@
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
             <div class="mt-10 sm:mt-0">
+                @livewire('student.photo', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+            
+            <div class="mt-10 sm:mt-0">
                 @livewire('student.sekolah-asal', ['student' => $student->id])
             </div>
 
