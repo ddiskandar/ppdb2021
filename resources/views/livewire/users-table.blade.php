@@ -12,8 +12,10 @@
                         </div>
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                    
-                        <x-input-search placeholder="Mencari user berdasarkan username dan nama ..." /> 
+
+                        @livewire('generate-permissions')
+                        
+                        <x-input-search placeholder="Mencari user berdasarkan username dan nama ..." />
 
                         <!-- This example requires Tailwind CSS v2.0+ -->
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
