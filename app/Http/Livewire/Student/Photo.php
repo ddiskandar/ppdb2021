@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Student;
 
 use App\Models\Student;
 use App\Models\User;
+
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -32,6 +34,19 @@ class Photo extends Component
     {
         $this->resetErrorBag();
         $this->resetValidation();
+    }
+
+    public function updatedPhoto($value)
+    {
+        $validator = Validator::make(
+            ['photo' => $this->photo],
+            ['photo' => $this->rules['photo']],
+        );
+
+        if ($validator->fails()) {
+            $this->reset('photo');
+            $this->setErrorBag($validator->getMessageBag());
+        }
     }
 
     public function save()

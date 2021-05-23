@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Mengenakan seragam asal sekolah') }}
+        {{ __('Mengenakan seragam asal sekolah. File Photo JPG, PNG. maksimal 1 MB') }}
     </x-slot>
 
     <x-slot name="form">
@@ -12,16 +12,17 @@
         <div class="col-span-4 sm:col-span-3">
 
             <div>
-                @isset($student->user->photo)
+                @if ($photo)
+                <img src="{{ $photo->temporaryUrl() }}" class="object-cover w-48 rounded shadow h-60" />
+                @elseif ($student->user->photo)
                 <img src="{{ asset('storage/' . $student->user->photo) }}" class="object-cover w-48 rounded shadow h-60" />
                 @else
                 <img src="/images/default-photo.png" class="object-cover w-48 rounded shadow h-60" />
-                @endisset
+                @endif
             </div>
 
             <input wire:model.defer="photo" class="block w-full mt-4" type="file" />
             <x-jet-input-error for="photo" class="mt-2" />
-            <x-jet-label wire:loading.remove wire.target="photo" for="photo" :value="__('Photo JPG, PNG. maksimal 1MB')" class="mt-2" />
             <x-jet-label wire:loading wire:target="photo" class="mt-2" :value="__('Uploading...')" />
 
         </div>

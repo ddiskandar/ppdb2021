@@ -5,27 +5,27 @@
                 <div class="grid gap-8 sm:grid-cols-12">
                     <div class="sm:col-span-4 lg:col-span-3">
                         <div class="overflow-hidden bg-white shadow-2xl rounded-2xl">
-                            <img alt="photo" class="object-cover object-center w-full h-96" @if( $student->user->photo )
-                            src="{{ Storage::url($student->user->photo) }}"
+                            @if( $student->user->photo )
+                                <img alt="photo" class="object-cover object-center w-full h-96" src="{{ Storage::url($student->user->photo) }}">
                             @else
-                            src="/images/default-photo.png"
+                                <img alt="photo" class="object-cover object-center w-full h-96" src="/images/default-photo.png">
                             @endif
-                            >
                         </div>
                     </div>
                     <div class="sm:col-span-8 lg:col-span-5">
                         <dl>
-                            <dt class="text-gray-400">{{ __('Nama Lengkap Sesuai Ijazah') }}</dt>
+                            <dt class="text-gray-400">{{ __('Nama Lengkap') }}</dt>
                             <dd class="flex items-center text-3xl font-bold text-gray-900">
+                            
                                 {{ $student->user->name }}
 
                                 @if ( $student->name_verified )
-                                <span class="ml-4 text-sm font-semibold text-green-500">
-                                    {{ __('Sudah diverifikasi') }}
-                                </span>
-                                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                                    <path id="Path_56" data-name="Path 56" d="M6.267,3.455a3.066,3.066,0,0,0,1.745-.723,3.066,3.066,0,0,1,3.976,0,3.066,3.066,0,0,0,1.745.723,3.066,3.066,0,0,1,2.812,2.812,3.062,3.062,0,0,0,.723,1.745,3.066,3.066,0,0,1,0,3.976,3.066,3.066,0,0,0-.723,1.745,3.066,3.066,0,0,1-2.812,2.812,3.066,3.066,0,0,0-1.745.723,3.066,3.066,0,0,1-3.976,0,3.066,3.066,0,0,0-1.745-.723,3.066,3.066,0,0,1-2.812-2.812,3.066,3.066,0,0,0-.723-1.745,3.066,3.066,0,0,1,0-3.976,3.066,3.066,0,0,0,.723-1.745A3.066,3.066,0,0,1,6.267,3.455Zm7.44,5.252a1,1,0,1,0-1.414-1.414L9,10.586,7.707,9.293a1,1,0,1,0-1.414,1.414l2,2a1,1,0,0,0,1.414,0l4-4Z" transform="translate(-2 -2)" fill="#059669" fill-rule="evenodd" />
-                                </svg>
+                                    <span class="ml-4 text-sm font-semibold text-green-500">
+                                        {{ __('Sudah diverifikasi') }}
+                                    </span>
+                                    <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path id="Path_56" data-name="Path 56" d="M6.267,3.455a3.066,3.066,0,0,0,1.745-.723,3.066,3.066,0,0,1,3.976,0,3.066,3.066,0,0,0,1.745.723,3.066,3.066,0,0,1,2.812,2.812,3.062,3.062,0,0,0,.723,1.745,3.066,3.066,0,0,1,0,3.976,3.066,3.066,0,0,0-.723,1.745,3.066,3.066,0,0,1-2.812,2.812,3.066,3.066,0,0,0-1.745.723,3.066,3.066,0,0,1-3.976,0,3.066,3.066,0,0,0-1.745-.723,3.066,3.066,0,0,1-2.812-2.812,3.066,3.066,0,0,0-.723-1.745,3.066,3.066,0,0,1,0-3.976,3.066,3.066,0,0,0,.723-1.745A3.066,3.066,0,0,1,6.267,3.455Zm7.44,5.252a1,1,0,1,0-1.414-1.414L9,10.586,7.707,9.293a1,1,0,1,0-1.414,1.414l2,2a1,1,0,0,0,1.414,0l4-4Z" transform="translate(-2 -2)" fill="#059669" fill-rule="evenodd" />
+                                    </svg>
                                 @endif
 
                             </dd>
@@ -33,45 +33,45 @@
                             <dt class="mt-2 text-gray-400">{{ __('Nomor Induk Siswa Nasional') }}</dt>
                             <dd class="flex items-center text-xl font-bold text-gray-900">
                                 @if ( $nisn = $student->nisn )
-                                {{ $nisn }}
+                                    {{ $nisn }}
                                 @else
-                                <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
+                                    <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
                                 @endif
                             </dd>
 
                             <dt class="mt-2 text-gray-400">{{ __('Asal Sekolah') }}</dt>
                             <dd class="flex items-center text-xl font-bold text-gray-900">
                                 @if ( $school = $student->school->name )
-                                {{ $school }}
+                                    {{ $school }}
                                 @else
-                                <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
+                                    <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
                                 @endif
                             </dd>
 
                             <dt class="mt-2 text-gray-400">{{ __('Alamat Rumah') }}</dt>
                             <dd class="flex items-center text-xl font-bold text-gray-900 uppercase">
                                 @if ( $address = $student->full_address )
-                                {{ $address }}
+                                    {{ $address }}
                                 @else
-                                <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
+                                    <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
                                 @endif
                             </dd>
 
                             <dt class="mt-2 text-gray-400">{{ __('Nama Ibu Kandung') }}</dt>
                             <dd class="flex items-center text-xl font-bold text-gray-900">
                                 @if ( $ibu = $student->ortu->ibu_nama )
-                                {{ $ibu }}
+                                    {{ $ibu }}
                                 @else
-                                <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
+                                    <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
                                 @endif
                             </dd>
 
                             <dt class="mt-2 text-gray-400">{{ __('Nomor WA') }}</dt>
                             <dd class="flex items-center text-xl font-bold text-gray-900">
                                 @if ( $phone = $student->phone )
-                                {{ $phone }}
+                                    {{ $phone }}
                                 @else
-                                <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
+                                    <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
                                 @endif
                             </dd>
 
@@ -86,14 +86,20 @@
                             <p class="mt-2 text-xs ">* Catat dan simpan atau screnshot nomor registrasi pendaftaran ini karena akan selalu digunakan untuk login dan keperluan lainnya selama PPDB.</p>
 
                             <div class="py-6">
-                                <x-action-card completed="{!! ( $student->is_alur_completed() ) ? 'true' : 'false' !!}" title="Cetak Kartu" action="{!! $student->is_alur_completed() ? route('student.pdf', $student->id) : '#' !!}" description="Nomor registrasi pendaftaran">
+                                <x-action-card 
+                                    completed="{!! ( $student->is_alur_completed() ) ? 'true' : 'false' !!}" 
+                                    title="Cetak Kartu" 
+                                    action="{!! $student->is_alur_completed() ? route('student.pdf', $student->id) : '#' !!}" 
+                                    description="Nomor registrasi pendaftaran"
+                                >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="38.813" height="38.813" viewBox="0 0 38.813 38.813">
                                         <path id="Path_58" data-name="Path 58" d="M31.632,31.632h4.09a4.09,4.09,0,0,0,4.09-4.09V19.361a4.09,4.09,0,0,0-4.09-4.09H7.09A4.09,4.09,0,0,0,3,19.361v8.181a4.09,4.09,0,0,0,4.09,4.09h4.09m4.09,8.181H27.542a4.09,4.09,0,0,0,4.09-4.09V27.542a4.09,4.09,0,0,0-4.09-4.09H15.271a4.09,4.09,0,0,0-4.09,4.09v8.181A4.09,4.09,0,0,0,15.271,39.813ZM31.632,15.271V7.09A4.09,4.09,0,0,0,27.542,3H15.271a4.09,4.09,0,0,0-4.09,4.09v8.181Z" transform="translate(-2 -2)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                     </svg>
+                                    
                                 </x-action-card>
 
-                                @if(!$student->is_alur_completed())
-                                <p class="mt-2 text-sm text-red-700">{{ __('Kartu peserta dapat diunduh setelah semua alur pendaftaran selesai') }}</p>
+                                @if( ! $student->is_alur_completed())
+                                    <p class="mt-2 text-sm text-red-700">{{ __('Kartu peserta dapat diunduh setelah semua alur pendaftaran selesai') }}</p>
                                 @endif
                             </div>
                         </div>
