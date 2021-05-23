@@ -36,7 +36,6 @@ class DataPribadi extends Component
         'state.transportasi_id' => 'required',
         'state.anak_ke' => 'nullable|numeric|max:20',
         'state.saudara' => 'nullable|numeric|max:20',
-        'state.phone' => 'required|string|max:13',
     ];
 
     protected $validationAttributes = [
@@ -63,7 +62,6 @@ class DataPribadi extends Component
         'state.transportasi_id' => 'Moda Transportasi',
         'state.anak_ke' => 'Anak ke',
         'state.saudara' => 'Jumlah saudara',
-        'state.phone' => 'No. HP/WA',
     ];
 
     public function mount(Student $student)
@@ -104,7 +102,6 @@ class DataPribadi extends Component
                 'transportasi_id' => $this->state['transportasi_id'],
                 'anak_ke' => $this->state['anak_ke'],
                 'saudara' => $this->state['saudara'],
-                'phone' => $this->state['phone'],
             ]);
 
         $this->emit('saved');

@@ -11,14 +11,19 @@ class JoinWa extends Component
 {
     public $ppdb;
 
+    public $student;
+
     public $join_wa;
+    public $phone;
 
     protected $rules = [
-        'join_wa' => 'required|in:0,1'
+        'phone' => 'required|string|max:13',
+        'join_wa' => 'required|in:0,1',
     ];
 
     protected $validationAttributes = [
-        'join_wa' => 'Pilihan Gabung Grup'
+        'phone' => 'Nomor HP/WA',
+        'join_wa' => 'Pilihan Gabung Grup',
     ];
 
     public function mount(Student $student)
@@ -28,6 +33,8 @@ class JoinWa extends Component
         $this->ppdb = $ppdb;
 
         $this->join_wa = $ppdb->join_wa;
+        $this->phone = $student->phone;
+        $this->student = $student;
     }
 
     public function update()
@@ -36,6 +43,10 @@ class JoinWa extends Component
 
         $this->ppdb->update([
             'join_wa' => $this->join_wa,
+        ]);
+
+        $this->student->update([
+            'phone' => $this->phone,
         ]);
 
         $this->emit('saved');

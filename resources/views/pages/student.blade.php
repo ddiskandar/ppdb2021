@@ -29,6 +29,12 @@
 
             <x-jet-section-border />
 
+            <div class="mt-10 sm:mt-0" id="grup">
+                @livewire('student.join-wa', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
             <div class="mt-10 sm:mt-0">
                 @livewire('student.data-pribadi', ['student' => $student])
             </div>
@@ -53,13 +59,13 @@
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
+            <div class="mt-10 sm:mt-0" id="jurusan">
                 @livewire('student.pilihan-jurusan', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
+            <div class="mt-10 sm:mt-0" id="dokumen">
                 @livewire('student.dokumen-utama', ['student' => $student ])
             </div>
 
@@ -72,10 +78,8 @@
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
-                @livewire('student.join-wa', ['student' => $student->id])
+                @livewire('student.pembayaran', ['student' => $student->id])
             </div>
-
-            @role('panitia')
 
             <x-jet-section-border />
 
@@ -88,8 +92,6 @@
             <div class="mt-10 sm:mt-0">
                 @livewire('student.delete-student', ['student' => $student->id])
             </div>
-
-            @endrole
 
         </div>
     </div>

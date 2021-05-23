@@ -50,9 +50,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/student/{student}/pembayaran', [StudentController::class, 'pembayaran'])
         ->name('student.pembayaran');
 
-    Route::get('/student/{student}/berkas', [StudentController::class, 'berkas'])
-        ->name('student.berkas');
-
     Route::get('/student/{student}/interview', [StudentController::class, 'interview'])
         ->name('student.interview');
 

@@ -9,12 +9,32 @@
 
     <x-slot name="form">
 
+        <!-- NO HP / Whatsapp -->
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="phone" :value="__('Nomor HP/Whatsapp')" />
+            <x-jet-input maxlength="13" id="phone" wire:model.defer="phone" class="block w-full mt-1" type="text" name="phone" :value="old('phone')" />
+            <x-jet-input-error for="phone" class="mt-2" />
+        </div>
+
+        @role('student')
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="" :value="__('Link Grup WA')" />
+            <x-jet-secondary-button class="mt-2">
+                <a href="https://chat.whatsapp.com/GBq6KDPq1MBDYDSKGtr67O"
+                    target="_blank"
+                >
+                    Klik disini untuk bergabung
+                </a>
+            </x-jet-secondary-button>
+        </div>
+        @endrole
+
         <!-- Pilihan Kelas -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="join_wa" :value="__('Pilihan Kelas')" />
+            <x-jet-label for="join_wa" :value="__('Gabung Grup')" />
             <x-select wire:model.defer="join_wa" id="join_wa" name="join_wa" autocomplete="join_wa" class="block w-full px-3 mt-1" required>
-                <option value="0">Belum, saya belum gabung</option>
-                <option value="1">Sudah, saya sudah gabung</option>
+                <option value="0">Belum</option>
+                <option value="1">Sudah</option>
             </x-select>
             <x-jet-input-error for="join_wa" class="mt-2" />
         </div>

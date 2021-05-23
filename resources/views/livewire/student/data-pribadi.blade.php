@@ -183,13 +183,6 @@
             <x-jet-input-error for="state.saudara" class="mt-2" />
         </div>
 
-        <!-- NO HP / Whatsapp -->
-        <div class="col-span-6 sm:col-span-3">
-            <x-jet-label for="phone" :value="__('Nomor HP/Whatsapp')" />
-            <x-jet-input maxlength="13" id="phone" wire:model.defer="state.phone" class="block w-full mt-1" type="text" name="phone" :value="old('phone')" />
-            <x-jet-input-error for="state.phone" class="mt-2" />
-        </div>
-
     </x-slot>
 
     <x-slot name="actions">

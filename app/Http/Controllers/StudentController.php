@@ -59,17 +59,4 @@ class StudentController extends Controller
         ]);
     }
 
-    public function berkas(Student $student)
-    {
-        return view('student.berkas', [
-            'student' => $student,
-        ]);
-    }
-
-    public function pembayaran(Student $student)
-    {
-        return view('student.pembayaran', [
-            'student' => $student,
-        ]);
-    }
 }

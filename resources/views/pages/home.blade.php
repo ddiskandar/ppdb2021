@@ -190,8 +190,6 @@
                     <div class="px-4 mt-5 sm:px-0 md:mt-0 md:col-span-2">
                         <div class="grid gap-6 lg:grid-cols-2">
 
-                            @if ( isset($student->ppdb) )
-
                             <x-action-card completed="{!! ( $student->ppdb ) ? 'true' : 'false' !!}" title="Gelombang" description="Pilih Jalur Pendaftaran">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-9">
@@ -199,19 +197,11 @@
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{!! ( isset($student->ppdb->pilihan_satu) ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}" title="Pilih Jurusan" description="Tentukan jurusan kalian">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40.407" height="38.273">
-                                    <path data-name="Path 55" d="M30.872 28.738v4.267a4.267 4.267 0 01-4.272 4.268H5.267A4.267 4.267 0 011 33.006V18.07a4.267 4.267 0 014.267-4.27h4.267m6.4-8.535H13.8a4.267 4.267 0 00-4.267 4.267v14.939a4.267 4.267 0 004.267 4.267h21.339a4.267 4.267 0 004.267-4.267V9.535a4.267 4.267 0 00-4.267-4.267h-2.133M30.872 13.8l-6.4 6.4m0 0l-6.4-6.4m6.4 6.4V1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                                </svg>
-                            </x-action-card>
-
-                            <x-action-card completed="{!! ( $student->ppdb->join_wa ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}" title="Gabung Grup WA" description="Untuk info PPDB lainnya">
+                            <x-action-card completed="{!! ( $student->ppdb->join_wa ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}#grup" title="Gabung Grup WA" description="Untuk info PPDB lainnya">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="39.842" height="39.842" viewBox="0 0 39.842 39.842">
                                     <path id="Path_116" data-name="Path 116" d="M32.433,12.409h4.2a4.2,4.2,0,0,1,4.2,4.2V29.228a4.2,4.2,0,0,1-4.2,4.2h-4.2v8.409l-8.409-8.409H15.614A4.192,4.192,0,0,1,12.641,32.2m0,0,7.177-7.177h8.409a4.2,4.2,0,0,0,4.2-4.2V8.2a4.2,4.2,0,0,0-4.2-4.2H7.2A4.2,4.2,0,0,0,3,8.2V20.819a4.2,4.2,0,0,0,4.2,4.2h4.2v8.409Z" transform="translate(-2 -3)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
                             </x-action-card>
-
-                            @endif
 
                             <x-action-card completed="{!! ( $student->is_data_completed() ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}" title="Biodata" description="Isi data profil diri">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-11">
@@ -219,13 +209,19 @@
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{!! ( $student->is_document_completed() ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}/berkas" title="Unggah Berkas" description="Ijazah, Akta, Kartu keluarga">
+                            <x-action-card completed="{!! ( isset($student->ppdb->pilihan_satu) ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}#jurusan" title="Pilih Jurusan" description="Tentukan jurusan kalian">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40.407" height="38.273">
+                                    <path data-name="Path 55" d="M30.872 28.738v4.267a4.267 4.267 0 01-4.272 4.268H5.267A4.267 4.267 0 011 33.006V18.07a4.267 4.267 0 014.267-4.27h4.267m6.4-8.535H13.8a4.267 4.267 0 00-4.267 4.267v14.939a4.267 4.267 0 004.267 4.267h21.339a4.267 4.267 0 004.267-4.267V9.535a4.267 4.267 0 00-4.267-4.267h-2.133M30.872 13.8l-6.4 6.4m0 0l-6.4-6.4m6.4 6.4V1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                            </x-action-card>
+
+                            <x-action-card completed="{!! ( $student->is_document_completed() ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}#dokumen" title="Unggah Berkas" description="Ijazah, Akta, Kartu keluarga">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35.381" height="37.964">
                                     <path data-name="Path 52" d="M23.321 8.992L10.163 22.15a4 4 0 105.651 5.65l12.814-13.158a7.991 7.991 0 10-11.3-11.3L4.511 16.5a11.989 11.989 0 0016.954 16.952l12.5-12.473" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{{ ( $student->is_payment_completed() ) ? 'true' : 'false' }}" action="/student/{{ $student->id }}/pembayaran" title="Bayar Pendaftaran" description="Membayar biaya pendaftaran">
+                            <x-action-card completed="{{ ( $student->is_payment_completed() ) ? 'true' : 'false' }}" action="/student/{{ $student->id }}#pembayaran" title="Bayar Pendaftaran" description="Membayar biaya pendaftaran">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="43" height="33.889">
                                     <path data-name="Path 51" d="M28.333 1v4.556m0 9.111v4.556m0 9.111v4.556M5.556 1A4.556 4.556 0 001 5.556v6.833A4.556 4.556 0 111 21.5v6.833a4.556 4.556 0 004.556 4.556h31.888A4.556 4.556 0 0042 28.333V21.5a4.556 4.556 0 110-9.111V5.556A4.556 4.556 0 0037.444 1z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
