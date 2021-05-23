@@ -77,7 +77,7 @@
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
+            <div class="mt-10 sm:mt-0" id="pembayaran">
                 @livewire('student.pembayaran', ['student' => $student->id])
             </div>
 

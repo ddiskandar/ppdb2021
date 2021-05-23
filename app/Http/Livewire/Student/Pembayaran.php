@@ -12,42 +12,46 @@ class Pembayaran extends Component
 {
     use WithFileUploads;
 
-    public $successMessage;
+    public $student;
+
+    public $payment;
 
     public $amount = 150000;
     public $date;
     public $attachment;
 
     protected $rules = [
-        'amount' => 'required',
+        'amount' => 'required|numeric|max:150021',
         'date' => 'required',
-        'attachment' => 'required',
+        'attachment' => 'required|image|max:1024',
     ];
 
-    public function submitKonfirmasi()
+    protected $listeners = [
+        'saved' => '$refresh',
+    ];
+
+    public function mount(Student $student)
+    {
+        $this->student = $student;
+        $this->payment = Payment::where('student_id', $this->student->id)->first();
+    }
+
+    public function save()
     {
         $this->validate();
 
-        $student = Student::where('user_id', auth()->id())->first(['id']);
-
-        Payment::where('student_id', $student->id)
+        Payment::where('student_id', $this->student->id)
             ->create([
-                'student_id' => $student->id,
+                'student_id' => $this->student->id,
                 'amount' => $this->amount,
                 'date' => $this->date,
                 'attachment' => $this->attachment->store('pembayaran', 'public'),
             ]);
+        
+        $this->reset('amount', 'date', 'attachment');
 
-        $this->resetForm();
-
-        $this->successMessage = 'Konfirmasi pembayaran berhasil diunggah!';
-    }
-
-    public function resetForm()
-    {
-        $this->amount = '';
-        $this->date = '';
-        $this->attachment = '';
+        $this->payment = Payment::where('student_id', $this->student->id)->first();
+        
     }
 
     public function render()

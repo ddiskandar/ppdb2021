@@ -145,7 +145,6 @@ class Student extends Model
             $this->kecamatan,
             $this->kab,
             $this->prov,
-            $this->kode_pos,
             $this->phone,
         );
     }
