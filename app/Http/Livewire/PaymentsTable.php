@@ -15,7 +15,11 @@ class PaymentsTable extends Component
     use WithPagination;
     public $perPage = 4;
 
-    public $verifyMode = false;
+    public $panelPaymentDetail = false;
+
+    public $paymentDetail;
+
+    public $filterStatus;
 
     public $search = '';
     public $payment;
@@ -31,34 +35,32 @@ class PaymentsTable extends Component
         'payment.amount' => 'required',
     ];
 
+    protected $listeners = [
+        'paymentAdded',
+    ];
+
+    public function paymentAdded()
+    {
+        session()->flash('flash.banner', 'Yay, Pembayaran berhasil ditambah!');
+        return $this->redirect(route('pembayaran'));
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
-    public function newPayment()
+    public function showPaymentDetail(Payment $payment)
     {
-        $this->reset();
-        $this->verifyMode = false;
+        $this->payment = $payment;
+        $this->panelPaymentDetail = true;
+        $this->paymentDetail = $payment;
+        $this->date = $this->paymentDetail->date;
+        $this->amount = $this->paymentDetail->amount;
+        $this->note = $this->paymentDetail->note;
     }
 
-    public function getVerified($id)
-    {
-        $this->verifyMode = true;
-
-        $this->payment = Payment::where('id', $id)
-            ->with('student', 'student.school', 'student.ppdb')
-            ->first();
-
-        $this->name = $this->payment->student->user->name;
-        $this->username = $this->payment->student->user->username;
-        $this->amount = $this->payment->amount;
-        $this->payment_amount = $this->payment->student->ppdb->payment_amount;
-        $this->date = $this->payment->date;
-        $this->note = $this->payment->note;
-    }
-
-    public function updatePayment()
+    public function update()
     {
         Payment::where('id', $this->payment->id)
             ->update([
@@ -68,35 +70,6 @@ class PaymentsTable extends Component
                 'date' => $this->date,
                 'status' => true,
             ]);
-    }
-
-    public function addPayment()
-    {
-        Payment::Create([
-            'id' => isset($this->payment) ?? $this->payment->id,
-            'student_id' => isset($this->student_id) ? $this->student_id : $this->payment->student_id,
-            'verified_by' => auth()->id(),
-            'amount' => $this->amount,
-            'note' => $this->note,
-            'date' => $this->date,
-            'status' => true,
-        ]);
-
-        $ppdb = Ppdb::where('student_id', $this->student_id)->first();
-
-        if (!empty($ppdb)) {
-            $ppdb->update([
-                'payment_amount' => $this->payment_amount,
-            ]);
-        } else {
-            Ppdb::create([
-                'student_id' => isset($this->student_id) ? $this->student_id : $this->payment->student_id,
-                'periode_id' => Periode::where('active', true)->first()->id,
-                'payment_amount' => $this->payment_amount,
-            ]);
-        }
-
-        $this->reset();
     }
 
     public function render()
@@ -111,7 +84,7 @@ class PaymentsTable extends Component
                 'student.user:id,name,username',
                 'verificator',
                 'student.ppdb:id,student_id,payment_amount'
-            )->latest()->paginate(5),
+            )->latest()->paginate($this->perPage),
 
             'students' => Student::select(['id', 'user_id'])
                 ->with(

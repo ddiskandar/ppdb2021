@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Ortu;
 use App\Models\Periode;
 use App\Models\Ppdb;
+use App\Models\Payment;
 
 use Livewire\Component;
 
@@ -15,76 +16,57 @@ class PaymentCreate extends Component
 {
     public $paymentCreate = false;
 
-    public $pilihan_kelas;
-    public $name;
-    public $jk;
-    public $school_id;
-    public $phone;
-    public $nisn;
-    public $nik;
-    public $kk;
-    public $birthplace;
-    public $birthdate;
-    public $ayah_nama;
-    public $ibu_nama;
-    public $address;
-    public $rt;
-    public $rw;
-    public $desa;
-    public $kecamatan;
-    public $kab;
-    public $prov;
-    public $kode_pos;
+    public $search;
+
+    public $payment_amount = 150000;
+    public $amount = 150000;
+    public $name, $username, $status, $date, $note;
+
+    public $student_id;
 
     protected $rules = [
-        'pilihan_kelas' => 'required',
-        'name' => 'required|string|max:52',
-        'jk' => 'required|in:L,P',
-        'school_id' => 'required',
-        'phone' => 'required|string|max:13',
-        'nisn' => 'nullable|string|min:10|max:10',
-        'nik' => 'nullable|string|min:16:max:16',
-        'kk' => 'nullable|string|min:16|max:16',
-        'birthplace' => 'required|string|max:32',
-        'birthdate' => 'required|date',
-        'ayah_nama' => 'required|string:max:32',
-        'ibu_nama' => 'required|string:max:32',
-        'address' => 'required|string:max:52',
-        'rt' => 'required|numeric|max:99',
-        'rw' => 'required|numeric|max:99',
-        'desa' => 'required|string|max:32',
-        'kecamatan' => 'required|string|max:32',
-        'kab' => 'required|string|max:32',
-        'prov' => 'required|string|max:32',
-        'kode_pos' => 'nullable|string|max:5',
+        'student_id' => 'required',
+        'date' => 'required',
+        'payment_amount' => 'required',
+        'amount' => 'required',
+        'note' => 'nullable',
     ];
 
     protected $validationAttributes = [
-        'pilihan_kelas' => 'Pilihan Kelas',
-        'name' => 'Nama Lengkap',
-        'jk' => 'Jenis Kelamin',
-        'school_id' => 'Asal Sekolah',
-        'phone' => 'Nomor HP/WA',
-        'nisn' => 'NISN',
-        'nik' => 'NIK',
-        'kk' => 'No KK',
-        'birthplace' => 'Tempat lahir',
-        'birthdate' => 'Tanggal lahir',
-        'ayah_nama' => 'Nama ayah',
-        'ibu_nama' => 'Nama ibu',
-        'address' => 'Alamat',
-        'rt' => 'RT',
-        'rw' => 'RW',
-        'desa' => 'Desa',
-        'kecamatan' => 'Kecamatan',
-        'kab' => 'Kabupaten',
-        'prov' => 'Provinsi',
-        'kode_pos' => 'Kode pos',
+        
     ];
 
-    public function updated($propertyName)
+    public function store()
     {
-        $this->validateOnly($propertyName);
+        $this->validate();
+
+        Payment::Create([
+            'id' => isset($this->payment) ?? $this->payment->id,
+            'student_id' => isset($this->student_id) ? $this->student_id : $this->payment->student_id,
+            'verified_by' => auth()->id(),
+            'amount' => $this->amount,
+            'note' => $this->note,
+            'date' => $this->date,
+            'status' => true,
+        ]);
+
+        $ppdb = Ppdb::where('student_id', $this->student_id)->first();
+
+        if (!empty($ppdb)) {
+            $ppdb->update([
+                'payment_amount' => $this->payment_amount,
+            ]);
+        } else {
+            Ppdb::create([
+                'student_id' => isset($this->student_id) ? $this->student_id : $this->payment->student_id,
+                'periode_id' => Periode::where('active', true)->first()->id,
+                'payment_amount' => $this->payment_amount,
+            ]);
+        }
+
+        $this->paymentCreate = false;
+
+        $this->emit('paymentAdded');
     }
 
     public function create()
@@ -92,70 +74,29 @@ class PaymentCreate extends Component
         $this->paymentCreate = true;
     }
 
-    public function store()
-    {
-        $this->validate();
-
-        DB::transaction(function () {
-
-            $user = User::factory()->create([
-                'name' => $this->name,
-                'password' => Hash::make('12345678'),
-            ]);
-
-            $student = Student::create([
-                'user_id' => $user->id,
-                'jk' => $this->jk,
-                'school_id' => $this->school_id,
-                'phone' => $this->phone,
-                'nisn' => $this->nisn,
-                'nik' => $this->nik,
-                'kk' => $this->kk,
-                'birthplace' => $this->birthplace,
-                'birthdate' => $this->birthdate,
-                'address' => $this->address,
-                'rt' => $this->rt,
-                'rw' => $this->rw,
-                'desa' => $this->desa,
-                'kecamatan' => $this->kecamatan,
-                'kab' => $this->kab,
-                'prov' => $this->prov,
-                'kode_pos' => $this->kode_pos,
-            ]);
-
-            $periode = Periode::where('active', true)->first();
-
-            Ppdb::create([
-                'student_id' => $student->id,
-                'periode_id' => $periode->id,
-                'pilihan_kelas' => $this->pilihan_kelas,
-                'payment_amount' => $periode->ref_payment_amount,
-            ]);
-
-            Ortu::create([
-                'student_id' => $student->id,
-                'ibu_nama' => $this->ibu_nama,
-                'ayah_nama' => $this->ayah_nama,
-            ]);
-
-            Document::create([
-                'student_id' => $student->id,
-            ]);
-
-            $user->assignRole('student');
-
-            $this->reset([
-                'pilihan_kelas', 'name', 'jk', 'nisn', 'phone', 'school_id', 'ayah_nama', 'ibu_nama', 'address', 'rt', 'rw', 'desa', 'kecamatan', 'kab', 'prov',
-            ]);
-        });
-
-        $this->paymentCreate = false;
-
-        $this->emit('studentAdded');
-    }
-
     public function render()
     {
-        return view('livewire.payment-create');
+        return view('livewire.payment-create', [
+            'payments' => Payment::select([
+                'id', 'student_id', 'attachment', 'amount', 'verified_by', 'date', 'note'
+            ])->WhereHas('student.user', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })->with(
+                'student:id,user_id',
+                'student.user:id,name,username',
+                'verificator',
+                'student.ppdb:id,student_id,payment_amount'
+            )->latest()->paginate(5),
+
+            'students' => Student::select(['id', 'user_id'])
+                ->with(
+                    'user:id,username,name',
+                    'payments:id,student_id,status,amount',
+                    'ppdb:id,student_id,payment_amount'
+                )->get()
+                ->sortBy(function ($query) {
+                    return $query->user->name;
+                }),
+        ]);
     }
 }

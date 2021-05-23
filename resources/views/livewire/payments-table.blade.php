@@ -43,7 +43,7 @@
                                         Besar Bayar / Sisa
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Pembayaran terakhir
+                                        Pembayaran
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Status
@@ -110,8 +110,11 @@
                                         </div>
                                     </td>
                                     @else
-                                    <td @click="slide = true" wire:click="getVerified({{ $payment->id }})" class="px-3 py-4 font-semibold text-red-600 cursor-pointer whitespace-nowrap">
-                                        <span class="text-sm">Verifikasi Sekarang</span>
+                                    <td class="px-6 py-4 text-red-500 whitespace-nowrap">
+                                        <div class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                            <span class="w-2 h-2 mr-2 bg-red-600 rounded-full"></span>
+                                            <span>Unverified</span>
+                                        </div>
                                     </td>
                                     @endif
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -122,11 +125,8 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center space-x-2 text-gray-400">
-                                            <x-button-icon>
+                                            <x-button-icon wire:click="showPaymentDetail({{ $payment->id }})">
                                                 <x-icon-eye />
-                                            </x-button-icon>
-                                            <x-button-icon>
-                                                <x-icon-pencil-alt />
                                             </x-button-icon>
                                         </div>
 
@@ -134,7 +134,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="p-6 text-sm text-center text-gray-500">
+                                    <td colspan="7" class="p-6 text-sm text-center text-gray-500">
                                         <div class="flex items-center justify-center py-12">
                                             <x-icon-ban />
                                             <span class="ml-2 font-semibold">Tidak ada data yang ditemukan</span>
@@ -162,7 +162,7 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-2">
                         <x-jet-label for="filterStatus" value="Status Pembayaran" />
-                        <select wire:model="filterStatus" id="filterStatus" name="filterStatus" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
+                        <select disabled wire:model="filterStatus" id="filterStatus" name="filterStatus" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
                             <option value=''>Semua</option>
                             <option value="1">Verified</option>
                             <option value="0">Unverified</option>
@@ -172,5 +172,53 @@
             </div>
         </div>
     </div>
+
+    @isset($paymentDetail)
+    <x-slide-overs wire:model="panelPaymentDetail">
+        <x-slot name="title">
+
+        </x-slot>
+        <h2 id="slide-over-heading" class="text-xl font-bold text-gray-900">
+            {{ $paymentDetail->student->user->name }}
+        </h2>
+        <p class="text-sm">{{ $paymentDetail->student->user->username }}</p>
+
+        <div class="mt-4">
+            <x-jet-label for="date" :value="__('Tanggal Pembayaran')" />
+            <x-jet-input wire:model="date" id="date" class="block w-full mt-1" type="date" name="date" :value="old('date')" required />
+            <x-jet-input-error for="date" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
+            <x-jet-label for="amount" :value="__('Besar Pembayaran')" />
+            <x-jet-input wire:model="amount" id="amount" class="block w-full mt-1" type="number" name="amount" :value="old('amount')" required />
+            <x-jet-input-error for="amount" class="mt-2" />
+        </div>
+
+        @isset($paymentDetail->attachment)
+        <div class="mt-4">
+            <x-jet-label for="attachment" :value="__('Bukti')" />
+            <div class="mt-2">
+                <a href="{{ Storage::url($paymentDetail->attachment) }}" target="_blank">
+                    <x-jet-secondary-button>
+                        Lihat Bukti
+                    </x-jet-secondary-button>
+                </a>
+            </div>
+        </div>
+        @endisset
+
+        <div class="mt-4">
+            <x-jet-label for="note" :value="__('Catatan')" />
+            <x-textarea wire:model.defer="note" id="note" rows="2" class="block w-full mt-1" maxlength=512></x-textarea>
+            <x-jet-input-error for="note" class="mt-2" />
+        </div>
+
+        <x-jet-button class="mt-6" wire:click="update" wire:loading.attr="disabled">
+            {{ __('Simpan') }}
+        </x-jet-button>
+
+    </x-slide-overs>
+    @endisset
 
 </div>

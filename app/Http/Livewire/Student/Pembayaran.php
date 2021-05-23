@@ -7,6 +7,7 @@ use App\Models\Student;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Validator;
 
 class Pembayaran extends Component
 {
@@ -34,6 +35,25 @@ class Pembayaran extends Component
     {
         $this->student = $student;
         $this->payment = Payment::where('student_id', $this->student->id)->first();
+    }
+
+    public function updatedAttachment($value)
+    {
+        $validator = Validator::make(
+            ['attachment' => $this->attachment],
+            ['attachment' => $this->rules['attachment']],
+        );
+
+        if ($validator->fails()) {
+            $this->reset('attachment');
+            $this->setErrorBag($validator->getMessageBag());
+        }
+    }
+
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
 
     public function save()
