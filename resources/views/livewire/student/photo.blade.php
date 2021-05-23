@@ -10,13 +10,15 @@
     <x-slot name="form">
 
         <div class="col-span-4 sm:col-span-3">
-            <div class="">
-                @empty($student->user->photo)
-                <img src="/images/default-photo.png" class="object-cover w-48 rounded shadow h-60" />
-                @else
+
+            <div>
+                @isset($student->user->photo)
                 <img src="{{ asset('storage/' . $student->user->photo) }}" class="object-cover w-48 rounded shadow h-60" />
-                @endempty
+                @else
+                <img src="/images/default-photo.png" class="object-cover w-48 rounded shadow h-60" />
+                @endisset
             </div>
+
             <input wire:model.defer="photo" class="block w-full mt-4" type="file" />
             <x-jet-input-error for="photo" class="mt-2" />
             <x-jet-label wire:loading.remove wire.target="photo" for="photo" :value="__('Photo JPG, PNG. maksimal 1MB')" class="mt-2" />

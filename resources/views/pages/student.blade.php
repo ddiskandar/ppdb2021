@@ -5,11 +5,11 @@
                 @livewire('student.show-name', ['student' => $student])
             </h2>
             <div class="items-center hidden sm:flex">
-                <x-jet-secondary-button>
-                    <a href="{{ route('pendaftaran') }}">
-                        Semua Pendaftar
-                    </a>
-                </x-jet-secondary-button>
+                <a href="{{ url()->previous() }}">
+                    <x-jet-secondary-button>
+                        Kembali
+                    </x-jet-secondary-button>
+                </a>
             </div>
         </div>
     </x-slot>
@@ -22,7 +22,7 @@
             </div>
 
             <x-jet-section-border />
-            
+
             <div class="mt-10 sm:mt-0">
                 @livewire('student.sekolah-asal', ['student' => $student->id])
             </div>
@@ -55,6 +55,24 @@
 
             <div class="mt-10 sm:mt-0">
                 @livewire('student.pilihan-jurusan', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.dokumen-utama', ['student' => $student ])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.dokumen-kesejahteraan', ['student' => $student ])
+            </div>
+
+            <x-jet-section-border />
+
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.join-wa', ['student' => $student->id])
             </div>
 
             @role('panitia')

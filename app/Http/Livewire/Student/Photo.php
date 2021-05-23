@@ -20,12 +20,18 @@ class Photo extends Component
     ];
 
     protected $listeners = [
-        'saved' => 'render',
+        'saved' => '$refresh',
     ];
 
     public function mount(Student $student)
     {
         $this->student = $student;
+    }
+
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
 
     public function save()
