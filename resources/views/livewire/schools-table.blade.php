@@ -13,7 +13,21 @@
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
 
-                        <x-input-search placeholder="Mencari sekolah berdasarkan nama ..." />
+                        <div class="flex items-start justify-between">
+                            <div class="relative flex flex-1 rounded-md shadow-sm">
+                                <x-input-search placeholder="Mencari sekolah berdasarkan nama ..." />
+                            </div>
+                            <div class="w-16 ml-4">
+                                <select wire:model="perPage" id="perPage" name="perPage" class="block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm sm:rounded-md focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
+                                    <option value='7'>7</option>
+                                    <option value='15'>15</option>
+                                    <option value='20'>20</option>
+                                    <option value='50'>50</option>
+                                    <option value='100'>100</option>
+                                </select>
+                            </div>
+                        </div>
+
 
                         <!-- This example requires Tailwind CSS v2.0+ -->
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -42,7 +56,7 @@
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
 
-                                            @foreach ($schools as $school)
+                                            @forelse ($schools as $school)
                                             <tr>
                                                 <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                     {{ $school->npsn }}
@@ -64,7 +78,16 @@
                                                     </span>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                            @empty
+                                            <tr>
+                                                <td colspan="5" class="p-6 text-sm text-center text-gray-500">
+                                                    <div class="flex items-center justify-center py-12">
+                                                        <x-icon-ban />
+                                                        <span class="ml-2 font-semibold">Tidak ada data yang ditemukan</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforelse
 
                                         </tbody>
                                     </table>

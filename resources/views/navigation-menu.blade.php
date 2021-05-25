@@ -12,8 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 lg:-my-px lg:ml-10 lg:flex">
+
                     @role('student')
-                    
+
                     <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-jet-nav-link>
@@ -23,11 +24,15 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    @endrole
 
+                    @role ('interviewer|testers|committee|admin')
                     <x-jet-nav-link href="{{ route('seleksi') }}" :active="request()->routeIs('seleksi')">
                         {{ __('Seleksi') }}
                     </x-jet-nav-link>
+                    @endrole
 
+                    @role ('officer|committee|admin')
                     <x-jet-nav-link href="{{ route('pendaftaran') }}" :active="request()->routeIs('pendaftaran')">
                         {{ __('Pendaftaran') }}
                     </x-jet-nav-link>
@@ -35,12 +40,14 @@
                     <x-jet-nav-link href="{{ route('pembayaran') }}" :active="request()->routeIs('pembayaran')">
                         {{ __('Pembayaran') }}
                     </x-jet-nav-link>
+                    @endrole
 
+                    @role('admin')
                     <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
                         {{ __('Data Master') }}
                     </x-jet-nav-link>
-                    
                     @endrole
+
 
 
                 </div>

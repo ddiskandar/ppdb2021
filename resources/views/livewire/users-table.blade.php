@@ -14,8 +14,22 @@
                     <div class="mt-5 md:mt-0 md:col-span-2">
 
                         @livewire('generate-permissions')
-                        
-                        <x-input-search placeholder="Mencari user berdasarkan username dan nama ..." />
+
+                        <div class="flex items-start justify-between">
+                            <div class="relative flex flex-1 rounded-md shadow-sm">
+                                <x-input-search placeholder="Mencari user berdasarkan username dan nama ..." />
+                            </div>
+                            <div class="w-16 ml-4">
+                                <select wire:model="perPage" id="perPage" name="perPage" class="block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm sm:rounded-md focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
+                                    <option value='4'>4</option>
+                                    <option value='10'>10</option>
+                                    <option value='15'>15</option>
+                                    <option value='20'>20</option>
+                                    <option value='50'>50</option>
+                                    <option value='100'>100</option>
+                                </select>
+                            </div>
+                        </div>
 
                         <!-- This example requires Tailwind CSS v2.0+ -->
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -41,7 +55,7 @@
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
 
-                                            @foreach ($users as $user)
+                                            @forelse ($users as $user)
                                             <tr>
                                                 <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                     {{ $user->username }}
@@ -62,7 +76,17 @@
                                                     </span>
                                                 </td>
                                             </tr>
-                                            @endforeach
+
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="p-6 text-sm text-center text-gray-500">
+                                                    <div class="flex items-center justify-center py-12">
+                                                        <x-icon-ban />
+                                                        <span class="ml-2 font-semibold">Tidak ada data yang ditemukan</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforelse
 
                                         </tbody>
                                     </table>
@@ -77,7 +101,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -101,30 +124,28 @@
                                     <div class="overflow-hidden shadow sm:rounded-md">
                                         <div class="px-4 py-5 bg-white sm:p-6">
                                             <div class="grid grid-cols-6 gap-6">
-                                                <div class="col-span-6 sm:col-span-4">
-                                                    <x-jet-label for="name" value="Nama Pengguna" content="required" />
-                                                    <x-jet-input type="text" name="name" id="name" wire:model.defer="name" class="block w-full mt-1" />
-                                                    <x-jet-input-error for="name" class="mt-2" />
-                                                </div>
-                                                <div class="col-span-6 sm:col-span-4">
+
+                                                <div class="col-span-6 sm:col-span-3">
                                                     <x-jet-label for="username" value="Username" content="required" />
                                                     <x-jet-input type="text" name="username" wire:model.defer="username" class="block w-full mt-1" />
                                                     <x-jet-input-error for="username" class="mt-2" />
                                                 </div>
 
-                                                @empty($userId)
+                                                <div class="col-span-6 sm:col-span-3">
+                                                    <x-jet-label for="name" value="Nama Pengguna" content="required" />
+                                                    <x-jet-input type="text" name="name" id="name" wire:model.defer="name" class="block w-full mt-1" />
+                                                    <x-jet-input-error for="name" class="mt-2" />
+                                                </div>
 
-                                                <div class="col-span-6 sm:col-span-4">
+                                                <div class="col-span-6 sm:col-span-3">
                                                     <x-jet-label for="role" value="Peran" />
                                                     <x-select wire:model.defer="role" id="role" name="role" class="block w-full px-3 mt-1">
-                                                        <option value="interviewer">interviewer</option>
-                                                        <option value="committee">committee</option>
-                                                        <option value="testers">testers</option>
+                                                        @foreach($roles as $role)
+                                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                                        @endforeach
                                                     </x-select>
                                                     <x-jet-input-error for="role" class="mt-2" />
                                                 </div>
-
-                                                @endempty
 
                                             </div>
                                         </div>

@@ -11,6 +11,7 @@ class SchoolsTable extends Component
     use WithPagination;
 
     public $search;
+    public $perPage = 7;
 
     public $schoolId;
     public $name;
@@ -70,7 +71,7 @@ class SchoolsTable extends Component
     {
         return view('livewire.schools-table', [
             'schools' => School::where('name', 'like', '%' . $this->search . '%')
-                ->paginate(7)
+                ->paginate($this->perPage)
         ]);
     }
 }

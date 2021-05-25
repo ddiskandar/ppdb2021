@@ -61,6 +61,7 @@
         </div>
     </div>
 
+    @can ('view statistik')
     <div class="">
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <h3 class="text-2xl font-bold">Statistik Pendaftar</h3>
@@ -69,15 +70,12 @@
 
     <div class="py-6">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-
             <div class="lg:grid lg:grid-cols-12 lg:gap-6">
-
                 <div class="lg:col-span-7">
                     <div class="flex flex-col mb-4">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
@@ -112,7 +110,6 @@
                                                 </td>
                                             </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -162,7 +159,6 @@
                         </div>
 
                         <div class="mt-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
@@ -202,18 +198,17 @@
                                                     {{ $female }}
                                                 </td>
                                             </tr>
-
-                                            <!-- More rows... -->
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @endcan
 
 </x-app-layout>

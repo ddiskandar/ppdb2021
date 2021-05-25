@@ -81,17 +81,21 @@
                 @livewire('student.pembayaran', ['student' => $student->id])
             </div>
 
+            @can ('edit ukuran seragam')
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
                 @livewire('student.ukuran-seragam', ['student' => $student->id])
             </div>
+            @endcan
 
+            @can ('delete student')
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
                 @livewire('student.delete-student', ['student' => $student->id])
             </div>
+            @endcan
 
         </div>
     </div>

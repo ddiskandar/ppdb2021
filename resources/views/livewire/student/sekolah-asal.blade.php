@@ -14,7 +14,7 @@
             <x-jet-label for="schoolId" :value="__('Asal Sekolah')" />
             <x-select wire:model.defer="schoolId" id="schoolId" name="schoolId" autocomplete="schoolId" class="block w-full px-3 mt-1">
                 <option value="">{{ __('-- Pilih salah-satu') }}</option>
-                @foreach($schools as $school)
+                @foreach ($schools as $school)
                 <option value="{{ $school->id }}">{{ $school->name }}</option>
                 @endforeach
             </x-select>
