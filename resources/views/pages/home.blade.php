@@ -5,14 +5,10 @@
                 <div class="grid gap-8 sm:grid-cols-12">
                     <div class="sm:col-span-4 lg:col-span-3">
                         <div class="overflow-hidden bg-white shadow-2xl rounded-2xl">
-                            <img
-                                alt="photo" 
-                                class="object-cover object-center w-full h-96" 
-                                src=" {!! isset($student->user->photo) 
+                            <img alt="photo" class="object-cover object-center w-full h-96" src=" {!! isset($student->user->photo) 
                                         ? Storage::url($student->user->photo) 
                                         : '/images/default-photo.png'
-                                    !!} "
-                            >
+                                    !!} ">
                         </div>
                     </div>
                     <div class="sm:col-span-8 lg:col-span-5">
@@ -109,13 +105,14 @@
         </div>
 
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            @isset($pengumuman)
             <div class="mt-10">
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">Daftar PPDB</h3>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Pengumuman</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Terima kasih telah membuat akun. Klik tombol Gabung pada gelombang yang sesuai preferensimu untuk mendaftar.
+                                Informasi khusus untuk anda
                             </p>
                         </div>
                     </div>
@@ -124,65 +121,16 @@
                         <div class="flex flex-col">
                             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                    <div class="overflow-hidden bg-white border-b border-gray-200 shadow sm:rounded-lg">
-                                        <table class="min-w-full divide-y divide-gray-200">
-                                            <thead class="bg-gray-50">
-                                                <tr>
-                                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                        Jalur
-                                                    </th>
-                                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                        Pendaftaran
-                                                    </th>
-                                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                        Status
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-gray-200 ">
-                                                <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                        <div class="">
-                                                            <div class="">
-                                                                <div class="text-sm font-bold text-gray-900">
-                                                                    Gelombang {{ $periode->name }}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                        <div class="text-sm text-gray-900">{{ $periode->desc }}</div>
-                                                    </td>
-                                                    <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                                        @if ( $student->ppdb )
-                                                        <span class="text-green-500">Sudah Terdaftar</span>
-                                                        @else
-                                                        <span class="text-red-500">Belum terdaftar</span>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
-                                        @if ( ! $student->ppdb )
-                                        <div class="py-6 text-center">
-                                            <form wire:submit.prevent="submitForm" action="#" method="post">
-                                                @csrf
-                                                <x-jet-button target="submitForm" class="py-3 bg-red-500 hover:bg-red-600 focus:ring-red-200">
-                                                    {{ __('Gabung') }}
-                                                </x-jet-button>
-                                            </form>
-                                        </div>
-                                        @endif
-                                    </div>
+                                    hello
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endisset
 
-            <div class="mt-10">
+            <div class="mt-10 md:mt-18">
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px-0">
