@@ -72,7 +72,7 @@
                                                 <x-icon-eye />
                                             </x-button-icon>
                                             <x-button-icon>
-                                                <a href="{{ route('student.show', $student->id) }}">
+                                                <a href="{{ route('student.edit', $student->id) }}">
                                                     <x-icon-pencil-alt />
                                                 </a>
                                             </x-button-icon>
@@ -81,9 +81,11 @@
                                                     <x-icon-printer />
                                                 </a>
                                             </x-button-icon>
+                                            @can ('reset password')
                                             <x-button-icon>
                                                 <x-icon-shield-check />
                                             </x-button-icon>
+                                            @endcan
                                         </div>
 
                                     </td>

@@ -26,6 +26,15 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
+        abort_if( $student->user_id != auth()->id(), 404 );
+
+        return view('pages.student', [
+            'student' => $student,
+        ]);
+    }
+
+    public function edit(Student $student)
+    {
         return view('pages.student', [
             'student' => $student,
         ]);

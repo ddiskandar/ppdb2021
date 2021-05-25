@@ -26,29 +26,29 @@
                     </x-jet-nav-link>
                     @endrole
 
-                    @role ('interviewer|testers|committee|admin')
+                    @can ('process seleksi')
                     <x-jet-nav-link href="{{ route('seleksi') }}" :active="request()->routeIs('seleksi')">
                         {{ __('Seleksi') }}
                     </x-jet-nav-link>
-                    @endrole
+                    @endcan
 
-                    @role ('officer|committee|admin')
+                    @can ('process pendaftaran')
                     <x-jet-nav-link href="{{ route('pendaftaran') }}" :active="request()->routeIs('pendaftaran')">
                         {{ __('Pendaftaran') }}
                     </x-jet-nav-link>
+                    @endcan
 
+                    @can ('process pembayaran')
                     <x-jet-nav-link href="{{ route('pembayaran') }}" :active="request()->routeIs('pembayaran')">
                         {{ __('Pembayaran') }}
                     </x-jet-nav-link>
-                    @endrole
+                    @endcan
 
                     @role('admin')
                     <x-jet-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
                         {{ __('Data Master') }}
                     </x-jet-nav-link>
                     @endrole
-
-
 
                 </div>
             </div>

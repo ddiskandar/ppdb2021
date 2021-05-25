@@ -5,11 +5,14 @@
                 {{ __('Data Pendaftar Calon Peserta Didik') }}
             </h2>
             <div class="items-center hidden sm:flex">
+                @can ('download excel')
                 <x-jet-secondary-button>
                     <a href="{{ route('student.export') }}">
                         Download Excel
                     </a>
                 </x-jet-secondary-button>
+                @endcan
+                
                 @livewire('student-create')
             </div>
         </div>
