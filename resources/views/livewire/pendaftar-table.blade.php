@@ -82,7 +82,7 @@
                                                 </a>
                                             </x-button-icon>
                                             @can ('reset password')
-                                            <x-button-icon>
+                                            <x-button-icon wire:click="confirmResetPassword({{ $student->user_id }})">
                                                 <x-icon-shield-check />
                                             </x-button-icon>
                                             @endcan
@@ -92,7 +92,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="5" class="p-6 text-sm text-center text-gray-500">
+                                    <td colspan=" 5" class="p-6 text-sm text-center text-gray-500">
                                         <div class="flex items-center justify-center py-12">
                                             <x-icon-ban />
                                             <span class="ml-2 font-semibold">Tidak ada data yang ditemukan</span>
@@ -196,4 +196,29 @@
         </div>
     </x-slide-overs>
     @endisset
+
+    @isset ($studentResetPassword->name)
+    <!-- Delete User Confirmation Modal -->
+    <x-jet-dialog-modal wire:model="confirmingResetPassword">
+        <x-slot name="title">
+            Reset Password {{ $studentResetPassword->name }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Yakin mau direset? password akan direset menjadi 12345678') }}
+
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingResetPassword')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="resetPassword()" wire:loading.attr="disabled">
+                {{ __('Reset Password') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
+    @endisset
+
 </div>

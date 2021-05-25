@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\Ppdb;
 use App\Models\Student;
+use App\Models\User;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
 
 class PendaftarTable extends Component
@@ -14,7 +16,11 @@ class PendaftarTable extends Component
 
     public $panelStudentDetail = false;
 
+    public $confirmingResetPassword = false;
+
     public $studentDetail;
+
+    public $studentResetPassword;
 
     public $search = '';
 
@@ -27,6 +33,28 @@ class PendaftarTable extends Component
     protected $listeners = [
         'studentAdded',
     ];
+
+    public function confirmResetPassword($id)
+    {
+        $this->resetErrorBag();
+        $this->studentResetPassword = User::where('id', $id)->first();
+
+        $this->dispatchBrowserEvent('confirming-reset-password');
+
+        $this->confirmingResetPassword = true;
+    }
+
+    public function resetPassword()
+    {
+        User::where('id', $this->studentResetPassword->id)
+            ->update([
+                'password' => Hash::make('12345678'),
+            ]);
+
+        $this->confirmingResetPassword = false;
+
+        $this->emit('reseted');
+    }
 
     public function studentAdded()
     {
