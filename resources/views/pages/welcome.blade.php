@@ -45,7 +45,7 @@
 
                                 <x-jet-input id="password" class="block w-full mt-3 placeholder-gray-400" type="password" name="password" :value="old('password')" placeholder="Password" required />
 
-                                <x-jet-button class="w-full py-3 mt-4 bg-green-600 hover:bg-green-500">
+                                <x-jet-button class="justify-center w-full py-3 mt-4 bg-green-600 hover:bg-green-500">
                                     {{ __('LOGIN') }}
                                 </x-jet-button>
 

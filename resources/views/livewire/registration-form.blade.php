@@ -102,13 +102,13 @@
 
                                 <!-- Confirm Password -->
                                 <div class="mt-4">
-                                    <x-jet-label for="state.password_confirmation" :value="__('Confirm Password')" />
+                                    <x-jet-label for="state.password_confirmation" :value="__('Tulis ulang Password')" />
                                     <x-jet-input wire:model.defer="state.password_confirmation" id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" />
                                 </div>
 
                                 <div class="flex items-center mt-4">
 
-                                    <x-jet-button wire:loading.attr="disabled" wire:target="submit" class="w-full py-3 mt-4">
+                                    <x-jet-button wire:loading.attr="disabled" wire:target="submit" class="justify-center w-full py-3 mt-4">
                                         {{ __('Daftar') }}
                                     </x-jet-button>
 
