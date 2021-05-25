@@ -13,13 +13,15 @@ class NilaiBtq extends Component
     public $state = [];
 
     protected $rules = [
-        'state.baca_quran' => 'required',
-        'state.tulis_quran' => 'required',
+        'state.baca_quran' => 'required|string|max:1|in:S,A,B,C,D,E',
+        'state.tulis_quran' => 'required|string|max:1|in:S,A,B,C,D,E',
+        'state.bacaan_shalat' => 'required|string|max:1|in:S,A,B,C,D,E',
     ];
 
     protected $validationAttributes = [
         'state.baca_quran' => 'Baca Quran',
         'state.tulis_quran' => 'Tulis Quran',
+        'state.bacaan_shalat' => 'Bacaan Shalat',
     ];
 
     public function mount(Student $student)

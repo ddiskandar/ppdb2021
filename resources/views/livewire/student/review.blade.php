@@ -46,13 +46,13 @@
                 <x-dd value="{{ $student->ppdb->motivasi_jurusan ?? '-' }}" />
 
                 <x-dt class="mt-6" value="Alat Elektronik" />
-                <x-dd value="#" />
+                <x-dd value="{{ $student->ppdb->tool->name ?? '-' }}" />
 
-                <x-dt class="mt-6" value="TPA / Menggambar / Baca Quran / Tulis Quran" />
-                <x-dd value="{{ $student->ppdb->tpa ?? '-' }} / {{ $student->ppdb->gambar ?? '-' }} / {{ $student->ppdb->baca_quran ?? '-' }} / {{ $student->ppdb->tulis_quran ?? '-' }}" />
+                <x-dt class="mt-6" value="TPA / Menggambar / Baca Quran / Tulis Quran / Bacaan Shalat" />
+                <x-dd value="{{ $student->ppdb->tpa ?? '-' }} / {{ $student->ppdb->gambar ?? '-' }} / {{ $student->ppdb->baca_quran ?? '-' }} / {{ $student->ppdb->tulis_quran ?? '-' }} / {{ $student->ppdb->bacaan_quran ?? '-' }}" />
 
                 <x-dt class="mt-6" value="Pilihan Kelas / Jurusan Pertama / Jurusan Kedua" />
-                <x-dd value="{{ $student->ppdb->pilihan_satu ?? '-' }} / {{ $student->ppdb->pilihan_dua ?? '-' }}" />
+                <x-dd value="{{ $student->pilihan_kelas() }} / {{ $student->pilihan_jurusan($student->ppdb->pilihan_satu) ?? '-' }} / {{ $student->pilihan_jurusan($student->ppdb->pilihan_dua) ?? '-' }}" />
 
             </dl>
         </div>

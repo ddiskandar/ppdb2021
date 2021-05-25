@@ -26,6 +26,9 @@
                                 Buat Akun
                             </h2>
                             <p class="text-sm">Semua formulir wajib diisi dengan benar</p>
+                            @if( $hasRegisteredMessage )
+                                <span>{{ $hasRegisteredMessage }}</span>
+                            @endif
                         </div>
                         <div class="relative flex-1 px-4 mt-6 sm:px-10">
 

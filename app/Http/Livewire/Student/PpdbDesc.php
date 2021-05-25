@@ -37,6 +37,9 @@ class PpdbDesc extends Component
         $this->validate();
 
         $this->ppdb->update($this->state);
+        $this->ppdb->update([
+            'interview_by' => auth()->id(),
+        ]);
 
         $this->emit('saved');
     }

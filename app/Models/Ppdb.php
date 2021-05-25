@@ -49,11 +49,11 @@ class Ppdb extends Model
 
     public function tool()
     {
-        return $this->hasOne(Tool::class);
+        return $this->belongsTo(Tool::class, 'tool_id');
     }
 
     public function info()
     {
-        return $this->hasOne(Info::class);
+        return $this->belongsTo(Info::class);
     }
 }

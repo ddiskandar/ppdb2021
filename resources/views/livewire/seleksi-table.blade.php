@@ -46,10 +46,10 @@
                                         Pilihan Kelas / Jurusan
                                     </th>
                                     <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        TPA
+                                        TPA / Gambar
                                     </th>
                                     <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        BTQ
+                                        BTQ / Shalat
                                     </th>
                                     <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Wawancara
@@ -83,18 +83,18 @@
 
                                         @isset ($student->ppdb->pilihan_satu)
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            1 : {{ $student->pilihan_jurusan($student->ppdb->pilihan_satu)}}
+                                            {{ '1 : ' . $student->pilihan_jurusan($student->ppdb->pilihan_satu)}}
                                         </span>
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            2 : {{ $student->pilihan_jurusan($student->ppdb->pilihan_dua)}}
+                                            {{ '2 : ' . $student->pilihan_jurusan($student->ppdb->pilihan_dua)}}
                                         </span>
                                         @endisset
-                                        
+
                                     </td>
                                     <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
                                         @isset ($student->tpa)
 
-                                        {{ $student->tpa }}
+                                        {{ $student->tpa . ' / ' . $student->gambar }}
 
                                         @else
 
@@ -113,7 +113,9 @@
                                     <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
                                         @isset ($student->baca_quran)
 
-                                        {{ $student->baca_quran }}
+                                        <span>
+                                            {{ $student->baca_quran . ' / ' . $student->tulis_quran . ' / ' . $student->bacaan_shalat }}
+                                        </span>
 
                                         @else
 
@@ -134,7 +136,7 @@
                                     <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
                                         @isset ($student->ppdb->interview_by)
 
-                                        {{ $student->ppdb->interview_by }}
+                                        {{ $student->ppdb->interviewer->name }}
 
                                         @else
 
@@ -154,7 +156,9 @@
                                     <td class="py-4 pl-2 pr-6 text-sm font-medium whitespace-nowrap">
                                         @isset ($student->ppdb->pilihan_lulus)
 
-                                        {{ $student->ppdb->pilihan_lulus }}
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                            {{ $student->pilihan_jurusan($student->ppdb->pilihan_lulus) }}
+                                        </span>
 
                                         @else
 

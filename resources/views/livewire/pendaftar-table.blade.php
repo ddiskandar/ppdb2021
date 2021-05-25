@@ -145,7 +145,12 @@
         <x-slot name="title">
 
         </x-slot>
-        <img class="w-32 h-32 rounded-full" src="/images/default-avatar.png" alt="">
+        @isset($studentDetail->user->photo)
+        <img class="object-cover object-top w-32 h-32 rounded-full" src="{{ Storage::url($studentDetail->user->photo) }}" alt="">
+        @else
+        <img class="object-cover object-top w-32 h-32 rounded-full" src="/images/default-avatar.png" alt="">
+        @endisset
+
         <h2 id="slide-over-heading" class="mt-6 text-xl font-bold text-gray-900">
             {{ $studentDetail->user->name }}
         </h2>

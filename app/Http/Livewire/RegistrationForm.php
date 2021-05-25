@@ -18,6 +18,8 @@ use Livewire\Component;
 
 class RegistrationForm extends Component
 {
+    public $hasRegisteredMessage = '';
+
     public $state = [];
 
     protected $rules = [
@@ -46,7 +48,16 @@ class RegistrationForm extends Component
     {
         $this->validate();
 
-        DB::transaction( function () {
+        // $registeredUser = User::where('name', $this->state['name'])->firstOrFail();
+        // $registeredStudent = Student::where('school_id', $this->state['school_id'])->firstOrFail();
+        // $registeredStudentOrtu = Ortu::where('ibu_nama', $this->state['ibu_nama'])->firstOrFail();
+
+        // if ( $registeredUser && $registeredStudent && $registeredStudentOrtu ) 
+        // {
+        //     $this->hasRegisteredMessage = 'Data anda sudah terdaftar';
+        // }
+
+        DB::transaction(function () {
 
             $user = User::factory()->create([
                 'name' => $this->state['name'],
@@ -90,9 +101,8 @@ class RegistrationForm extends Component
             Auth::login($user);
 
             $this->state = [];
-            
+
             return redirect()->route('home');
-        
         });
     }
 

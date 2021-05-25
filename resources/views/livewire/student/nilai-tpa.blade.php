@@ -12,7 +12,7 @@
         <!-- Nama Lengkap -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="state.tpa" :value="__('Nilai Hasil Test Tulis')" />
-            <x-jet-input wire:model.defer="state.tpa" id="state.tpa" class="block w-full mt-1 uppercase" type="number" name="name" :value="old('state.tpa')" required />
+            <x-jet-input wire:model.defer="state.tpa" id="state.tpa" class="block w-full mt-1 uppercase" type="number" name="name" :value="old('state.tpa')" />
             <x-jet-input-error for="state.tpa" class="mt-2" />
         </div>
 
@@ -21,12 +21,12 @@
             <x-jet-label for="state.gambar" :value="__('Menggambar')" />
             <x-select wire:model.defer="state.gambar" id="state.gambar" name="state.gambar" autocomplete="state.gambar" class="block w-full px-3 mt-1">
                 <option value="">{{ __('-- Pilih salah satu') }}</option>
-                <option value="S">{{ __('(S) Istimewa, menguasai kaligrafi') }}</option>
-                <option value="A">{{ __('(A) Rapi dan tepat menulis huruf, serta baik dalam sambungan serta syakalnya') }}</option>
-                <option value="B">{{ __('(B) Rapi dan tepat menulis huruf, tapi kurang dalam sambungan ATAU syakalnya') }}</option>
-                <option value="C">{{ __('(C) Rapi dan tepat menulis huruf, tapi kurang dalam sambungan DAN syakalnya') }}</option>
-                <option value="D">{{ __('(D) Kurang rapi dan kurang tepat dalam menulis huruf') }}</option>
-                <option value="E">{{ __('(E) Tidak bisa menulis') }}</option>
+                <option value="S">{{ __('(S)') }}</option>
+                <option value="A">{{ __('(A)') }}</option>
+                <option value="B">{{ __('(B)') }}</option>
+                <option value="C">{{ __('(C)') }}</option>
+                <option value="D">{{ __('(D)') }}</option>
+                <option value="E">{{ __('(E)') }}</option>
             </x-select>
             <x-jet-input-error for="state.gambar" class="mt-2" />
         </div>

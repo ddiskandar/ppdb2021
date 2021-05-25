@@ -63,18 +63,18 @@ class SeleksiTable extends Component
     public function render()
     {
         $students = Student::select([
-            'id', 'user_id', 'school_id', 'school_temp', 'address', 'kecamatan', 'kab',
+            'id', 'user_id', 'school_id', 'school_temp', 'address', 'kecamatan', 'kab', 'baca_quran', 'tulis_quran', 'bacaan_shalat', 'gambar', 'tpa'
         ])->whereHas('user', function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%');
         })->whereHas('school', function ($query) {
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('pilihan_kelas', 'like', '%' . $this->filterKelas . '%');
-        })->orderByDesc('created_at')
+        })->orderByDesc('id')
         ->with(
             'school:id,name',
             'user:id,name,username',
-            'ppdb:student_id,periode_id,pilihan_kelas,pilihan_satu,pilihan_dua,join_wa'
+            'ppdb:student_id,periode_id,pilihan_kelas,pilihan_satu,pilihan_dua,pilihan_lulus,join_wa,interview_by'
         )
             ->paginate($this->perPage);
 
