@@ -80,40 +80,95 @@
                                             <span class="w-2 h-2 mr-2 bg-green-600 rounded-full"></span>
                                             <span>{{ $student->pilihan_kelas() }}</span>
                                         </span>
+
+                                        @isset ($student->ppdb->pilihan_satu)
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            1 : MM
+                                            1 : {{ $student->pilihan_jurusan($student->ppdb->pilihan_satu)}}
                                         </span>
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            1 : MM
+                                            2 : {{ $student->pilihan_jurusan($student->ppdb->pilihan_dua)}}
                                         </span>
+                                        @endisset
+                                        
                                     </td>
                                     <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
+                                        @isset ($student->tpa)
+
+                                        {{ $student->tpa }}
+
+                                        @else
+
+                                        @can('process tpa')
                                         <a href="{{ route('student.tpa',  $student->id) }}">
                                             <x-jet-button>
                                                 TPA
                                             </x-jet-button>
                                         </a>
+                                        @else
+                                        -
+                                        @endcan
+
+                                        @endisset
                                     </td>
                                     <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
+                                        @isset ($student->baca_quran)
+
+                                        {{ $student->baca_quran }}
+
+                                        @else
+
+                                        @can('process btq')
                                         <a href="{{ route('student.btq',  $student->id) }}">
                                             <x-jet-button>
                                                 BTQ
                                             </x-jet-button>
                                         </a>
+                                        @else
+                                        -
+                                        @endcan
+
+                                        @endisset
+
+
                                     </td>
                                     <td class="px-2 py-4 text-sm font-medium whitespace-nowrap">
+                                        @isset ($student->ppdb->interview_by)
+
+                                        {{ $student->ppdb->interview_by }}
+
+                                        @else
+
+                                        @can('process wawancara')
                                         <a href="{{ route('student.interview',  $student->id) }}">
                                             <x-jet-button>
                                                 Wawancara
                                             </x-jet-button>
                                         </a>
+                                        @else
+                                        -
+                                        @endcan
+
+                                        @endisset
+
                                     </td>
                                     <td class="py-4 pl-2 pr-6 text-sm font-medium whitespace-nowrap">
+                                        @isset ($student->ppdb->pilihan_lulus)
+
+                                        {{ $student->ppdb->pilihan_lulus }}
+
+                                        @else
+
+                                        @can('process pleno')
                                         <a href="{{ route('student.pleno',  $student->id) }}">
                                             <x-jet-button>
                                                 Tentukan
                                             </x-jet-button>
                                         </a>
+                                        @else
+                                        -
+                                        @endcan
+
+                                        @endisset
                                     </td>
                                 </tr>
                                 @empty

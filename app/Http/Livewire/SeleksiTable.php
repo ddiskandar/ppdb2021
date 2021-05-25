@@ -74,7 +74,7 @@ class SeleksiTable extends Component
         ->with(
             'school:id,name',
             'user:id,name,username',
-            'ppdb:student_id,periode_id,pilihan_kelas,join_wa'
+            'ppdb:student_id,periode_id,pilihan_kelas,pilihan_satu,pilihan_dua,join_wa'
         )
             ->paginate($this->perPage);
 

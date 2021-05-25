@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->name('home');
 
     Route::get('/dashboard', [PagesController::class, 'dashboard'])
-        ->middleware(['role:committee|interviewer|tester|officer|financial|admin'])
+        ->middleware(['role:committee|interviewer|testers|officer|financial|admin'])
         ->name('dashboard');
 
     Route::get('/seleksi', [PagesController::class, 'seleksi'])
