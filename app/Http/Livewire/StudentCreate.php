@@ -101,9 +101,14 @@ class StudentCreate extends Component
 
         DB::transaction(function () {
 
-            $user = User::factory()->create([
-                'name' => $this->name,
-                'password' => Hash::make('12345678'),
+            $periode = Periode::where('active', true)->first()->name;
+
+
+            $user = User::create([
+                'username' => '2122.' . $periode . '.' . rand(1000, 9999),
+                'name' => $this->state['name'],
+                'password' => Hash::make($this->state['password']),
+                'remember_token' => Str::random(10),
             ]);
 
             $student = Student::create([

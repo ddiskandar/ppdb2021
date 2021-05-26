@@ -8,9 +8,9 @@
         </x-slot>
     </x-jet-section-title>
 
-    <div class="md:col-span-2">
+    <div class="mt-4 md:col-span-2 md:mt-0">
         <div class="grid grid-cols-6 gap-6">
-            <div class="sm:col-span-2">
+            <div class="col-span-6 sm:col-span-2">
                 <div class="px-4 py-5 text-center bg-white shadow sm:p-4 sm:rounded-md">
                     <div class="text-4xl font-bold text-gray-700">
                         {{ $mm }}
@@ -20,7 +20,7 @@
                     </span>
                 </div>
             </div>
-            <div class="sm:col-span-2">
+            <div class="col-span-6 sm:col-span-2">
                 <div class="px-4 py-5 text-center bg-white shadow sm:p-4 sm:rounded-md">
                     <div class="text-4xl font-bold text-gray-700">
                         {{ $bdp }}
@@ -30,7 +30,7 @@
                     </span>
                 </div>
             </div>
-            <div class="sm:col-span-2">
+            <div class="col-span-6 sm:col-span-2">
                 <div class="px-4 py-5 text-center bg-white shadow sm:p-4 sm:rounded-md">
                     <div class="text-4xl font-bold text-gray-700">
                         {{ $aphp }}
