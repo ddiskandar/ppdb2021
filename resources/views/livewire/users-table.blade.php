@@ -1,7 +1,7 @@
 <div>
-    <div class="pt-6">
+    <div class="pt-4">
         <div class="mx-auto max-w-7xl">
-            <div class="mt-10 sm:mt-0">
+            <div class="">
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px-0">
@@ -13,7 +13,9 @@
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
 
-                        @livewire('generate-permissions')
+                        <div class="ml-4 md:ml-0">
+                            @livewire('generate-permissions')
+                        </div>
 
                         <div class="flex items-start justify-between">
                             <div class="relative flex flex-1 rounded-md shadow-sm">

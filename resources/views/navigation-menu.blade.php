@@ -5,9 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block w-auto h-9" />
-                    </a>
+                    <x-jet-application-mark class="block w-auto h-9" />
                 </div>
 
                 <!-- Navigation Links -->
@@ -172,9 +170,53 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden lg:hidden">
         <div class="pt-2 pb-3 space-y-1">
+
+            @role('student')
+
+            <x-jet-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                {{ __('Home') }}
+            </x-jet-responsive-nav-link>
+
+            @else
+
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+
+            @endrole
+
+            @can ('process seleksi')
+
+            <x-jet-responsive-nav-link href="{{ route('seleksi') }}" :active="request()->routeIs('seleksi')">
+                {{ __('Seleksi') }}
+            </x-jet-responsive-nav-link>
+
+            @endcan
+
+            @can ('process pendaftaran')
+
+            <x-jet-responsive-nav-link href="{{ route('pendaftaran') }}" :active="request()->routeIs('pendaftaran')">
+                {{ __('Pendaftaran') }}
+            </x-jet-responsive-nav-link>
+
+            @endcan
+
+            @can ('process pembayaran')
+
+            <x-jet-responsive-nav-link href="{{ route('pembayaran') }}" :active="request()->routeIs('pembayaran')">
+                {{ __('Pembayaran') }}
+            </x-jet-responsive-nav-link>
+
+            @endcan
+
+            @role('admin')
+
+            <x-jet-responsive-nav-link href="{{ route('master') }}" :active="request()->routeIs('master')">
+                {{ __('Data Master') }}
+            </x-jet-responsive-nav-link>
+
+            @endrole
+
         </div>
 
         <!-- Responsive Settings Options -->
@@ -188,14 +230,14 @@
 
                 <div>
                     <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="text-sm font-medium text-gray-500">{{ Auth::user()->username }}</div>
                 </div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('Profil') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

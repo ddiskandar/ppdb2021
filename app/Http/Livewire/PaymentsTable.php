@@ -79,8 +79,9 @@ class PaymentsTable extends Component
         return view('livewire.payments-table', [
             'payments' => Payment::select([
                 'id', 'student_id', 'attachment', 'amount', 'verified_by', 'date', 'note'
-            ])->WhereHas('student.user', function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%');
+            ])->whereHas('student.user', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('username', 'like', '%' . $this->search . '%');
             })->with(
                 'student:id,user_id',
                 'student.user:id,name,username',

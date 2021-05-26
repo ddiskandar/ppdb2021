@@ -65,7 +65,8 @@ class SeleksiTable extends Component
         $students = Student::select([
             'id', 'user_id', 'school_id', 'school_temp', 'address', 'kecamatan', 'kab', 'baca_quran', 'tulis_quran', 'bacaan_shalat', 'gambar', 'tpa'
         ])->whereHas('user', function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%');
+            $query->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('username', 'like', '%' . $this->search . '%');
         })->whereHas('school', function ($query) {
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {

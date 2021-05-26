@@ -6,11 +6,11 @@
             </h2>
             <div class="items-center hidden sm:flex">
                 @can ('download excel')
-                <x-jet-secondary-button>
-                    <a href="{{ route('student.export') }}">
+                <a href="{{ route('student.export') }}">
+                    <x-jet-secondary-button>
                         Download Excel
-                    </a>
-                </x-jet-secondary-button>
+                    </x-jet-secondary-button>
+                </a>
                 @endcan
                 
                 @livewire('student-create')
@@ -20,7 +20,7 @@
 
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="mt-10 sm:mt-0">
+            <div class="">
                 @livewire('pendaftar-table')
             </div>
 

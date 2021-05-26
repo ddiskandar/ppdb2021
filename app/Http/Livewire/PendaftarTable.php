@@ -97,7 +97,8 @@ class PendaftarTable extends Component
         $students = Student::select([
             'id', 'user_id', 'school_id', 'school_temp', 'address', 'kecamatan', 'kab',
         ])->whereHas('user', function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%');
+            $query->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('username', 'like', '%' . $this->search . '%');
         })->whereHas('school', function ($query) {
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {

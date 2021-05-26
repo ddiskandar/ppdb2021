@@ -7,7 +7,7 @@
 
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="mt-10 sm:mt-0">
+            <div class="">
                 @livewire('seleksi-table')
             </div>
 

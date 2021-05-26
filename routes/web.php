@@ -78,7 +78,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->middleware(['can:process pleno'])
         ->name('student.pleno');
 
-    Route::get('/student/export', [StudentController::class, 'export'])
+    Route::get('/students/export', [StudentController::class, 'export'])
+        ->middleware(['can:download excel'])
         ->name('student.export');
 
 });
