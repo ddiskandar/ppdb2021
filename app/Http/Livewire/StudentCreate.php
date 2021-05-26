@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 use App\Models\Document;
 use App\Models\User;
@@ -106,8 +107,8 @@ class StudentCreate extends Component
 
             $user = User::create([
                 'username' => '2122.' . $periode . '.' . rand(1000, 9999),
-                'name' => $this->state['name'],
-                'password' => Hash::make($this->state['password']),
+                'name' => $this->name,
+                'password' => Hash::make('12345678'),
                 'remember_token' => Str::random(10),
             ]);
 
