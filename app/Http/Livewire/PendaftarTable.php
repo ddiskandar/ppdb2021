@@ -27,6 +27,7 @@ class PendaftarTable extends Component
     public $perPage = 4;
     public $filterKelas;
     public $filterSchool;
+    public $filterGabung;
 
     public $join_wa;
 
@@ -101,6 +102,8 @@ class PendaftarTable extends Component
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('pilihan_kelas', 'like', '%' . $this->filterKelas . '%');
+        })->whereHas('ppdb', function ($query) {
+            $query->where('join_wa', 'like', '%' . $this->filterGabung);
         })->orderByDesc('created_at')
             ->with(
                 'school:id,name',

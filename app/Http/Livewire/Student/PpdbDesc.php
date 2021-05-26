@@ -36,8 +36,11 @@ class PpdbDesc extends Component
     {
         $this->validate();
 
-        $this->ppdb->update($this->state);
         $this->ppdb->update([
+            'motivasi_smk' => $this->state['motivasi_smk'],
+            'motivasi_jurusan' => $this->state['motivasi_jurusan'],
+            'tool_id' => $this->state['tool_id'],
+            'info_id' => $this->state['info_id'],
             'interview_by' => auth()->id(),
         ]);
 

@@ -23,14 +23,14 @@
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
-                @livewire('student.sekolah-asal', ['student' => $student->id])
+            <div class="mt-10 sm:mt-0" id="grup">
+                @livewire('student.join-wa', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0" id="grup">
-                @livewire('student.join-wa', ['student' => $student->id])
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.sekolah-asal', ['student' => $student->id])
             </div>
 
             <x-jet-section-border />
@@ -75,11 +75,15 @@
                 @livewire('student.dokumen-kesejahteraan', ['student' => $student ])
             </div>
 
+            @role ('student')
+
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0" id="pembayaran">
                 @livewire('student.pembayaran', ['student' => $student->id])
             </div>
+
+            @endrole
 
             @can ('edit ukuran seragam')
             <x-jet-section-border />

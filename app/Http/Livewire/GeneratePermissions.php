@@ -27,6 +27,7 @@ class GeneratePermissions extends Component
         Permission::findOrCreate('process pleno', 'web');
         Permission::findOrCreate('download excel', 'web');
         Permission::findOrCreate('reset password', 'web');
+        Permission::findOrCreate('edit student', 'web');
 
         $role1 = Role::findByName('student', 'web');
 
@@ -43,12 +44,14 @@ class GeneratePermissions extends Component
             'process pleno',
             'download excel',
             'reset password',
+            'edit student',
         ]);
 
         $role3 = Role::findByName('interviewer', 'web');
         $role3->givePermissionTo([
             'process wawancara',
             'process seleksi',
+            'edit student',
         ]);
 
         $role4 = Role::findByName('testers', 'web');
@@ -62,6 +65,8 @@ class GeneratePermissions extends Component
         $role5->givePermissionTo([
             'process pendaftaran',
             'edit ukuran seragam',
+            'edit student',
+            'reset password',
         ]);
 
         $role6 = Role::findByName('financial', 'web');

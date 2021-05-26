@@ -32,7 +32,10 @@ class NilaiTpa extends Component
     {
         $this->validate();
 
-        $this->student->update($this->state);
+        $this->student->update([
+            'tpa' => $this->state['tpa'],
+            'gambar' => $this->state['gambar'],
+        ]);
 
         $this->emit('saved');
     }

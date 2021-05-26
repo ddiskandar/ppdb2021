@@ -33,7 +33,9 @@ class PilihanLulus extends Component
     {
         $this->validate();
 
-        $this->ppdb->update($this->state);
+        $this->ppdb->update([
+            'pilihan_lulus' => $this->state['pilihan_lulus']
+        ]);
 
         $this->emit('saved');
     }

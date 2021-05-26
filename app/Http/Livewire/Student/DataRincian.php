@@ -30,7 +30,11 @@ class DataRincian extends Component
     {
         $this->validate();
 
-        $this->student->update($this->state);
+        $this->student->update([
+            'hobby_id' => $this->state['hobby_id'],
+            'ideals_id' => $this->state['ideals_id'],
+            'prestasi' => $this->state['prestasi'],
+        ]);
         
         $this->emit('saved');
     }

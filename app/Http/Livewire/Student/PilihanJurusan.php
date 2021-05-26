@@ -37,7 +37,11 @@ class PilihanJurusan extends Component
     {
         $this->validate();
 
-        $this->ppdb->update($this->state);
+        $this->ppdb->update([
+            'pilihan_kelas' => $this->state['pilihan_kelas'],
+            'pilihan_satu' => $this->state['pilihan_satu'],
+            'pilihan_dua' => $this->state['pilihan_dua'],
+        ]);
 
         $this->emit('saved');
     }

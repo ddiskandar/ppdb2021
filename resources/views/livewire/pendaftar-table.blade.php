@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-start justify-between">
         <div class="relative flex flex-1 mb-4 rounded-md shadow-sm">
-            <x-input-search />
+            <x-input-search placeholder="Mencari pendaftar berdasarkan nama atau nomor registrasi ..." />
         </div>
         <div class="w-16 ml-4">
             <select wire:model="perPage" id="perPage" name="perPage" class="block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm sm:rounded-md focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
@@ -24,11 +24,14 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase w-96">
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Nama Lengkap / No. Registrasi
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Alamat Rumah / Asal Sekolah
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Dokumen
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Gabung WA
@@ -42,7 +45,7 @@
                                 @forelse($students as $student)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900 uppercase">
+                                        <div class="w-64 text-sm font-medium text-gray-900 uppercase truncate">
                                             {{ $student->user->name }}
                                         </div>
                                         <div class="text-sm text-gray-500">
@@ -52,6 +55,110 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900 truncate w-72 ">{{ $student->shortAddress }}</div>
                                         <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
+                                        <div class="flex items-center space-x-2">
+                                            @isset($student->document->kartu_keluarga)
+                                            <a href="{{ Storage::url($student->document->kartu_keluarga) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>KK</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>KK</span>
+                                            </span>
+                                            @endisset
+
+                                            @isset($student->document->akta)
+                                            <a href="{{ Storage::url($student->document->akta) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>Akta</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>Akta</span>
+                                            </span>
+                                            @endisset
+
+                                            @isset($student->document->skl)
+                                            <a href="{{ Storage::url($student->document->skl) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>SKL</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>SKL</span>
+                                            </span>
+                                            @endisset
+
+                                            @isset($student->document->ijazah)
+                                            <a href="{{ Storage::url($student->document->ijazah) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>Ijazah</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>Ijazah</span>
+                                            </span>
+                                            @endisset
+
+                                        </div>
+
+                                        <div class="flex items-center mt-2 space-x-2">
+
+                                            @isset($student->document->kip)
+                                            <a href="{{ Storage::url($student->document->kip) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>KIP</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>KIP</span>
+                                            </span>
+                                            @endisset
+
+                                            @isset($student->document->kis)
+                                            <a href="{{ Storage::url($student->document->kis) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>KIS</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>KIS</span>
+                                            </span>
+                                            @endisset
+
+                                            @isset($student->document->kks)
+                                            <a href="{{ Storage::url($student->document->kks) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>KKS</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>KKS</span>
+                                            </span>
+                                            @endisset
+
+                                            @isset($student->document->pkh)
+                                            <a href="{{ Storage::url($student->document->pkh) }}" target="_blank">
+                                                <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    <span>PKH</span>
+                                                </span>
+                                            </a>
+                                            @else
+                                            <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-gray-500 bg-gray-100 rounded-full">
+                                                <span>PKH</span>
+                                            </span>
+                                            @endisset
+
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                         @if ( $student->ppdb->join_wa )
@@ -133,6 +240,14 @@
                             @foreach($schools as $school)
                             <option value="{{ $school->name }}">{{ $school->name }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-jet-label for="filterGabung" value="Gabung Grup" />
+                        <select wire:model="filterGabung" id="filterGabung" name="filterGabung" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
+                            <option value=''>Semua</option>
+                            <option value='0'>Belum</option>
+                            <option value='1'>Sudah</option>
                         </select>
                     </div>
                 </div>

@@ -39,7 +39,13 @@ class DataPeriodik extends Component
     {
         $this->validate();
 
-        $this->student->update($this->state);
+        $this->student->update([
+            'tinggi' => $this->state['tinggi'],
+            'berat' => $this->state['berat'],
+            'lingkar_kepala' => $this->state['lingkar_kepala'],
+            'jarak' => $this->state['jarak'],
+            'waktu' => $this->state['waktu'],
+        ]);
             
         $this->emit('saved');
     }

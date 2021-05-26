@@ -64,7 +64,7 @@
                                 @forelse($students as $student)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="w-48 text-sm font-medium text-gray-900 uppercase truncate ">
+                                        <div class="text-sm font-medium text-gray-900 uppercase truncate w-52">
                                             {{ $student->user->name }}
                                         </div>
                                         <div class="text-sm text-gray-500">

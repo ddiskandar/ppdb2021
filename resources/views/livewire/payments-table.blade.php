@@ -2,17 +2,7 @@
     <div class="flex items-start justify-between">
         <div class="relative flex flex-1 mb-4 rounded-md shadow-sm">
             <div class="relative flex-1">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5 text-gray-400">
-                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-                <input wire:model.debounce.300ms="search" type="search" class="block w-full pl-10 border-gray-300 shadow-xs sm:rounded-md sm:text-sm sm:leading-5 focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50" placeholder="Mencari pendaftar berdasarkan nama atau nomor registrasi..." x-ref="search" @keydown.window="
-                    if (event.keyCode === 191) {
-                        event.preventDefault();
-                        $refs.search.focus();
-                    }
-                ">
+                <x-input-search placeholder="Mencari pendaftar berdasarkan nama atau nomor registrasi ..." />
             </div>
         </div>
         <div class="w-16 ml-4">
@@ -36,7 +26,7 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase w-96">
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Nama Lengkap / No. Registrasi
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -63,7 +53,7 @@
                                 @forelse($payments as $payment)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900 uppercase truncate w-52">
+                                        <div class="w-64 text-sm font-medium text-gray-900 uppercase truncate ">
                                             {{ $payment->student->user->name }}
                                         </div>
                                         <div class="text-sm text-gray-500">
@@ -185,13 +175,13 @@
 
         <div class="mt-4">
             <x-jet-label for="date" :value="__('Tanggal Pembayaran')" />
-            <x-jet-input wire:model="date" id="date" class="block w-full mt-1" type="date" name="date" :value="old('date')" required />
+            <x-jet-input wire:model.defer="date" id="date" class="block w-full mt-1" type="date" name="date" :value="old('date')" required />
             <x-jet-input-error for="date" class="mt-2" />
         </div>
 
         <div class="mt-4">
             <x-jet-label for="amount" :value="__('Besar Pembayaran')" />
-            <x-jet-input wire:model="amount" id="amount" class="block w-full mt-1" type="number" name="amount" :value="old('amount')" required />
+            <x-jet-input wire:model.defer="amount" id="amount" class="block w-full mt-1" type="number" name="amount" :value="old('amount')" required />
             <x-jet-input-error for="amount" class="mt-2" />
         </div>
 

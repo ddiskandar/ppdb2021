@@ -47,7 +47,6 @@ class SekolahAsal extends Component
     {
         return view('livewire.student.sekolah-asal', [
             'schools' => \DB::table('schools')
-                ->orderByDesc('last_students')
                 ->get(),
         ]);
     }

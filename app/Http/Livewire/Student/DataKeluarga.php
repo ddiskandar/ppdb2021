@@ -62,7 +62,8 @@ class DataKeluarga extends Component
     public function mount(Student $student)
     {
         $ortu = Ortu::query()
-            ->where('student_id', $student->id)->first();
+            ->where('student_id', $student->id)
+            ->first();
 
         $this->state = $ortu->toArray();
         $this->ortu = $ortu;
@@ -72,7 +73,29 @@ class DataKeluarga extends Component
     {
         $this->validate();
 
-        $this->ortu->update($this->state);
+        $this->ortu->update([
+            'phone_ortu' => $this->state['phone_ortu'],
+            'ayah_nama' => $this->state['ayah_nama'],
+            'ayah_nik' => $this->state['ayah_nik'],
+            'ayah_lahir' => $this->state['ayah_lahir'],
+            'ayah_pendidikan' => $this->state['ayah_pendidikan'],
+            'ayah_pekerjaan' => $this->state['ayah_pekerjaan'],
+            'ayah_penghasilan' => $this->state['ayah_penghasilan'],
+
+            'ibu_nama' => $this->state['ibu_nama'],
+            'ibu_nik' => $this->state['ibu_nik'],
+            'ibu_lahir' => $this->state['ibu_lahir'],
+            'ibu_pendidikan' => $this->state['ibu_pendidikan'],
+            'ibu_pekerjaan' => $this->state['ibu_pekerjaan'],
+            'ibu_penghasilan' => $this->state['ibu_penghasilan'],
+
+            'wali_nama' => $this->state['wali_nama'],
+            'wali_nik' => $this->state['wali_nik'],
+            'wali_lahir' => $this->state['wali_lahir'],
+            'wali_pendidikan' => $this->state['wali_pendidikan'],
+            'wali_pekerjaan' => $this->state['wali_pekerjaan'],
+            'wali_penghasilan' => $this->state['wali_penghasilan'],
+        ]);
         
         $this->emit('saved');
     }

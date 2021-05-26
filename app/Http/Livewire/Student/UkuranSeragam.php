@@ -28,7 +28,11 @@ class UkuranSeragam extends Component
     {
         $this->validate();
 
-        $this->student->update($this->state);
+        $this->student->update([
+            'pdu' => $this->state['pdu'],
+            'olahraga' => $this->state['olahraga'],
+            'jas' => $this->state['jas'],
+        ]);
         
         $this->emit('saved');
     }

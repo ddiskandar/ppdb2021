@@ -35,7 +35,11 @@ class NilaiBtq extends Component
     {
         $this->validate();
 
-        $this->student->update($this->state);
+        $this->student->update([
+            'baca_quran' => $this->state['baca_quran'],
+            'tulis_quran' => $this->state['tulis_quran'],
+            'bacaan_shalat' => $this->state['bacaan_shalat'],
+        ]);
 
         $this->emit('saved');
     }

@@ -109,7 +109,7 @@ class RegistrationForm extends Component
     public function render()
     {
         return view('livewire.registration-form', [
-            'schools' => School::orderByDesc('last_students')->get(),
+            'schools' => School::get(),
         ]);
     }
 }

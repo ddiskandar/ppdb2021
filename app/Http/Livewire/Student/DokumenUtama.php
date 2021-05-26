@@ -103,7 +103,6 @@ class DokumenUtama extends Component
     {
         $this->validate();
 
-
         $fileName = $this->document->student->user->username
             . '.';
 
@@ -147,9 +146,9 @@ class DokumenUtama extends Component
             'nomor_ijazah' => $this->nomor_ijazah,
         ]);
 
-        $this->emit('saved');
-        
         $this->reset('kartu_keluarga', 'akta', 'skl', 'ijazah' );
+
+        $this->emit('saved');
     }
 
     public function render()
