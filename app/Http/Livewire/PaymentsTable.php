@@ -70,6 +70,8 @@ class PaymentsTable extends Component
                 'date' => $this->date,
                 'status' => true,
             ]);
+        
+        $this->emit('saved');
     }
 
     public function render()

@@ -37,7 +37,7 @@
                                 <!-- Pilihan Kelas -->
                                 <div>
                                     <x-jet-label for="state.pilihan_kelas" :value="__('Pilihan Kelas')" />
-                                    <x-select wire:model.defer="state.pilihan_kelas" id="pilihan_kelas" name="pilihan_kelas" autocomplete="pilihan_kelas" class="block w-full px-3 mt-1">
+                                    <x-select wire:model.lazy="state.pilihan_kelas" id="pilihan_kelas" name="pilihan_kelas" autocomplete="pilihan_kelas" class="block w-full px-3 mt-1">
                                         <option value="">{{ __('-- Pilih salah-satu') }}</option>
                                         <option value="0">{{ __('Regular') }}</option>
                                         <option value="1">{{ __('Boarding') }}</option>
@@ -48,14 +48,14 @@
                                 <!-- Name -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.name" :value="__('Nama Lengkap')" />
-                                    <x-jet-input wire:model.defer="state.name" id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" autofocus />
+                                    <x-jet-input wire:model.lazy="state.name" id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" autofocus />
                                     <x-jet-input-error for="state.name" class="mt-2" />
                                 </div>
 
                                 <!-- Jenis Kelamin -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.jk" :value="__('Jenis Kelamin')" />
-                                    <x-select wire:model.defer="state.jk" id="jk" name="jk" autocomplete="jk" class="block w-full px-3 mt-1">
+                                    <x-select wire:model.lazy="state.jk" id="jk" name="jk" autocomplete="jk" class="block w-full px-3 mt-1">
                                         <option value="">{{ __('-- Pilih salah-satu') }}</option>
                                         <option value="L">{{ __('Laki-laki') }}</option>
                                         <option value="P">{{ __('Perempuan') }}</option>
@@ -66,21 +66,21 @@
                                 <!-- Email Address -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.nisn" :value="__('NISN')" />
-                                    <x-jet-input wire:model.defer="state.nisn" id="nisn" class="block w-full mt-1" type="text" maxlength="10" name="nisn" :value="old('nisn')" />
+                                    <x-jet-input wire:model.lazy="state.nisn" id="nisn" class="block w-full mt-1" type="text" maxlength="10" name="nisn" :value="old('nisn')" />
                                     <x-jet-input-error for="state.nisn" class="mt-2" />
                                 </div>
 
                                 <!-- Email Address -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.phone" :value="__('Nomor HP/Whatsapp')" />
-                                    <x-jet-input wire:model.defer="state.phone" id="phone" class="block w-full mt-1" type="text" name="phone" :value="old('phone')" />
+                                    <x-jet-input wire:model.lazy="state.phone" id="phone" class="block w-full mt-1" type="text" name="phone" :value="old('phone')" />
                                     <x-jet-input-error for="state.phone" class="mt-2" />
                                 </div>
 
                                 <!-- Asal Sekolah -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.school_id" :value="__('Asal Sekolah')" />
-                                    <select wire:model.defer="state.school_id" id="school_id" name="school_id" class="block w-full mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ">
+                                    <select wire:model.lazy="state.school_id" id="school_id" name="school_id" class="block w-full mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ">
                                         <option value="">{{ __('-- Pilih salah satu') }}</option>
                                         @foreach ($schools as $school )
                                         <option value={{ $school->id }}>{{ $school->name }}</option>
@@ -92,21 +92,21 @@
                                 <!-- Email Address -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.ibu_nama" :value="__('Nama Ibu Kandung')" />
-                                    <x-jet-input wire:model.defer="state.ibu_nama" id="ibu_nama" class="block w-full mt-1" type="text" name="ibu_nama" :value="old('ibu_nama')" />
+                                    <x-jet-input wire:model.lazy="state.ibu_nama" id="ibu_nama" class="block w-full mt-1" type="text" name="ibu_nama" :value="old('ibu_nama')" />
                                     <x-jet-input-error for="state.ibu_nama" class="mt-2" />
                                 </div>
 
                                 <!-- Password -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.password" :value="__('Password ( digunakan untuk login aplikasi )')" />
-                                    <x-jet-input wire:model.defer="state.password" id="password" class="block w-full mt-1" type="password" name="password" autocomplete="new-password" />
+                                    <x-jet-input wire:model.lazy="state.password" id="password" class="block w-full mt-1" type="password" name="password" autocomplete="new-password" />
                                     <x-jet-input-error for="state.password" class="mt-2" />
                                 </div>
 
                                 <!-- Confirm Password -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.password_confirmation" :value="__('Tulis ulang Password')" />
-                                    <x-jet-input wire:model.defer="state.password_confirmation" id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" />
+                                    <x-jet-input wire:model.lazy="state.password_confirmation" id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" />
                                 </div>
 
                                 <div class="flex items-center mt-4">

@@ -204,9 +204,19 @@
             <x-jet-input-error for="note" class="mt-2" />
         </div>
 
-        <x-jet-button class="mt-6" wire:click="update" wire:loading.attr="disabled">
-            {{ __('Simpan') }}
-        </x-jet-button>
+        <div class="flex items-center justify-end mt-6">
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __('Berhasil disimpan.') }}
+            </x-jet-action-message>
+
+            <x-dirty-message class="mr-3" target="note, date, attachment, amount">
+                {{ __('Belum disimpan!') }}
+            </x-dirty-message>
+
+            <x-jet-button wire:click="update" wire:loading.attr="disabled">
+                {{ __('Simpan') }}
+            </x-jet-button>
+        </div>
 
     </x-slide-overs>
     @endisset

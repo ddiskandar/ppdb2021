@@ -44,18 +44,14 @@ class RegistrationForm extends Component
         'state.password' => 'Kata sandi',
     ];
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function submit()
     {
         $this->validate();
-
-        // $registeredUser = User::where('name', $this->state['name'])->firstOrFail();
-        // $registeredStudent = Student::where('school_id', $this->state['school_id'])->firstOrFail();
-        // $registeredStudentOrtu = Ortu::where('ibu_nama', $this->state['ibu_nama'])->firstOrFail();
-
-        // if ( $registeredUser && $registeredStudent && $registeredStudentOrtu ) 
-        // {
-        //     $this->hasRegisteredMessage = 'Data anda sudah terdaftar';
-        // }
 
         DB::transaction(function () {
 
