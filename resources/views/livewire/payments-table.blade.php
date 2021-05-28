@@ -72,7 +72,7 @@
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
-                                            @elseif ( $payment->student->ppdb->payment_amount - $payment->student->bayar() == 0)
+                                            @elseif ( $payment->student->ppdb->payment_amount - $payment->student->paid_amount == 0)
                                             <div class="flex items-center">
                                                 <span class="text-green-800">
                                                     Lunas
@@ -83,14 +83,14 @@
                                             </div>
                                             @else
                                             <span class="text-red-600">
-                                                Rp. {{ $payment->student->ppdb->payment_amount - $payment->student->bayar() }} ,-
+                                                Rp. {{ $payment->student->ppdb->payment_amount - $payment->student->paid_amount }} ,-
                                             </span>
                                             @endif
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">Rp. {{ $payment->amount }}</div>
-                                        <div class="text-sm text-gray-500">{{ $payment->date() }}</div>
+                                        <div class="text-sm text-gray-500">{{ format_tanggal_indo($payment->date) }}</div>
                                     </td>
                                     @if ($payment->verified_by)
                                     <td class="px-6 py-4 text-green-500 whitespace-nowrap">

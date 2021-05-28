@@ -11,7 +11,10 @@
 
         <!-- Pilihan Kelas -->
         <div class="col-span-6">
-            <dl>
+        
+            <img src="{!! $student->user->photo ? Storage::url($student->user->photo) : '/images/default-photo.png' !!}" class="object-cover w-48 rounded shadow h-60" />
+
+            <dl class="mt-6">
                 <x-dt value="Nama Lengkap / Panggilan" />
                 <x-dd value="{!! $student->user->name !!} / {!! $student->panggilan ?? '-' !!}" />
 
@@ -52,7 +55,7 @@
                 <x-dd value="{{ $student->ppdb->tpa ?? '-' }} / {{ $student->ppdb->gambar ?? '-' }} / {{ $student->ppdb->baca_quran ?? '-' }} / {{ $student->ppdb->tulis_quran ?? '-' }} / {{ $student->ppdb->bacaan_quran ?? '-' }}" />
 
                 <x-dt class="mt-6" value="Pilihan Kelas / Jurusan Pertama / Jurusan Kedua" />
-                <x-dd value="{{ $student->pilihan_kelas() }} / {{ $student->pilihan_jurusan($student->ppdb->pilihan_satu) ?? '-' }} / {{ $student->pilihan_jurusan($student->ppdb->pilihan_dua) ?? '-' }}" />
+                <x-dd value="{{ pilihan_kelas_slug($student->ppdb->pilihan_kelas) }} / {{ pilihan_jurusan_slug($student->ppdb->pilihan_satu) ?? '-' }} / {{ pilihan_jurusan_slug($student->ppdb->pilihan_dua) ?? '-' }}" />
 
             </dl>
         </div>

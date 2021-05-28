@@ -52,8 +52,4 @@ class Ppdb extends Model
         return $this->belongsTo(Tool::class, 'tool_id');
     }
 
-    public function info()
-    {
-        return $this->belongsTo(Info::class);
-    }
 }

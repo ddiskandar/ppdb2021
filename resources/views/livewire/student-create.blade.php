@@ -36,7 +36,7 @@
                 <!-- Name -->
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="name" :value="__('Nama Lengkap')" />
-                    <x-jet-input wire:model.lazy="name" id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required />
+                    <x-jet-input wire:model.lazy="name" id="name" class="block w-full mt-1 uppercase" type="text" name="name" :value="old('name')" required />
                     <x-jet-input-error for="name" class="mt-2" />
                 </div>
 

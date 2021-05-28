@@ -28,7 +28,7 @@
 
                         @foreach ($students as $student)
                         
-                        @if(! $student->is_payment_completed())
+                        @if( ! $student->payment_completed )
                             <option value={{ $student->id }}>{{ $student->user->name . ' (' . $student->user->username . ')' }}</option>
                         @endif
 

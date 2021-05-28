@@ -71,7 +71,9 @@
             <img class="logo" src="{{ public_path('images/smkplusa.jpg') }}" alt="logo smk">
         </div>
         <div class="frame">
-            <img class="photo" src="{{ public_path('images/default-photo.png') }}" alt="foto siswa">
+            <img class="photo" src="{!! isset($student->user->photo) 
+                                        ? public_path('/storage/' . $student->user->photo) 
+                                        : '/images/default-photo.png' !!}" alt="foto siswa">
         </div>
         <div class="text-center ">
             <h3>FORMULIR PENDAFTARAN</h3>
@@ -90,13 +92,13 @@
                 <tr>
                     <td>Pilihan Kelas</td>
                     <td>:</td>
-                    <td>{{ $student->pilihan_kelas($student->ppdb->pilihan_kelas) }}</td>
+                    <td>{{ pilihan_kelas_slug($student->ppdb->pilihan_kelas) }}</td>
                 </tr>
                 <tr>
                     <td>Pilihan Kompetensi Keahlian</td>
                     <td>:</td>
                     @if (isset($student->ppdb->pilihan_satu))
-                    <td>1. {{ $student->pilihan_jurusan( $student->ppdb->pilihan_satu ) }} / 2. {{ $student->pilihan_jurusan( $student->ppdb->pilihan_dua ) }} </td>
+                    <td>1. {{ pilihan_jurusan_slug( $student->ppdb->pilihan_satu ) }} / 2. {{ pilihan_jurusan_slug( $student->ppdb->pilihan_dua ) }} </td>
                     @else
                     <td>-</td>
                     @endif
@@ -104,7 +106,7 @@
                 <tr>
                     <td>Asal Sekolah</td>
                     <td>:</td>
-                    <td>{{ $student->school->name }}</td>
+                    <td>{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td>NIK / NISN</td>
@@ -124,7 +126,7 @@
                 <tr>
                     <td>Tempat, Tanggal Lahir</td>
                     <td>:</td>
-                    <td>{{ $student->ttl() }}</td>
+                    <td>{{ $student->tempat_tanggal_lahir }}</td>
                 </tr>
                 <tr>
                     <td>Nomor HP/WA</td>
@@ -236,15 +238,8 @@
                     <td>Pas Photo</td>
                     <td>:</td>
                     <td class="text-center cell">{{ ($student->user->photo) ? 'V' : ' ' }}</td>
-                    <td class="cell"> </td>
                     <td> </td>
-                </tr>
-                <tr>
-                    <td>Akta Kelahiran</td>
-                    <td>:</td>
-                    <td class="text-center cell">{{ ($student->document->akta) ? 'V' : ' ' }}</td>
-                    <td class="cell"> </td>
-                    <td class="cell">{{ $student->akta }}</td>
+                    <td> </td>
                 </tr>
                 <tr>
                     <td>Kartu Keluarga</td>
@@ -254,18 +249,25 @@
                     <td class="cell">{{ $student->kk }}</td>
                 </tr>
                 <tr>
+                    <td>Akta Kelahiran</td>
+                    <td>:</td>
+                    <td class="text-center cell">{{ ($student->document->akta) ? 'V' : ' ' }}</td>
+                    <td class="cell"> </td>
+                    <td class="cell">{{ $student->akta }}</td>
+                </tr>
+                <tr>
+                    <td>Surat Keterangan Lulus</td>
+                    <td>:</td>
+                    <td class="text-center cell">{{ ($student->document->skl) ? 'V' : ' ' }}</td>
+                    <td class="cell"> </td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td>Ijazah</td>
                     <td>:</td>
                     <td class="text-center cell">{{ ($student->document->ijazah) ? 'V' : ' ' }}</td>
                     <td class="cell"> </td>
                     <td class="cell">{{ $student->document->nomor_ijazah }}</td>
-                </tr>
-                <tr>
-                    <td>Surat Keterangan Kelakuan Baik</td>
-                    <td>:</td>
-                    <td> </td>
-                    <td class="cell"> </td>
-                    <td> </td>
                 </tr>
                 <tr>
                     <td>Raport</td>

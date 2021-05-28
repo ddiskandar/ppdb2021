@@ -24,8 +24,9 @@ class Payment extends Model
         return $this->belongsTo(User::class, 'verified_by');
     }
 
-    public function date()
+    public function scopeApproved($query)
     {
-        return date('d-m-Y', strtotime($this->date));
+        return $query->where('status', true);
     }
+
 }

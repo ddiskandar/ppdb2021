@@ -54,7 +54,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900 truncate w-72 ">{{ $student->shortAddress }}</div>
-                                        <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp }}</div>
+                                        <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp ?? '-' }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                         <div class="flex items-center space-x-2">
@@ -183,11 +183,15 @@
                                                     <x-icon-pencil-alt />
                                                 </a>
                                             </x-button-icon>
+                                            
+                                            @can ('print student')
                                             <x-button-icon>
                                                 <a href="{{ route('student.pdf', $student->id) }}">
                                                     <x-icon-printer />
                                                 </a>
                                             </x-button-icon>
+                                            @endcan
+                                            
                                             @can ('reset password')
                                             <x-button-icon wire:click="confirmResetPassword({{ $student->user_id }})">
                                                 <x-icon-shield-check />
@@ -293,7 +297,7 @@
         <div class="mt-6 ">
             <x-jet-label value="Tempat, Tanggal Lahir" />
             <div>
-                {{ $studentDetail->ttl() ?? '-' }}
+                {{ $studentDetail->tempat_tanggal_lahir ?? '-' }}
             </div>
         </div>
         <div class="mt-6 ">

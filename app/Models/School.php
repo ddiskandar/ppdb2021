@@ -20,14 +20,14 @@ class School extends Model
         return $this->hasMany(Student::class);
     }
 
-    public function grow()
+    public function getComparisonAttribute()
     {
         if ($this->students()->count() > $this->last_students) {
-            return 'increase';
+            return 'up';
         } elseif ($this->students()->count() == $this->last_students) {
             return 'same';
         } else {
-            return 'decrease';
+            return 'down';
         }
     }
 }

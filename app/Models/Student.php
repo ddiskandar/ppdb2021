@@ -65,11 +65,6 @@ class Student extends Model
         return $this->hasOne(Document::class);
     }
 
-    public function jurusan()
-    {
-        return $this->hasOneThrough(Jurusan::class, Ppdb::class);
-    }
-
     public function agama()
     {
         return $this->belongsTo(Agama::class);
@@ -90,14 +85,18 @@ class Student extends Model
         return $this->belongsTo(Transportasi::class);
     }
 
-    public function ttl()
+    public function getTempatTanggalLahirAttribute()
     {
-        return $this->birthdate ? $this->birthplace . ', ' . date('d-m-Y', strtotime($this->birthdate)) : '-';
+        return $this->birthdate 
+            ? $this->birthplace . ', ' . format_tanggal_indo($this->birthdate) 
+            : '-';
     }
 
     public function getFullAddressAttribute()
     {
-        return $this->address ? $this->address . ' Rt. ' . $this->rt . '/' . $this->rw . ' Ds. ' . $this->desa . ' Kec. ' . $this->kecamatan . ' Kab. ' . $this->kab . ' ' . $this->prov : '-';
+        return $this->address 
+            ? $this->address . ' Rt. ' . $this->rt . '/' . $this->rw . ' Ds. ' . $this->desa . ' Kec. ' . $this->kecamatan . ' Kab. ' . $this->kab . ' ' . $this->prov 
+            : '-';
     }
 
     public function getShortAddressAttribute()
@@ -105,29 +104,32 @@ class Student extends Model
         return $this->address ? $this->address . ', ' . $this->kecamatan . ', ' . $this->kab : '-';
     }
 
-    public function pilihan_kelas()
+    public function getAlurCompletedAttribute()
     {
-        if ($this->ppdb->pilihan_kelas == 1) {
-            return 'Boarding';
-        }
-        return 'Regular';
+        return 
+        
+        // sudah memilih jurusan
+        $this->ppdb->pilihan_satu
+
+        // sudah gabung grup wa
+        && $this->ppdb->join_wa
+
+        // biodata pribadi sudah lengkap
+        && $this->data_completed
+
+        // pembayaran sudah lunas
+        && $this->payment_completed
+
+        // upload dokumen sudah cukup
+        && $this->document_completed;
     }
 
-    public function is_alur_completed()
-    {
-        return $this->ppdb->pilihan_satu
-            && $this->ppdb->join_wa
-            && $this->is_data_completed()
-            && $this->is_payment_completed()
-            && $this->is_document_completed();
-    }
-
-    public function is_document_completed()
+    public function getDocumentCompletedAttribute()
     {
         return isset($this->document->kartu_keluarga);
     }
 
-    public function is_data_completed()
+    public function getDataCompletedAttribute()
     {
         return isset(
             $this->panggilan,
@@ -149,57 +151,19 @@ class Student extends Model
         );
     }
 
-    // payment_unverified
-    public function un_bayar()
-    {
-        return $this->payments->where('status', false)->sum('amount');
-    }
-
-    // payment_approved
-    public function bayar()
-    {
-        return $this->payments->where('status', true)->sum('amount');
-    }
-
-    public function paid($approved = false)
+    public function getPaidAmountAttribute()
     {
         return $this->payments
-            ->where('status', $approved)
+            ->where('status', true)
             ->sum('amount');
     }
 
-    // public function getPaymentAmountAttribute()
-    // {
-    //     if(!empty($this->ppdb))
-    //     {
-    //         return 
-    //     }
-    //         ? $this->ppdb->payment_amount
-    //         : Periode::where('active', true)
-    //         ->first()->ref_payment_amount;
-    // }
-
-    public function is_payment_completed()
+    public function getPaymentCompletedAttribute()
     {
-        return $this->bayar() >= (!empty($this->ppdb)
+        return $this->paid_amount >= ( ! empty($this->ppdb )
             ? $this->ppdb->payment_amount
-            : Periode::where('active', true)
-            ->first()->ref_payment_amount);
+            : Periode::whereActive(true)->first()->ref_payment_amount 
+        );
     }
 
-    public function scopeBelumLunas()
-    {
-        return $this->bayar() < (!empty($this->ppdb) ? $this->ppdb->payment_amount : Periode::where('active', true)->first()->ref_payment_amount);
-    }
-
-    public function pilihan_jurusan($pilihan)
-    {
-        if ($pilihan == 1) {
-            return "MM";
-        } elseif ($pilihan == 2) {
-            return "BDP";
-        } else {
-            return "APHP";
-        }
-    }
 }

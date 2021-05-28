@@ -88,10 +88,10 @@
         <tr>
             <td>{{ $student->user->username }}</td>
 
-            <td>{{ $student->ppdb->pilihan_kelas }}</td>
-            <td>{{ $student->ppdb->pilihan_satu }}</td>
-            <td>{{ $student->ppdb->pilihan_dua }}</td>
-            <td>{{ $student->ppdb->pilihan_lulus }}</td>
+            <td>{{ pilihan_kelas_slug($student->ppdb->pilihan_kelas) }}</td>
+            <td>{{ pilihan_jurusan_slug($student->ppdb->pilihan_satu) }}</td>
+            <td>{{ pilihan_jurusan_slug($student->ppdb->pilihan_dua) }}</td>
+            <td>{{ pilihan_jurusan_slug($student->ppdb->pilihan_lulus) }}</td>
 
             <td>{{ $student->school->name }}</td>
             <td>{{ $student->school->npsn }}</td>

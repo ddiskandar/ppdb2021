@@ -15,7 +15,7 @@
                 @if ($photo)
                 <img src="{{ $photo->temporaryUrl() }}" class="object-cover w-48 rounded shadow h-60" />
                 @elseif ($student->user->photo)
-                <img src="{{ asset('storage/' . $student->user->photo) }}" class="object-cover w-48 rounded shadow h-60" />
+                <img src="{{ Storage::url($student->user->photo) }}" class="object-cover w-48 rounded shadow h-60" />
                 @else
                 <img src="/images/default-photo.png" class="object-cover w-48 rounded shadow h-60" />
                 @endif

@@ -47,7 +47,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->middleware(['role:admin'])
         ->name('master');
 
+    Route::get('/student/{student}/print', [StudentController::class, 'print'])
+        ->middleware(['role:student'])
+        ->name('student.print');
+
     Route::get('/student/{student}/pdf', [StudentController::class, 'pdf'])
+        ->middleware(['can:print student'])
         ->name('student.pdf');
 
     Route::get('/student/{student}', [StudentController::class, 'show'])

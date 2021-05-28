@@ -16,6 +16,16 @@ class StudentController extends Controller
         return Excel::download(new StudentsExport, 'ppdb2021 - pendaftar.xlsx');
     }
 
+    public function print(Student $student)
+    {
+        abort_if($student->user_id != auth()->id(), 404);
+
+        $pdf = PDF::loadView('pdf.biodata', [
+            'student' => $student,
+        ]);
+        return $pdf->stream($student->user->username . '.pdf');
+    }
+
     public function pdf(Student $student)
     {
         $pdf = PDF::loadView('pdf.biodata', [

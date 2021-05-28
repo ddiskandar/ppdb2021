@@ -85,14 +85,14 @@
                             <p class="mt-2 text-xs ">* Catat dan simpan atau screnshot nomor registrasi pendaftaran ini karena akan selalu digunakan untuk login dan keperluan lainnya selama PPDB.</p>
 
                             <div class="py-6">
-                                <x-action-card completed="{!! ( $student->is_alur_completed() ) ? 'true' : 'false' !!}" title="Cetak Kartu" action="{!! $student->is_alur_completed() ? route('student.pdf', $student->id) : '#' !!}" description="Nomor registrasi pendaftaran">
+                                <x-action-card completed="{!! ( $student->alur_completed ) ? 'true' : 'false' !!}" title="Cetak Kartu" action="{!! $student->alur_completed ? route('student.print', $student->id) : '#' !!}" description="Nomor registrasi pendaftaran">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="38.813" height="38.813" viewBox="0 0 38.813 38.813">
                                         <path id="Path_58" data-name="Path 58" d="M31.632,31.632h4.09a4.09,4.09,0,0,0,4.09-4.09V19.361a4.09,4.09,0,0,0-4.09-4.09H7.09A4.09,4.09,0,0,0,3,19.361v8.181a4.09,4.09,0,0,0,4.09,4.09h4.09m4.09,8.181H27.542a4.09,4.09,0,0,0,4.09-4.09V27.542a4.09,4.09,0,0,0-4.09-4.09H15.271a4.09,4.09,0,0,0-4.09,4.09v8.181A4.09,4.09,0,0,0,15.271,39.813ZM31.632,15.271V7.09A4.09,4.09,0,0,0,27.542,3H15.271a4.09,4.09,0,0,0-4.09,4.09v8.181Z" transform="translate(-2 -2)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                     </svg>
 
                                 </x-action-card>
 
-                                @if( ! $student->is_alur_completed())
+                                @if( ! $student->alur_completed )
                                 <p class="mt-2 text-sm text-red-700">
                                     {{ __('Kartu peserta dapat diunduh setelah semua alur pendaftaran selesai') }}
                                 </p>
@@ -151,7 +151,7 @@
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{!! ( $student->is_data_completed() ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}" title="Biodata" description="Isi data profil diri">
+                            <x-action-card completed="{!! ( $student->data_completed ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}" title="Biodata" description="Isi data profil diri">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-11">
                                     <path data-name="Path 54" d="M16.094 7.469H5.313A4.312 4.312 0 001 11.781v19.407A4.312 4.312 0 005.313 35.5H35.5a4.313 4.313 0 004.313-4.312V11.781A4.313 4.313 0 0035.5 7.469H24.719m-8.625 0V5.313a4.313 4.313 0 018.625 0v2.156m-8.625 0a4.313 4.313 0 008.625 0m-10.782 17.25a4.313 4.313 0 10-4.313-4.312 4.312 4.312 0 004.313 4.312zm0 0a6.477 6.477 0 016.1 4.313m-6.1-4.312a6.471 6.471 0 00-6.1 4.313M26.875 18.25h6.469m-6.469 8.625h4.313" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
@@ -169,13 +169,13 @@
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{!! ( $student->is_document_completed() ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}#dokumen" title="Unggah Berkas" description="Ijazah, Akta, Kartu keluarga">
+                            <x-action-card completed="{!! ( $student->document_completed ) ? 'true' : 'false' !!}" action="/student/{{ $student->id }}#dokumen" title="Unggah Berkas" description="Ijazah, Akta, Kartu keluarga">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35.381" height="37.964">
                                     <path data-name="Path 52" d="M23.321 8.992L10.163 22.15a4 4 0 105.651 5.65l12.814-13.158a7.991 7.991 0 10-11.3-11.3L4.511 16.5a11.989 11.989 0 0016.954 16.952l12.5-12.473" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>
                             </x-action-card>
 
-                            <x-action-card completed="{{ ( $student->is_payment_completed() ) ? 'true' : 'false' }}" action="/student/{{ $student->id }}#pembayaran" title="Bayar Pendaftaran" description="Membayar biaya pendaftaran">
+                            <x-action-card completed="{{ ( $student->payment_completed ) ? 'true' : 'false' }}" action="/student/{{ $student->id }}#pembayaran" title="Bayar Pendaftaran" description="Membayar biaya pendaftaran">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="43" height="33.889">
                                     <path data-name="Path 51" d="M28.333 1v4.556m0 9.111v4.556m0 9.111v4.556M5.556 1A4.556 4.556 0 001 5.556v6.833A4.556 4.556 0 111 21.5v6.833a4.556 4.556 0 004.556 4.556h31.888A4.556 4.556 0 0042 28.333V21.5a4.556 4.556 0 110-9.111V5.556A4.556 4.556 0 0037.444 1z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                 </svg>

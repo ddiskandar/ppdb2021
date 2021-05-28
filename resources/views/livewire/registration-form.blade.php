@@ -48,7 +48,7 @@
                                 <!-- Name -->
                                 <div class="mt-4">
                                     <x-jet-label for="state.name" :value="__('Nama Lengkap')" />
-                                    <x-jet-input wire:model.lazy="state.name" id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" autofocus />
+                                    <x-jet-input wire:model.lazy="state.name" id="name" class="block w-full mt-1 uppercase" type="text" name="name" :value="old('name')" autofocus />
                                     <x-jet-input-error for="state.name" class="mt-2" />
                                 </div>
 

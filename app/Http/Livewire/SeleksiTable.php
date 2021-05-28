@@ -21,6 +21,7 @@ class SeleksiTable extends Component
     public $perPage = 4;
     public $filterKelas;
     public $filterSchool;
+    public $filterLulus = '';
 
     public $join_wa;
 
@@ -71,6 +72,8 @@ class SeleksiTable extends Component
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('pilihan_kelas', 'like', '%' . $this->filterKelas . '%');
+        })->whereHas('ppdb', function ($query) {
+            $query->where('pilihan_lulus', 'like', '%' . $this->filterLulus);
         })->orderByDesc('id')
         ->with(
             'school:id,name',

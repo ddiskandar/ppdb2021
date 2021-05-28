@@ -73,20 +73,20 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900 truncate w-52">{{ $student->shortAddress }}</div>
-                                        <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp }}</div>
+                                        <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp ?? '-' }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
                                             <span class="w-2 h-2 mr-2 bg-green-600 rounded-full"></span>
-                                            <span>{{ $student->pilihan_kelas() }}</span>
+                                            <span>{{ pilihan_kelas_slug($student->ppdb->pilihan_kelas) }}</span>
                                         </span>
 
                                         @isset ($student->ppdb->pilihan_satu)
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            {{ '1 : ' . $student->pilihan_jurusan($student->ppdb->pilihan_satu)}}
+                                            {{ '1 : ' . pilihan_jurusan_slug($student->ppdb->pilihan_satu)}}
                                         </span>
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            {{ '2 : ' . $student->pilihan_jurusan($student->ppdb->pilihan_dua)}}
+                                            {{ '2 : ' . pilihan_jurusan_slug($student->ppdb->pilihan_dua)}}
                                         </span>
                                         @endisset
 
@@ -154,10 +154,13 @@
 
                                     </td>
                                     <td class="py-4 pl-2 pr-6 text-sm font-medium whitespace-nowrap">
-                                        @isset ($student->ppdb->pilihan_lulus)
+                                        @if ($student->ppdb->pilihan_lulus > 0)
 
-                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            {{ $student->pilihan_jurusan($student->ppdb->pilihan_lulus) }}
+                                        <span class="inline-flex items-center px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                            <span class="w-2 h-2 mr-2 bg-green-600 rounded-full"></span>
+                                            <span>
+                                                {{ pilihan_jurusan_slug($student->ppdb->pilihan_lulus) }}
+                                            </span>
                                         </span>
 
                                         @else
@@ -218,6 +221,16 @@
                             @foreach($schools as $school)
                             <option value="{{ $school->name }}">{{ $school->name }}</option>
                             @endforeach
+                        </select>
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-jet-label for="filterLulus" value="Gabung Grup" />
+                        <select wire:model="filterLulus" id="filterLulus" name="filterLulus" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
+                            <option value=''>Semua</option>
+                            <option value='0'>Belum ditentukan</option>
+                            <option value='1'>MM</option>
+                            <option value='2'>BDP</option>
+                            <option value='3'>APHP</option>
                         </select>
                     </div>
                 </div>

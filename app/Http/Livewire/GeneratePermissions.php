@@ -28,6 +28,7 @@ class GeneratePermissions extends Component
         Permission::findOrCreate('download excel', 'web');
         Permission::findOrCreate('reset password', 'web');
         Permission::findOrCreate('edit student', 'web');
+        Permission::findOrCreate('print student', 'web');
 
         $role1 = Role::findByName('student', 'web');
 
@@ -38,6 +39,8 @@ class GeneratePermissions extends Component
             'view statistik',
             'process wawancara',
             'edit ukuran seragam',
+            'process tpa',
+            'process btq',
             'process pendaftaran',
             'process pembayaran',
             'process seleksi',
@@ -45,6 +48,7 @@ class GeneratePermissions extends Component
             'download excel',
             'reset password',
             'edit student',
+            'print student',
         ]);
 
         $role3 = Role::findByName('interviewer', 'web');
