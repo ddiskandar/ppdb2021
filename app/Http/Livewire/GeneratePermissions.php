@@ -29,8 +29,12 @@ class GeneratePermissions extends Component
         Permission::findOrCreate('reset password', 'web');
         Permission::findOrCreate('edit student', 'web');
         Permission::findOrCreate('print student', 'web');
+        Permission::findOrCreate('edit photo', 'web');
 
         $role1 = Role::findByName('student', 'web');
+        $role1->givePermissionTo([
+            'edit photo',
+        ]);
 
         $role2 = Role::findByName('committee', 'web');
         $role2->givePermissionTo([
@@ -49,6 +53,7 @@ class GeneratePermissions extends Component
             'reset password',
             'edit student',
             'print student',
+            'edit photo',
         ]);
 
         $role3 = Role::findByName('interviewer', 'web');
@@ -71,6 +76,7 @@ class GeneratePermissions extends Component
             'edit ukuran seragam',
             'edit student',
             'reset password',
+            'edit photo',
         ]);
 
         $role6 = Role::findByName('financial', 'web');

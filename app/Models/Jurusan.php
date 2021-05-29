@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
+use App\Models\Ppdb;
 
 class Jurusan extends Model
 {
@@ -12,7 +13,12 @@ class Jurusan extends Model
     
     public function students()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasManyThrough(
+            Student::class, 
+            Ppdb::class, 
+            'pilihan_lulus',
+            'id'
+            );
     }
 
     public function ppdb()

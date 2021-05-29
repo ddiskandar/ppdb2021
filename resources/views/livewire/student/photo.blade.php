@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Mengenakan seragam asal sekolah. File Photo JPG, PNG. maksimal 1 MB') }}
+        Mengenakan seragam asal sekolah. @can('edit photo') File Photo JPG, PNG. maksimal 1 MB' @endcan
     </x-slot>
 
     <x-slot name="form">
@@ -21,15 +21,18 @@
                 @endif
             </div>
 
+            @can ('edit photo')
             <input wire:model.defer="photo" class="block w-full mt-4" type="file" />
             <x-jet-input-error for="photo" class="mt-2" />
             <x-jet-label wire:loading wire:target="photo" class="mt-2" :value="__('Uploading...')" />
+            @endcan
 
         </div>
 
 
     </x-slot>
 
+    @can('edit photo')
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
             {{ __('Berhasil disimpan.') }}
@@ -43,4 +46,5 @@
             {{ __('Simpan') }}
         </x-jet-button>
     </x-slot>
+    @endcan
 </x-jet-form-section>

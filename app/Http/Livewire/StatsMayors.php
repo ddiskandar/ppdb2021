@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Ppdb;
 use Livewire\Component;
+use App\Models\Ppdb;
 
 class StatsMayors extends Component
 {

@@ -98,7 +98,7 @@
 
                                 <!-- Password -->
                                 <div class="mt-4">
-                                    <x-jet-label for="state.password" :value="__('Password ( digunakan untuk login aplikasi )')" />
+                                    <x-jet-label for="state.password" :value="__('Password (minimal 6 karakter)')" />
                                     <x-jet-input wire:model.lazy="state.password" id="password" class="block w-full mt-1" type="password" name="password" autocomplete="new-password" />
                                     <x-jet-input-error for="state.password" class="mt-2" />
                                 </div>

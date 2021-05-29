@@ -55,11 +55,15 @@ class UsersTable extends Component
 
         } else {
             
-            $user = User::where('id', $this->userId)
-                ->Update([
-                    'username' => $this->username,
-                    'name' => $this->name,
-                ]);
+            $user = User::where('id', $this->userId)->first();
+
+            $user->update([
+                'username' => $this->username,
+                'name' => $this->name,
+            ]);
+            
+            $user->syncRoles($this->role);
+
             
         }
 

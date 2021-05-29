@@ -17,7 +17,11 @@ class ShowName extends Component
     {
         return <<<'blade'
             <div>
-                {{ $student->user->name }}  / {{ $student->school->name }}
+                <div class="flex flex-col items-start justify-start md:items-center md:space-x-3 md:flex-row">
+                <div>{{ $student->user->name }}</div>
+                <div class="hidden text-sm text-gray-600 md:block"> / </div> 
+                <div class="mt-1 text-sm text-gray-600 ">{{ $student->school->name }}</div>
+                </div>
             </div>
         blade;
     }
