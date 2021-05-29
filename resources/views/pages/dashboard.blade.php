@@ -4,7 +4,7 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ __('Dashboard') }}
             </h2>
-            <div class="text-sm text-gray-500">Aktif : Gel 02, {{ \DB::table('periodes')->where('active', true)->first()->desc }}</div>
+            <div class="text-sm text-gray-500">Aktif : Gel {{ $periode->name . ', ' .  $periode->desc }}</div>
         </div>
     </x-slot>
 

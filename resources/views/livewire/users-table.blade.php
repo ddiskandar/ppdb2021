@@ -71,11 +71,12 @@
                                                     @endforeach
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span wire:click="edit({{ $user->id }})">
-                                                        <svg class="w-6 h-6 text-gray-300 cursor-pointer hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                                                        </svg>
-                                                    </span>
+                                                    <x-button-icon wire:click="edit({{ $user->id }})">
+                                                        <x-icon-pencil-alt />
+                                                    </x-button-icon>
+                                                    <x-button-icon wire:click="confirmResetPassword({{ $user->id }})">
+                                                        <x-icon-shield-check />
+                                                    </x-button-icon>
                                                 </td>
                                             </tr>
 
@@ -166,4 +167,28 @@
             </div>
         </div>
     </div>
+
+    @isset ($userResetPassword->name)
+    <!-- Delete User Confirmation Modal -->
+    <x-jet-dialog-modal wire:model="confirmingResetPassword">
+        <x-slot name="title">
+            Reset Password {{ $userResetPassword->name }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Yakin mau direset? password akan direset menjadi majuterus') }}
+
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingResetPassword')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="resetPassword()" wire:loading.attr="disabled">
+                {{ __('Reset Password') }}
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
+    @endisset
 </div>

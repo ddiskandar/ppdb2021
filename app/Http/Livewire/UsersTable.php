@@ -6,6 +6,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTable extends Component
 {
@@ -20,10 +21,35 @@ class UsersTable extends Component
     public $username;
     public $role;
 
+    public $confirmingResetPassword = false;
+    public $userResetPassword;
+
     protected $rules = [
-        'username' => 'required|string|max:24',
+        'username' => 'required|string|max:32',
         'name' => 'required|string|max:32',
     ];
+
+    public function confirmResetPassword($id)
+    {
+        $this->resetErrorBag();
+        $this->userResetPassword = User::where('id', $id)->first();
+
+        $this->dispatchBrowserEvent('confirming-reset-password');
+
+        $this->confirmingResetPassword = true;
+    }
+
+    public function resetPassword()
+    {
+        User::where('id', $this->userResetPassword->id)
+            ->update([
+                'password' => Hash::make('majuterus'),
+            ]);
+
+        $this->confirmingResetPassword = false;
+
+        $this->emit('reseted');
+    }
 
     public function updatingSearch()
     {

@@ -95,7 +95,7 @@ class Student extends Model
     public function getFullAddressAttribute()
     {
         return $this->address 
-            ? $this->address . ' Rt. ' . $this->rt . '/' . $this->rw . ' Ds. ' . $this->desa . ' Kec. ' . $this->kecamatan . ' Kab. ' . $this->kab . ' ' . $this->prov 
+            ? $this->address . ' Rt. ' . $this->rt . '/' . $this->rw . ' Ds. ' . $this->desa . ' Kec. ' . $this->kecamatan . ' ' . $this->kab . ' ' . $this->prov 
             : '-';
     }
 
