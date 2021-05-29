@@ -45,12 +45,12 @@
             <x-jet-label for="state.bacaan_shalat" :value="__('Bacaan Shalat')" />
             <x-select wire:model.defer="state.bacaan_shalat" id="state.bacaan_shalat" name="state.bacaan_shalat" autocomplete="state.bacaan_shalat" class="block w-full px-3 mt-1">
                 <option value="">{{ __('-- Pilih salah satu') }}</option>
-                <option value="S">{{ __('(S)') }}</option>
-                <option value="A">{{ __('(A)') }}</option>
-                <option value="B">{{ __('(B)') }}</option>
-                <option value="C">{{ __('(C)') }}</option>
-                <option value="D">{{ __('(D)') }}</option>
-                <option value="E">{{ __('(E)') }}</option>
+                <option value="S">{{ __('(S) Istimewa') }}</option>
+                <option value="A">{{ __('(A) Baik dalam bacaan, memahami hukum, dan gerakan shalat') }}</option>
+                <option value="B">{{ __('(B) Baik dalam bacaan, tapi kurang memahami dalam hukum ATAU gerakan shalat') }}</option>
+                <option value="C">{{ __('(C) Baik dalam bacaan, tapi tidak memahami hukum DAN gerakan shalat') }}</option>
+                <option value="D">{{ __('(D) Kurang baik dalam bacaan shalat') }}</option>
+                <option value="E">{{ __('(E) Tidak bisa bacaan shalat') }}</option>
             </x-select>
             <x-jet-input-error for="state.bacaan_shalat" class="mt-2" />
         </div>
