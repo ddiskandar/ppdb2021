@@ -30,6 +30,11 @@ class UsersTable extends Component
         $this->resetPage();
     }
 
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+
     public function edit($id)
     {
         $user = User::find($id);

@@ -31,6 +31,11 @@ class SchoolsTable extends Component
         $this->resetPage();
     }
 
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+
     public function edit($id)
     {
         $school = School::find($id);
