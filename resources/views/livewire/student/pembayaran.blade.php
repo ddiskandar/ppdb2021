@@ -36,7 +36,7 @@
                                 <div class="col-span-2 lg:col-span-1">
                                     <div class="text-sm text-gray-400 uppercase">Status Pembayaran</div>
 
-                                    @if($student->is_payment_completed())
+                                    @if($student->payment_completed)
                                     <div class="flex items-center mt-2 text-sm font-semibold text-green-600"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>

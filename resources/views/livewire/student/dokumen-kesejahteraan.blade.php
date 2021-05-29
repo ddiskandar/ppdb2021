@@ -131,7 +131,7 @@
 
         <div class="col-span-6 md:col-span-3">
             <div class="flex items-center justify-start">
-                <x-jet-label :value="__('Kartu Program Keluarga Harapan')" />
+                <x-jet-label :value="__('Kartu PKH')" />
                 @if($document->pkh)
                 <a href="{{ asset('storage/' . $document->pkh) }}" target="_blank" class="flex items-center ml-2 text-sm font-semibold text-green-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
