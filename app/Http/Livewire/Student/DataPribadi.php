@@ -19,7 +19,7 @@ class DataPribadi extends Component
         'state.nisn' => 'nullable|string|min:10|max:10',
         'state.nik' => 'nullable|string|min:16|max:16',
         'state.kk' => 'nullable|string|min:16|max:16',
-        'state.akta' => 'nullable|string|max:22',
+        'state.akta' => 'nullable|string|max:21',
         'state.birthplace' => 'required|string|max:32',
         'state.birthdate' => 'required|date',
         'state.address' => 'required|string:max:52',

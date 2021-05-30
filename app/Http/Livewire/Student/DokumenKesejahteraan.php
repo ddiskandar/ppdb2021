@@ -31,8 +31,8 @@ class DokumenKesejahteraan extends Component
         'pkh' => 'nullable|image|max:2048',
         'no_kks' => 'nullable|string|max:16',
         'no_kip' => 'nullable|string|max:16',
-        'no_kis' => 'nullable|string|max:16',
-        'no_pkh' => 'nullable|string|max:16',
+        'no_kis' => 'nullable|string|max:21',
+        'no_pkh' => 'nullable|string|max:21',
     ];
 
     protected $validationAttributes = [

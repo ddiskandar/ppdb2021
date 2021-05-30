@@ -12,7 +12,20 @@ class StudentsExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         return view('exports.students', [
-            'students' => Student::with('user', 'ortu')->get()->sortBy(function ($query) {
+            'students' => Student::with(
+                    'user', 
+                    'school', 
+                    'ortu', 
+                    'ppdb', 
+                    'document', 
+                    'hobby', 
+                    'ideals', 
+                    'pip', 
+                    'tinggal', 
+                    'transportasi'
+                )
+                ->get()
+                ->sortBy(function ($query) {
                 return $query->user->name;
             })
         ]);
