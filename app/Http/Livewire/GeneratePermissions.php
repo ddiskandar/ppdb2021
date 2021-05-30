@@ -76,6 +76,7 @@ class GeneratePermissions extends Component
             'edit ukuran seragam',
             'edit student',
             'reset password',
+            'print student',
             'edit photo',
         ]);
 
