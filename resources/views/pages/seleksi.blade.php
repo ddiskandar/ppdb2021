@@ -11,11 +11,15 @@
                 @livewire('seleksi-table')
             </div>
 
+            @can ('process pleno')
+
             <x-jet-section-border />
 
             <div class="mt-10 sm:mt-0">
                 @livewire('stats-mayors')
             </div>
+
+            @endcan
 
         </div>
     </div>
