@@ -73,13 +73,13 @@
         <div class="frame">
             <img class="photo" src="{!! isset($student->user->photo) 
                                         ? public_path('/storage/' . $student->user->photo) 
-                                        : '/images/default-photo.png' !!}" alt="foto siswa">
+                                        : public_path('/images/default-photo.png') !!}" alt="foto siswa">
         </div>
         <div class="text-center ">
             <h3>FORMULIR PENDAFTARAN</h3>
             <h3>PENERIMAAN PESERTA DIDIK BARU</h3>
-            <h3>PPDB 2021/2022</h3>
-            <h3>SMK PLUS AL-FARHAN</h3>
+            <h3>SMK PLUS AL-FARHAN TAHUN 2021/2022</h3>
+            <h3>https://ppdb.smkplusalfarhan.sch.id</h3>
         </div>
 
         <div class="mt-4">

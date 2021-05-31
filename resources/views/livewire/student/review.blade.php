@@ -52,7 +52,7 @@
                 <x-dd value="{{ $student->ppdb->tool->name ?? '-' }}" />
 
                 <x-dt class="mt-6" value="TPA / Menggambar / Baca Quran / Tulis Quran / Bacaan Shalat" />
-                <x-dd value="{{ $student->ppdb->tpa ?? '-' }} / {{ $student->ppdb->gambar ?? '-' }} / {{ $student->ppdb->baca_quran ?? '-' }} / {{ $student->ppdb->tulis_quran ?? '-' }} / {{ $student->ppdb->bacaan_quran ?? '-' }}" />
+                <x-dd value="{{ $student->tpa ?? '-' }} / {{ $student->gambar ?? '-' }} / {{ $student->baca_quran ?? '-' }} / {{ $student->tulis_quran ?? '-' }} / {{ $student->bacaan_shalat ?? '-' }}" />
 
                 <x-dt class="mt-6" value="Pilihan Kelas / Jurusan Pertama / Jurusan Kedua" />
                 <x-dd value="{{ pilihan_kelas_slug($student->ppdb->pilihan_kelas) }} / {{ pilihan_jurusan_slug($student->ppdb->pilihan_satu) ?? '-' }} / {{ pilihan_jurusan_slug($student->ppdb->pilihan_dua) ?? '-' }}" />

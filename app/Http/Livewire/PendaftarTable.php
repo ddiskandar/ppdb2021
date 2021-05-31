@@ -35,6 +35,35 @@ class PendaftarTable extends Component
         'studentAdded',
     ];
 
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+        'filterKelas' => ['except' => ''],
+        'filterSchool' => ['except' => ''],
+        'filterGabung' => ['except' => ''],
+    ];
+
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+    public function updatingFilterSchool()
+    {
+        $this->resetPage();
+    }
+    public function updatingFilterLulus()
+    {
+        $this->resetPage();
+    }
+    public function updatingFilterGabung()
+    {
+        $this->resetPage();
+    }
+
     public function confirmResetPassword($id)
     {
         $this->resetErrorBag();
@@ -61,19 +90,6 @@ class PendaftarTable extends Component
     {
         session()->flash('flash.banner', 'Yay, Pendaftar berhasil ditambah!');
         return $this->redirect(route('pendaftaran'));
-    }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-    public function updatingFilterSchool()
-    {
-        $this->resetPage();
-    }
-    public function updatingPerPage()
-    {
-        $this->resetPage();
     }
 
     public function updatedJoinWA()

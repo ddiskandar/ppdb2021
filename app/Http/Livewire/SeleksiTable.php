@@ -30,8 +30,13 @@ class SeleksiTable extends Component
         'page' => ['except' => 1],
         'filterKelas' => ['except' => ''],
         'filterSchool' => ['except' => ''],
+        'filterLulus' => ['except' => ''],
     ];
 
+    public function updatingPerPage()
+    {
+        $this->resetPage();
+    }
     public function updatingSearch()
     {
         $this->resetPage();
@@ -40,7 +45,11 @@ class SeleksiTable extends Component
     {
         $this->resetPage();
     }
-    public function updatingPerPage()
+    public function updatingFilterLulus()
+    {
+        $this->resetPage();
+    }
+    public function updatingFilterKelas()
     {
         $this->resetPage();
     }

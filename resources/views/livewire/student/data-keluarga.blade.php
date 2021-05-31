@@ -17,7 +17,7 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="state.ayah_nama" :value="__('Nama ayah')" />
-            <x-jet-input wire:model.defer="state.ayah_nama" id="state.ayah_nama" class="block w-full mt-1" type="text" nama="state.ayah_nama" :value="old('state.ayah_nama')" required />
+            <x-jet-input wire:model.defer="state.ayah_nama" id="state.ayah_nama" class="block w-full mt-1" type="text" nama="state.ayah_nama" :value="old('state.ayah_nama')" />
             <x-jet-input-error for="state.ayah_nama" class="mt-2" />
         </div>
 
@@ -66,7 +66,7 @@
         <!-- Ibu -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="state.ibu_nama" :value="__('Nama ibu')" />
-            <x-jet-input wire:model.defer="state.ibu_nama" id="state.ibu_nama" class="block w-full mt-1" type="text" nama="state.ibu_nama" :value="old('state.ibu_nama')" required />
+            <x-jet-input wire:model.defer="state.ibu_nama" id="state.ibu_nama" class="block w-full mt-1" type="text" nama="state.ibu_nama" :value="old('state.ibu_nama')" />
             <x-jet-input-error for="state.ibu_nama" class="mt-2" />
         </div>
 
