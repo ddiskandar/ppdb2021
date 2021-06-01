@@ -76,7 +76,7 @@ class DataPribadi extends Component
         $this->validate();
 
         $this->user->update([
-                'name' => $this->state['user']['name'],
+                'name' => strtoupper($this->state['user']['name']),
             ]);
 
         $this->student->update([

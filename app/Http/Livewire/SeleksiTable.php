@@ -17,10 +17,12 @@ class SeleksiTable extends Component
     public $studentDetail;
 
     public $search = '';
+    public $sortField = 'id';
+    public $sortAsc = false;
 
     public $perPage = 4;
-    public $filterKelas;
-    public $filterSchool;
+    public $filterKelas = '';
+    public $filterSchool = '';
     public $filterLulus = '';
 
     public $join_wa;
@@ -31,7 +33,21 @@ class SeleksiTable extends Component
         'filterKelas' => ['except' => ''],
         'filterSchool' => ['except' => ''],
         'filterLulus' => ['except' => ''],
-    ];
+        'sortField' => ['except' => 'id'],
+        'sortAsc' => ['except' => false],
+        'perPage' => ['except' => 4],
+    ]; 
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortAsc = ! $this->sortAsc;
+        } else {
+            $this->sortAsc = false;
+        }
+
+        $this->sortField = $field;
+    }
 
     public function updatingPerPage()
     {
@@ -83,13 +99,13 @@ class SeleksiTable extends Component
             $query->where('pilihan_kelas', 'like', '%' . $this->filterKelas . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('pilihan_lulus', 'like', '%' . $this->filterLulus);
-        })->orderByDesc('id')
-        ->with(
+        })->with(
             'school:id,name',
             'user:id,name,username',
             'ppdb:student_id,periode_id,pilihan_kelas,pilihan_satu,pilihan_dua,pilihan_lulus,join_wa,interview_by'
         )
-            ->paginate($this->perPage);
+        ->orderBy($this->sortField, $this->sortAsc ? 'ASC' : 'DESC')
+        ->paginate($this->perPage);
 
         return view('livewire.seleksi-table', [
             'students' => $students,

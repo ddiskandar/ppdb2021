@@ -115,7 +115,8 @@ class PendaftarTable extends Component
         ])->whereHas('user', function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('username', 'like', '%' . $this->search . '%');
-        })->whereHas('school', function ($query) {
+        })->orWhere('phone', 'like', '%' . $this->search . '%')
+        ->whereHas('school', function ($query) {
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('pilihan_kelas', 'like', '%' . $this->filterKelas . '%');

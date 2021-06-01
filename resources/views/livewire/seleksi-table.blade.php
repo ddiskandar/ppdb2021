@@ -45,11 +45,39 @@
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Pilihan Kelas / Jurusan
                                     </th>
-                                    <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        TPA / Gambar
+                                    <th scope="col" class="w-20 h-full text-gray-500 ">
+                                        <button wire:click="sortBy('tpa')" class="flex items-center py-3 pl-2 text-xs font-medium tracking-wider text-left uppercase focus:outline-none">
+                                            TPA
+                                            @if ($sortField !== 'tpa')
+
+                                            @elseif ($sortAsc)
+                                            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                            </svg>
+                                            @else
+                                            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                            @endif
+                                        </button>
+
                                     </th>
-                                    <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        BTQ / Shalat
+                                    <th scope="col" class="w-20 h-full text-gray-500 ">
+                                        <button wire:click="sortBy('baca_quran')" class="flex items-center py-3 pl-2 text-xs font-medium tracking-wider text-left uppercase focus:outline-none">
+                                            BTQ
+                                            @if ($sortField !== 'baca_quran')
+
+                                            @elseif ($sortAsc)
+                                            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                            </svg>
+                                            @else
+                                            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                            @endif
+                                        </button>
+
                                     </th>
                                     <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Wawancara

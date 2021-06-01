@@ -57,7 +57,7 @@
         <!-- No. reg Akta Lahir -->
         <div class="col-span-6 sm:col-span-3">
             <x-jet-label for="akta" :value="__('Nomor Reg Akta Lahir')" />
-            <x-jet-input maxlength="21" wire:model.defer="state.akta" id="akta" class="block w-full mt-1" type="text" name="akta" :value="old('akta')" />
+            <x-jet-input maxlength="27" wire:model.defer="state.akta" id="akta" class="block w-full mt-1" type="text" name="akta" :value="old('akta')" />
             <x-jet-input-error for="state.akta" class="mt-2" />
         </div>
 

@@ -65,6 +65,12 @@
 
             <x-jet-section-border />
 
+            <div class="mt-10 sm:mt-0">
+                @livewire('student.ukuran-seragam', ['student' => $student->id])
+            </div>
+
+            <x-jet-section-border />
+
             <div class="mt-10 sm:mt-0" id="dokumen">
                 @livewire('student.dokumen-utama', ['student' => $student ])
             </div>
@@ -84,14 +90,6 @@
             </div>
 
             @endrole
-
-            @can ('edit ukuran seragam')
-            <x-jet-section-border />
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('student.ukuran-seragam', ['student' => $student->id])
-            </div>
-            @endcan
 
             @can ('delete student')
             <x-jet-section-border />
