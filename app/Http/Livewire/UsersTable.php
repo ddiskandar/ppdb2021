@@ -6,6 +6,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsersTable extends Component
@@ -76,25 +77,32 @@ class UsersTable extends Component
 
         if ( ! $this->userId) {
 
-            $user = User::Create([
-                'username' => $this->username,
-                'name' => $this->name,
-                'password' => bcrypt('majuterus'),
-            ]);
+            DB::transaction(function () {
 
-            $user->assignRole($this->role);
+                $user = User::Create([
+                    'username' => $this->username,
+                    'name' => $this->name,
+                    'password' => bcrypt('majuterus'),
+                ]);
+
+                $user->assignRole($this->role);
+
+            });
 
         } else {
-            
-            $user = User::where('id', $this->userId)->first();
 
-            $user->update([
-                'username' => $this->username,
-                'name' => $this->name,
-            ]);
-            
-            $user->syncRoles($this->role);
+            DB::transaction( function () {
 
+                $user = User::where('id', $this->userId)->first();
+
+                $user->update([
+                    'username' => $this->username,
+                    'name' => $this->name,
+                ]);
+                
+                $user->syncRoles($this->role);
+            
+            });
             
         }
 

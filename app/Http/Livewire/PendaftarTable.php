@@ -55,7 +55,7 @@ class PendaftarTable extends Component
     {
         $this->resetPage();
     }
-    public function updatingFilterLulus()
+    public function updatingFilterKelas()
     {
         $this->resetPage();
     }
@@ -68,9 +68,7 @@ class PendaftarTable extends Component
     {
         $this->resetErrorBag();
         $this->studentResetPassword = User::where('id', $id)->first();
-
         $this->dispatchBrowserEvent('confirming-reset-password');
-
         $this->confirmingResetPassword = true;
     }
 
@@ -80,9 +78,7 @@ class PendaftarTable extends Component
             ->update([
                 'password' => Hash::make('12345678'),
             ]);
-
         $this->confirmingResetPassword = false;
-
         $this->emit('reseted');
     }
 
@@ -115,7 +111,7 @@ class PendaftarTable extends Component
         ])->whereHas('user', function ($query) {
             $query->where('name', 'like', '%' . $this->search . '%')
                 ->orWhere('username', 'like', '%' . $this->search . '%');
-        })->orWhere('phone', 'like', '%' . $this->search . '%')
+        })
         ->whereHas('school', function ($query) {
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {
@@ -123,18 +119,16 @@ class PendaftarTable extends Component
         })->whereHas('ppdb', function ($query) {
             $query->where('join_wa', 'like', '%' . $this->filterGabung);
         })->orderByDesc('created_at')
-            ->with(
-                'school:id,name',
-                'user:id,name,username',
-                'ppdb:student_id,periode_id,pilihan_kelas,join_wa'
-            )
-            ->paginate($this->perPage);
+        ->with(
+            'school:id,name',
+            'user:id,name,username',
+            'ppdb:student_id,periode_id,pilihan_kelas,join_wa'
+        )
+        ->paginate($this->perPage);
 
         return view('livewire.pendaftar-table', [
             'students' => $students,
-
             'schools' => \DB::table('schools')->select(['id', 'name'])->orderByDesc('last_students')->get(),
-
         ]);
     }
 }

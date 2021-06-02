@@ -447,6 +447,67 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mt-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                    Sumber Info Pertama
+                                                </th>
+                                                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                    Jumlah
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Media Sosial
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $info['medsos']}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Baligho/Spanduk/Brosur
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $info['brosur']}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Ajakan teman
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $info['teman']}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Ajakan walikelas di sekolah asal
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $info['walikelas']}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Keinginan sendiri
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    {{ $info['sendiri']}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

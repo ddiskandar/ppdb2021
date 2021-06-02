@@ -16,7 +16,7 @@ class PagesController extends Controller
     public function dashboard()
     {
         $students = DB::table('students')->select('id', 'jk', 'baca_quran', 'tulis_quran', 'bacaan_shalat', 'pdu', 'olahraga', 'jas')->get();
-        $ppdb = Ppdb::select('pilihan_lulus')->get();
+        $ppdb = Ppdb::select('pilihan_lulus', 'info_id')->get();
         $schools = School::withCount('students')->orderByDesc('last_students')->get();
         $jurusans = Jurusan::withCount('students')->get();
         $periode = DB::table('periodes')->whereActive(true)->first();
@@ -87,8 +87,15 @@ class PagesController extends Controller
                 'XXXL' => $students->where('jas', 'XXXL')->count(),
             ],
         ];
+        $info = [
+            'medsos' => $ppdb->where('info_id', 2)->count(),
+            'brosur' => $ppdb->where('info_id', 3)->count(),
+            'teman' => $ppdb->where('info_id', 4)->count(),
+            'walikelas' => $ppdb->where('info_id', 5)->count(),
+            'sendiri' => $ppdb->where('info_id', 6)->count(),
+        ];
 
-        return view('pages.dashboard', compact('students', 'ppdb', 'schools', 'jurusans', 'periode', 'card', 'jk', 'jumlah_jurusan', 'btq', 'seragam'));
+        return view('pages.dashboard', compact('students', 'ppdb', 'schools', 'jurusans', 'periode', 'card', 'jk', 'jumlah_jurusan', 'btq', 'seragam', 'info'));
     }
 
     public function home()
