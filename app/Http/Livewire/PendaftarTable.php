@@ -106,19 +106,32 @@ class PendaftarTable extends Component
 
     public function render()
     {
-        $students = Student::select([
-            'id', 'user_id', 'school_id', 'school_temp', 'address', 'kecamatan', 'kab',
-        ])->whereHas('user', function ($query) {
-            $query->where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('username', 'like', '%' . $this->search . '%');
-        })->orWhere('address', 'like', '%' . $this->search . '%')
+        $students = Student::query()
+        ->where(function ($query) {
+            $query->whereHas('user', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('username', 'like', '%' . $this->search . '%');
+                })
+            ->orWhere('address', 'like', '%' . $this->search . '%')
+            ->orWhere('phone', 'like', '%' . $this->search . '%');
+        })
         ->whereHas('school', function ($query) {
             $query->where('name', 'like', '%' . $this->filterSchool . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('pilihan_kelas', 'like', '%' . $this->filterKelas . '%');
         })->whereHas('ppdb', function ($query) {
             $query->where('join_wa', 'like', '%' . $this->filterGabung);
-        })->orderByDesc('created_at')
+        })
+        ->select([
+            'id', 
+            'user_id', 
+            'school_id', 
+            'school_temp', 
+            'address', 
+            'kecamatan', 
+            'kab',
+        ])
+        ->orderByDesc('created_at')
         ->with(
             'school:id,name',
             'user:id,name,username',

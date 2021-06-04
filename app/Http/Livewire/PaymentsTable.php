@@ -89,7 +89,8 @@ class PaymentsTable extends Component
                 'student.ppdb:id,student_id,payment_amount'
             )->latest()->paginate($this->perPage),
 
-            'students' => Student::select(['id', 'user_id'])
+            'students' => Student::query()
+                ->select(['id', 'user_id'])
                 ->with(
                     'user:id,username,name',
                     'payments:id,student_id,status,amount',
