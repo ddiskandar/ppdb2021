@@ -34,7 +34,7 @@
                             <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                 <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
 
-                                    <table class="min-w-full divide-y divide-gray-200">
+                                    <table class="min-w-full bg-white divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -55,9 +55,13 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-
+                                            <tr wire:loading >
+                                                <td colspan="5" class="p-6 text-sm font-semibold text-center text-gray-500">
+                                                    Loading ...
+                                                </td>
+                                            </tr>
                                             @forelse ($schools as $school)
-                                            <tr>
+                                            <tr wire:loading.remove>
                                                 <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                     {{ $school->npsn }}
                                                 </td>
@@ -79,7 +83,7 @@
                                                 </td>
                                             </tr>
                                             @empty
-                                            <tr>
+                                            <tr wire:loading.remove>
                                                 <td colspan="5" class="p-6 text-sm text-center text-gray-500">
                                                     <div class="flex items-center justify-center py-12">
                                                         <x-icon-ban />
@@ -91,7 +95,7 @@
 
                                         </tbody>
                                     </table>
-                                    <div class="px-2 py-3 bg-gray-50 sm:px-6">
+                                    <div wire:loading.remove class="px-2 py-3 bg-gray-50 sm:px-6">
                                         <div class="px-4 sm:px-0">
                                             {{ $schools->links() }}
                                         </div>
