@@ -1,7 +1,7 @@
 <div>
     <div class="flex items-start justify-between">
         <div class="relative flex flex-1 mb-4 rounded-md shadow-sm">
-            <x-input-search placeholder="Mencari pendaftar berdasarkan nama, nomor registrasi, atau nomor hp ..." />
+            <x-input-search placeholder="Mencari pendaftar berdasarkan nama, nomor registrasi, atau alamat rumah ..." />
         </div>
         <div class="w-16 ml-4">
             <select wire:model="perPage" id="perPage" name="perPage" class="block w-full px-3 py-2 bg-white border border-gray-300 shadow-sm sm:rounded-md focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm">
