@@ -121,7 +121,7 @@ class UsersTable extends Component
         return view('livewire.users-table', [
             'users' => User::query()
                 ->with('roles')
-                ->role(['committee', 'interviewer', 'testers', 'officer'])
+                ->role(['committee', 'interviewer', 'testers', 'officer', 'financial'])
                 ->where('name', 'like', '%' . $this->search . '%')
                 ->paginate($this->perPage),
 

@@ -84,6 +84,11 @@ class GeneratePermissions extends Component
         $role6->givePermissionTo([
             'process pembayaran',
             'process pendaftaran',
+            'edit ukuran seragam',
+            'edit student',
+            'reset password',
+            'print student',
+            'edit photo',
         ]);
 
         $this->emit('saved');

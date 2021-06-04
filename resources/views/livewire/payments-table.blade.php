@@ -50,8 +50,13 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
+                                <tr wire:loading>
+                                    <td class="p-6 text-sm font-semibold text-gray-500">
+                                        Loading ...
+                                    </td>
+                                </tr>
                                 @forelse($payments as $payment)
-                                <tr>
+                                <tr wire:loading.remove>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="w-64 text-sm font-medium text-gray-900 uppercase truncate ">
                                             {{ $payment->student->user->name }}
@@ -123,7 +128,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <tr>
+                                <tr wire:loading.remove>
                                     <td colspan="7" class="p-6 text-sm text-center text-gray-500">
                                         <div class="flex items-center justify-center py-12">
                                             <x-icon-ban />
@@ -134,7 +139,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="px-2 py-3 bg-gray-50 sm:px-6">
+                        <div wire:loading.remove class="px-2 py-3 bg-gray-50 sm:px-6">
                             <div class="px-4 sm:px-0">
                                 {{ $payments->links() }}
                             </div>
