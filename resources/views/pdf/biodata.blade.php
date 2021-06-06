@@ -106,7 +106,7 @@
                 <tr>
                     <td>Asal Sekolah</td>
                     <td>:</td>
-                    <td>{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp ?? '-' }}</td>
+                    <td>{{ $student->asal_sekolah ?? '-' }}</td>
                 </tr>
                 <tr>
                     <td>NIK / NISN</td>

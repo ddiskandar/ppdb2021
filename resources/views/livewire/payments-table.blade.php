@@ -50,13 +50,13 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr wire:loading>
+                                <tr wire:loading wire:target="render">
                                     <td class="p-6 text-sm font-semibold text-gray-500">
                                         Loading ...
                                     </td>
                                 </tr>
                                 @forelse($payments as $payment)
-                                <tr wire:loading.remove>
+                                <tr wire:loading.remove wire:target="render">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="w-64 text-sm font-medium text-gray-900 uppercase truncate ">
                                             {{ $payment->student->user->name }}
@@ -128,7 +128,7 @@
                                     </td>
                                 </tr>
                                 @empty
-                                <tr wire:loading.remove>
+                                <tr wire:loading.remove wire:target="render">
                                     <td colspan="7" class="p-6 text-sm text-center text-gray-500">
                                         <div class="flex items-center justify-center py-12">
                                             <x-icon-ban />
@@ -139,7 +139,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div wire:loading.remove class="px-2 py-3 bg-gray-50 sm:px-6">
+                        <div wire:loading.remove wire:target="render" class="px-2 py-3 bg-gray-50 sm:px-6">
                             <div class="px-4 sm:px-0">
                                 {{ $payments->links() }}
                             </div>
@@ -168,15 +168,14 @@
         </div>
     </div>
 
-    @isset($paymentDetail)
     <x-slide-overs wire:model="panelPaymentDetail">
         <x-slot name="title">
 
         </x-slot>
         <h2 id="slide-over-heading" class="text-xl font-bold text-gray-900">
-            {{ $paymentDetail->student->user->name }}
+            {{ $paymentDetail->student->user->name ?? '' }}
         </h2>
-        <p class="text-sm">{{ $paymentDetail->student->user->username }}</p>
+        <p class="text-sm">{{ $paymentDetail->student->user->username ?? '' }}</p>
 
         <div class="mt-4">
             <x-jet-label for="date" :value="__('Tanggal Pembayaran')" />
@@ -224,6 +223,5 @@
         </div>
 
     </x-slide-overs>
-    @endisset
 
 </div>

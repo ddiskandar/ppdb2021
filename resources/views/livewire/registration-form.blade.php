@@ -4,7 +4,7 @@
         <a href="#" @click="open = ! open, contact = ! contact" class="inline-flex items-center justify-center px-12 py-3 text-sm font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 hover:bg-gray-700">Daftar Sekarang</a>
     </div>
 
-    <div x-show="open" x-cloak class="fixed inset-0 overflow-hidden">
+    <div x-show="open" class="fixed inset-0 overflow-hidden" style="display : none">
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute inset-0 transition-opacity bg-gray-500 bg-opacity-75" aria-hidden="true" x-show="open" x-description="Background overlay, show/hide based on slide-over " x-transition:enter="ease-in-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"></div>
             <section class="absolute inset-y-0 right-0 flex max-w-full pl-10" aria-labelledby="slide-over-heading">

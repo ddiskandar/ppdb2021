@@ -59,7 +59,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900 truncate w-72 ">{{ $student->shortAddress }}</div>
-                                        <div class="text-sm text-gray-500">{{ ($student->school_id != 1) ? $student->school->name : $student->school_temp ?? '-' }}</div>
+                                        <div class="text-sm text-gray-500">{{ $student->asal_sekolah ?? '-' }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
                                         <div class="flex items-center space-x-2">
@@ -272,7 +272,6 @@
         </div>
     </div>
 
-    @isset($studentDetail)
     <x-slide-overs wire:model="panelStudentDetail">
         <x-slot name="title">
 
@@ -284,9 +283,9 @@
         @endisset
 
         <h2 id="slide-over-heading" class="mt-6 text-xl font-bold text-gray-900">
-            {{ $studentDetail->user->name }}
+            {{ $studentDetail->user->name ?? '' }}
         </h2>
-        <p class="text-sm">{{ $studentDetail->user->username }}</p>
+        <p class="text-sm">{{ $studentDetail->user->username ?? '' }}</p>
         <div class="mt-6 ">
             <x-jet-label value="No. Handphone" />
             <div>
@@ -304,7 +303,7 @@
         <div class="mt-6 ">
             <x-jet-label value="Asal Sekolah" />
             <div>
-                {{ ($studentDetail->school->id != 1) ? $studentDetail->school->name : $studentDetail->school_temp }}
+                {{ $studentDetail->asal_sekolah ?? '' }}
             </div>
         </div>
         <div class="mt-6 ">
@@ -332,10 +331,7 @@
             </div>
         </div>
     </x-slide-overs>
-    @endisset
 
-    @isset ($studentResetPassword->name)
-    <!-- Delete User Confirmation Modal -->
     <x-jet-dialog-modal wire:model="confirmingResetPassword">
         <x-slot name="title">
             Reset Password {{ $studentResetPassword->name }}
@@ -356,6 +352,5 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
-    @endisset
 
 </div>

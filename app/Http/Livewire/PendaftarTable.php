@@ -35,6 +35,11 @@ class PendaftarTable extends Component
         'studentAdded',
     ];
 
+    public function mount()
+    {
+        $this->studentResetPassword = new Student();
+    }
+
     protected $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],

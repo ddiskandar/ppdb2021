@@ -104,6 +104,13 @@ class Student extends Model
         return $this->address ? $this->address . ', ' . $this->kecamatan . ', ' . $this->kab : '-';
     }
 
+    public function getAsalSekolahAttribute()
+    {
+        return $this->school_id !== 1
+            ? $this->school->name
+            : $this->school_temp;
+    }
+
     public function getAlurCompletedAttribute()
     {
         return 

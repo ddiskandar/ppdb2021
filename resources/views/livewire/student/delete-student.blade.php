@@ -21,11 +21,11 @@
         <!-- Delete User Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingUserDeletion">
             <x-slot name="title">
-                Hapus Akun
+                Hapus Akun {{ $user->name }}
             </x-slot>
 
             <x-slot name="content">
-                Yakin <span class="font-bold">{{ $user->name }}</span> mau dihapus?
+                Yakin mau dihapus?
             </x-slot>
 
             <x-slot name="footer">

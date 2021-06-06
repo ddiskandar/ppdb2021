@@ -34,6 +34,7 @@ $id = $id ?? md5($attributes->wire('model'));
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
     id="{{ $id }}"
+    style="display : none"
 >
 
     <section 
