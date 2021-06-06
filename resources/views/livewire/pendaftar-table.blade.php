@@ -189,9 +189,17 @@
                                                 </a>
                                             </x-button-icon>
 
+                                            @can ('process card')
+                                            <x-button-icon>
+                                                <a href="{{ route('student.card', $student->id) }}">
+                                                    <x-icon-document-download />
+                                                </a>
+                                            </x-button-icon>
+                                            @endcan
+
                                             @can ('print student')
                                             <x-button-icon>
-                                                <a href="{{ route('student.pdf', $student->id) }}">
+                                                <a href="{{ route('student.print', $student->id) }}">
                                                     <x-icon-printer />
                                                 </a>
                                             </x-button-icon>

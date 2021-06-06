@@ -78,14 +78,16 @@
                     </div>
                     <div class="sm:col-span-12 lg:col-span-4 ">
                         <div>
-                            <div class="w-full px-6 py-8 bg-gray-900 rounded-lg sm:px-12">
-                                <div class="text-gray-400">Nomor Registrasi Pendaftaran</div>
-                                <div class="mt-2 text-4xl font-bold text-white">{{ $student->user->username }}</div>
-                            </div>
-                            <p class="mt-2 text-xs ">* Catat dan simpan atau screnshot nomor registrasi pendaftaran ini karena akan selalu digunakan untuk login dan keperluan lainnya selama PPDB.</p>
+                            <a href="/student/{{ $student->id}}/card">
+                                <div class="w-full px-6 py-8 bg-gray-900 rounded-lg sm:px-12">
+                                    <div class="text-gray-400">Nomor Registrasi Pendaftaran</div>
+                                    <div class="mt-2 text-4xl font-bold text-white">{{ $student->user->username }}</div>
+                                </div>
+                            </a>
+                            <p class="mt-2 text-xs ">klik pada kartu diatas untuk download.</p>
 
                             <div class="py-6">
-                                <x-action-card completed="{!! ( $student->alur_completed ) ? 'true' : 'false' !!}" title="Cetak Kartu" action="{!! $student->alur_completed ? route('student.print', $student->id) : '#' !!}" description="Nomor registrasi pendaftaran">
+                                <x-action-card completed="{!! ( $student->alur_completed ) ? 'true' : 'false' !!}" title="Cetak Kartu" action="{!! $student->alur_completed ? route('student.print', $student->id) : '#' !!}" description="Biodata peserta">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="38.813" height="38.813" viewBox="0 0 38.813 38.813">
                                         <path id="Path_58" data-name="Path 58" d="M31.632,31.632h4.09a4.09,4.09,0,0,0,4.09-4.09V19.361a4.09,4.09,0,0,0-4.09-4.09H7.09A4.09,4.09,0,0,0,3,19.361v8.181a4.09,4.09,0,0,0,4.09,4.09h4.09m4.09,8.181H27.542a4.09,4.09,0,0,0,4.09-4.09V27.542a4.09,4.09,0,0,0-4.09-4.09H15.271a4.09,4.09,0,0,0-4.09,4.09v8.181A4.09,4.09,0,0,0,15.271,39.813ZM31.632,15.271V7.09A4.09,4.09,0,0,0,27.542,3H15.271a4.09,4.09,0,0,0-4.09,4.09v8.181Z" transform="translate(-2 -2)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                     </svg>
@@ -94,7 +96,7 @@
 
                                 @if( ! $student->alur_completed )
                                 <p class="mt-2 text-sm text-red-700">
-                                    {{ __('Kartu peserta dapat diunduh setelah semua alur pendaftaran selesai') }}
+                                    {{ __('Kartu biodata dapat diunduh setelah semua alur pendaftaran selesai') }}
                                 </p>
                                 @endif
                             </div>

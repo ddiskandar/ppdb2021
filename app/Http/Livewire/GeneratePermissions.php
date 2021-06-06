@@ -23,6 +23,7 @@ class GeneratePermissions extends Component
         Permission::findOrCreate('process seleksi', 'web');
         Permission::findOrCreate('process tpa', 'web');
         Permission::findOrCreate('process btq', 'web');
+        Permission::findOrCreate('process card', 'web');
         Permission::findOrCreate('process wawancara', 'web');
         Permission::findOrCreate('process pleno', 'web');
         Permission::findOrCreate('download excel', 'web');
@@ -54,6 +55,7 @@ class GeneratePermissions extends Component
             'edit student',
             'print student',
             'edit photo',
+            'process card',
         ]);
 
         $role3 = Role::findByName('interviewer', 'web');
@@ -78,6 +80,7 @@ class GeneratePermissions extends Component
             'reset password',
             'print student',
             'edit photo',
+            'process card',
         ]);
 
         $role6 = Role::findByName('financial', 'web');
@@ -89,6 +92,7 @@ class GeneratePermissions extends Component
             'reset password',
             'print student',
             'edit photo',
+            'process card',
         ]);
 
         $this->emit('saved');

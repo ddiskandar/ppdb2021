@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 
@@ -22,7 +21,7 @@ Route::view('/', 'pages.welcome')
     ->name('welcome');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
+
     Route::get('/home', [PagesController::class, 'home'])
         ->middleware(['role:student'])
         ->name('home');
@@ -47,13 +46,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->middleware(['role:admin'])
         ->name('master');
 
-    Route::get('/student/{student}/print', [StudentController::class, 'print'])
-        ->middleware(['role:student'])
-        ->name('student.print');
+    Route::get('/student/{student}/card', [StudentController::class, 'card'])
+        ->name('student.card');
 
-    Route::get('/student/{student}/pdf', [StudentController::class, 'pdf'])
-        ->middleware(['can:print student'])
-        ->name('student.pdf');
+    Route::get('/student/{student}/print', [StudentController::class, 'print'])
+        ->name('student.print');
 
     Route::get('/student/{student}', [StudentController::class, 'show'])
         ->middleware(['role:student'])
