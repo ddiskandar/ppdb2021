@@ -78,13 +78,13 @@
                     </div>
                     <div class="sm:col-span-12 lg:col-span-4 ">
                         <div>
-                            <a href="/student/{{ $student->id}}/card">
+                            <a href="/student/{{ $student->id}}/card" target="_blank">
                                 <div class="w-full px-6 py-8 bg-gray-900 rounded-lg sm:px-12">
                                     <div class="text-gray-400">Nomor Registrasi Pendaftaran</div>
                                     <div class="mt-2 text-4xl font-bold text-white">{{ $student->user->username }}</div>
                                 </div>
                             </a>
-                            <p class="mt-2 text-xs ">klik pada kartu diatas untuk download.</p>
+                            <p class="mt-2 text-xs ">* klik pada kartu diatas untuk download kartu tanda registrasi.</p>
 
                             <div class="py-6">
                                 <x-action-card completed="{!! ( $student->alur_completed ) ? 'true' : 'false' !!}" title="Cetak Kartu" action="{!! $student->alur_completed ? route('student.print', $student->id) : '#' !!}" description="Biodata peserta">
