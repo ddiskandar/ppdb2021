@@ -25,17 +25,17 @@ class StudentController extends Controller
 
         $img = \Image::make('images/bg-kartu.jpg')->encode('jpg');
 
-        $img->text($student->user->name, 25, 130, function ($font) {
+        $img->text(strtoupper($student->user->name), 30, 190, function ($font) {
             $font->file(public_path('/fonts/Roboto/Roboto-Black.ttf'));
             $font->size(20);
         });
 
-        $img->text($student->school->name, 25, 200, function ($font) {
+        $img->text($student->school->name, 30, 265, function ($font) {
             $font->file(public_path('/fonts/Roboto/Roboto-Black.ttf'));
             $font->size(20);
         });
 
-        $img->text($student->user->username, 25, 270, function ($font) {
+        $img->text($student->user->username, 30, 340, function ($font) {
             $font->file(public_path('/fonts/Roboto/Roboto-Black.ttf'));
             $font->size(20);
         });
