@@ -30,7 +30,7 @@ class StudentController extends Controller
             $font->size(20);
         });
 
-        $img->text($student->school->name, 30, 265, function ($font) {
+        $img->text($student->asal_sekolah ?? '-', 30, 265, function ($font) {
             $font->file(public_path('/fonts/Roboto/Roboto-Black.ttf'));
             $font->size(20);
         });

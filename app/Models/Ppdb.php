@@ -17,6 +17,10 @@ class Ppdb extends Model
     protected $table = 'ppdb';
     protected $guarded = [];
 
+    protected $casts = [
+        'join_wa' => 'boolean',
+    ];
+
     public function student()
     {
         return $this->belongsTo(Student::class);

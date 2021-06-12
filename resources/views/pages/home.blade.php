@@ -40,11 +40,7 @@
 
                             <dt class="mt-2 text-gray-400">{{ __('Asal Sekolah') }}</dt>
                             <dd class="flex items-center text-xl font-bold text-gray-900">
-                                @if ( $school = $student->school->name )
-                                {{ $school }}
-                                @else
-                                <p class="mt-2 text-sm text-red-700 uppercase">{{ __('Belum ada data') }}</p>
-                                @endif
+                                {{ $student->asal_sekolah ?? '-' }}
                             </dd>
 
                             <dt class="mt-2 text-gray-400">{{ __('Alamat Rumah') }}</dt>

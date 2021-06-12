@@ -106,7 +106,7 @@ class Student extends Model
 
     public function getAsalSekolahAttribute()
     {
-        return $this->school_id !== 1
+        return $this->school_id != 1
             ? $this->school->name
             : $this->school_temp;
     }
