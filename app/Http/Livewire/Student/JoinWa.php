@@ -18,7 +18,7 @@ class JoinWa extends Component
 
     protected $rules = [
         'phone' => 'required|string|max:13',
-        'join_wa' => 'required|in:0,1',
+        'join_wa' => 'required',
     ];
 
     protected $validationAttributes = [
@@ -42,7 +42,7 @@ class JoinWa extends Component
         $this->validate();
 
         $this->ppdb->update([
-            'join_wa' => $this->join_wa,
+            'join_wa' => $this->join_wa ? 1 : 0,
         ]);
 
         $this->student->update([
