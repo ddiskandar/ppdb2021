@@ -29,3 +29,6 @@
 - [x] Panitia dapat mengatur kelulusan siswa dengan memilih jurusan lulusnya
 - [x] Pewawancara dalam melakukan wawancara
 - [x] Pewawancara dapat menginput hasil test BTQ
+
+# Kontak WA
+ 0856 2402 8940
