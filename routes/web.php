@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'pages.welcome')
+Route::view('/', 'auth.login')
     ->middleware('guest')
     ->name('welcome');
 

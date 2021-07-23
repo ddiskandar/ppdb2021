@@ -146,7 +146,10 @@ class PendaftarTable extends Component
 
         return view('livewire.pendaftar-table', [
             'students' => $students,
-            'schools' => \DB::table('schools')->select(['id', 'name'])->orderByDesc('last_students')->get(),
+            'schools' => \DB::table('schools')
+            ->select(['id', 'name'])
+            ->orderByDesc('last_students')
+            ->get(),
         ]);
     }
 }

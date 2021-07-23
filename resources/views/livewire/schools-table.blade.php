@@ -139,7 +139,6 @@
                                                     <x-jet-input type="text" name="name" id="name" wire:model.defer="name" class="block w-full mt-1" />
                                                     <x-jet-input-error for="name" class="mt-2" />
                                                 </div>
-
                                                 <div class="col-span-6 sm:col-span-4">
                                                     <x-jet-label for="address" value="Alamat Sekolah" content="required" />
                                                     <x-jet-input type="text" name="address" id="address" wire:model.defer="address" class="block w-full mt-1" />
@@ -150,7 +149,6 @@
                                                     <x-jet-input type="text" name="last_students" id="last_students" wire:model.defer="last_students" class="block w-full mt-1" />
                                                     <x-jet-input-error for="last_students" class="mt-2" />
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="flex items-center justify-end px-4 py-3 text-right bg-gray-50 sm:px-6">

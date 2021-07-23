@@ -41,12 +41,23 @@
 
             <th>Hobby</th>
             <th>Cita-cita</th>
-            <th>Prestasi yang pernah diraih</th>
 
             <th>Tinggi</th>
             <th>Berat</th>
             <th>Lingkar Kepala</th>
 
+            <th>Jarak</th>
+            <th>Waktu</th>
+            <th>PDU</th>
+            <th>Olahraga</th>
+            <th>Jas</th>
+            <th>Prestasi yang pernah diraih</th>
+            <th>Baca Quran</th>
+            <th>Tulis Quran</th>
+            <th>Bacaan Shalat</th>
+            <th>TPA</th>
+            <th>Menggambar</th>
+            
             <th>Nomor HP Orang tua</th>
 
             <th>Nama Ayah</th>
@@ -126,11 +137,22 @@
 
             <td>{{ $student->hobby->name }}</td>
             <td>{{ $student->ideals->name }}</td>
-            <td>{{ $student->prestasi }}</td>
 
             <td>{{ $student->tinggi }}</td>
             <td>{{ $student->berat }}</td>
             <td>{{ $student->lingkar_kepala }}</td>
+
+            <td>{{ $student->jarak }}</td>
+            <td>{{ $student->waktu }}</td>
+            <td>{{ $student->pdu }}</td>
+            <td>{{ $student->olahraga }}</td>
+            <td>{{ $student->jas }}</td>
+            <td>{{ $student->prestasi }}</td>
+            <td>{{ $student->baca_quran }}</td>
+            <td>{{ $student->tulis_quran }}</td>
+            <td>{{ $student->bacaan_shalat }}</td>
+            <td>{{ $student->tpa }}</td>
+            <td>{{ $student->gambar }}</td>
 
             <td>{{ $student->ortu->phone_ortu }}</td>
 
