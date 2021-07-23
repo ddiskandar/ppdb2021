@@ -92,6 +92,11 @@
             <th>Deskripsi Keluarga</th>
             <th>Catatan Tambahan</th>
             <th>Layak PIP</th>
+
+            <th>Interviewer</th>
+            <th>Motivasi SMK</th>
+            <th>Motivasi Jurusan</th>
+            <th>Kepemilikan Alat</th>
         </tr>
     </thead>
     <tbody>
@@ -189,6 +194,10 @@
             <td>{{ $student->catatan }}</td>
             <td>{{ $student->pip->name }}</td>
 
+            <td>{{ $student->ppdb->interviewer->name ?? '' }}</td>
+            <td>{{ $student->ppdb->motivasi_smk }}</td>
+            <td>{{ $student->ppdb->motivasi_jurusan }}</td>
+            <td>{{ $student->ppdb->tool->name }}</td>
         </tr>
         @endforeach
     </tbody>
