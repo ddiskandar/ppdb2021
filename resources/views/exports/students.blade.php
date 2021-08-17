@@ -127,7 +127,7 @@
             <td>{{ $student->rt }}</td>
             <td>{{ $student->rw }}</td>
             <td>{{ $student->desa }}</td>
-            <td>{{ $student->kec }}</td>
+            <td>{{ $student->kecamatan }}</td>
             <td>{{ $student->kab }}</td>
             <td>{{ $student->prov }}</td>
             <td>{{ $student->kode_pos }}</td>

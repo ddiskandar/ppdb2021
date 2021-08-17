@@ -14,7 +14,7 @@ class StudentController extends Controller
 {
     public function export()
     {
-        return Excel::download(new StudentsExport, 'ppdb2021 - pendaftar.xlsx');
+        return Excel::download(new StudentsExport, 'ppdb2021 - pendaftar.csv');
     }
 
     public function card(Student $student)
