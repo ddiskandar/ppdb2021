@@ -19,7 +19,7 @@
         @role('student')
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="" :value="__('Link Grup WA')" />
-            <a href="https://chat.whatsapp.com/GBq6KDPq1MBDYDSKGtr67O" target="_blank">
+            <a href="{{ $linkWaPeriodeAktif }}" target="_blank">
                 <x-jet-secondary-button class="mt-2">
                     Klik disini untuk bergabung
                 </x-jet-secondary-button>

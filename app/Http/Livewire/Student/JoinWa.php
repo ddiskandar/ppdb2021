@@ -16,6 +16,8 @@ class JoinWa extends Component
     public $join_wa;
     public $phone;
 
+    public $linkWaPeriodeAktif;
+
     protected $rules = [
         'phone' => 'required|string|max:13',
         'join_wa' => 'required',
@@ -35,6 +37,7 @@ class JoinWa extends Component
         $this->join_wa = $ppdb->join_wa;
         $this->phone = $student->phone;
         $this->student = $student;
+        $this->linkWaPeriodeAktif = \DB::table('periodes')->whereActive(true)->pluck('link_wa')->first();
     }
 
     public function update()
