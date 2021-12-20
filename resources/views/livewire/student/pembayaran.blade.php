@@ -30,7 +30,7 @@
                                 <div class="col-span-2 lg:col-span-1">
                                     <div class="text-sm text-gray-400 uppercase">Biaya pendaftaran</div>
                                     <div class="text-2xl">
-                                        Rp. 150.021,-
+                                        Rp. 200.022,-
                                     </div>
                                 </div>
                                 <div class="col-span-2 lg:col-span-1">

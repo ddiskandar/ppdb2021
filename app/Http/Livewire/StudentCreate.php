@@ -106,7 +106,7 @@ class StudentCreate extends Component
 
 
             $user = User::create([
-                'username' => '2122.' . $periode . '.' . rand(1000, 9999),
+                'username' => '2223.' . $periode . '.' . rand(1000, 9999),
                 'name' => $this->name,
                 'password' => Hash::make('12345678'),
                 'remember_token' => Str::random(10),

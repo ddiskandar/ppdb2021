@@ -14,7 +14,7 @@ class StudentController extends Controller
 {
     public function export()
     {
-        return Excel::download(new StudentsExport, 'ppdb2021 - pendaftar.csv');
+        return Excel::download(new StudentsExport, 'ppdb2022 - pendaftar.csv');
     }
 
     public function card(Student $student)
@@ -41,7 +41,7 @@ class StudentController extends Controller
         });
 
         $name = 'images/card_temp/'
-        . 'ppdb2021-alfarhan-'
+        . 'ppdb2022-alfarhan-'
         . $student->user->username
             . '-'
             . $student->user->name
@@ -63,10 +63,10 @@ class StudentController extends Controller
         ]);
 
         return $pdf->stream(
-            'ppdb2021-alfarhan-biodata-' 
-            . $student->user->username 
-            . '-' 
-            . $student->user->name 
+            'ppdb2022-alfarhan-biodata-'
+            . $student->user->username
+            . '-'
+            . $student->user->name
             . '.pdf'
         );
     }

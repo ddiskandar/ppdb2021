@@ -17,7 +17,7 @@ class Pembayaran extends Component
 
     public $payment;
 
-    public $amount = 150000;
+    public $amount = 200000;
     public $date;
     public $attachment;
 
@@ -67,11 +67,11 @@ class Pembayaran extends Component
                 'date' => $this->date,
                 'attachment' => $this->attachment->store('pembayaran', 'public'),
             ]);
-        
+
         $this->reset('amount', 'date', 'attachment');
 
         $this->payment = Payment::where('student_id', $this->student->id)->first();
-        
+
     }
 
     public function render()

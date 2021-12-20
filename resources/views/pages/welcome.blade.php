@@ -13,7 +13,7 @@
                                     {{ __('SMK Plus Al-Farhan') }}
                                 </h1>
                                 <p class="mt-6 text-sm lg:text-base">
-                                    {{ __('Untuk calon pendaftar tahun ajaran 2021/2022 bisa mendaftar melalui portal website ini atau langsung datang ke Sekretariat Pendaftaran.') }}
+                                    {{ __('Untuk calon pendaftar tahun ajaran 2022/2023 bisa mendaftar melalui portal website ini atau langsung datang ke Sekretariat Pendaftaran.') }}
                                 </p>
 
                                 <div class="mt-6 text-sm lg:text-base">
@@ -50,7 +50,7 @@
                                 </x-jet-button>
 
                                 <div class="mt-6 text-sm text-center">
-                                    <a href="https://wa.me/6285624028940">
+                                    <a href="https://wa.me/6285624114625">
                                         {{ __('Lupa Nomor Registrasi atau Password? ') }}
                                     </a>
                                 </div>

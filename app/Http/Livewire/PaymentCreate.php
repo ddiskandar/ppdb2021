@@ -18,8 +18,8 @@ class PaymentCreate extends Component
 
     public $search;
 
-    public $payment_amount = 150000;
-    public $amount = 150000;
+    public $payment_amount = 200000;
+    public $amount = 200000;
     public $name, $username, $status, $date, $note;
 
     public $student_id;
@@ -33,7 +33,7 @@ class PaymentCreate extends Component
     ];
 
     protected $validationAttributes = [
-        
+
     ];
 
     public function store()
