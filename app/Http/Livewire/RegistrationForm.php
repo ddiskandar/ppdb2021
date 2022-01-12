@@ -59,7 +59,7 @@ class RegistrationForm extends Component
             $periode = Periode::where('active', true)->first()->name;
 
             $user = User::create([
-                'username' => '2122.' . $periode . '.' . rand(1000, 9999),
+                'username' => '2223.' . $periode . '.' . rand(1000, 9999),
                 'name' => $this->state['name'],
                 'password' => Hash::make($this->state['password']),
                 'remember_token' => Str::random(10),
